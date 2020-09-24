@@ -27,5 +27,4 @@ public class Data // es como un enviroment
 
     //Audio
     //Animated(powers?)
-
 }

@@ -7,12 +7,17 @@ using UnityEngine.UI;
 
 public class DataPass : MonoBehaviour
 {
+
+    public static DataPass Instance;//Singleton....
+
+
+
     ////DataStorage && Data comunication
     //_____
     [Header("DataStorage && Data comunication")]
 
         // Saved File
-        private readonly string savedPath = "/saved1.txt";
+        private readonly string savedPath = "/saved3.txt";
 
         //  Last Used
         public int indexPower = 0; //--> default 0
@@ -20,7 +25,7 @@ public class DataPass : MonoBehaviour
         public int indexContainerImg = 1; //--> default 1
 
     // Unlockables
-    public bool[] shapesUnlock;
+        public bool[] shapesUnlock;
         public bool[] powersUnlock;
 
         //  Score
@@ -34,23 +39,79 @@ public class DataPass : MonoBehaviour
     [Header("GameManager Comunication")]
         private Data data = new Data();
 
-        public Sprite shapeToken;
-        public Sprite shapeContainer;
-        public Sprite shapePower;
+        public Sprite spriteToken;
+        public Sprite spriteContainer;
+        public Sprite spritePower;//sprite o animation?
 
         //public AudioClip Audio; //Musica ? TODO bruno ver
-        
+
     //____
 
-    //no se inician las cosas hasta que se cargue los datos
-    public bool loadingData = true; //se inicia en true hasta que termine de cargar
+
+    public string status;
+
+
+    private void Awake()
+    {
+        //Singleton corroboration
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+            
+    }
 
 
 
     private void Start()
     {
-        LoadResources();
+        // start
+        status = "start";
+        StatusUpdate();
     }
+
+
+    private void Update()
+    {
+
+        if (status != "end") //load the img
+        {
+            StatusUpdate();
+        }
+    }
+
+
+
+    public void StatusUpdate()
+    {
+        switch (status)
+        {
+            case "start":
+                status = "ready";
+                DataInit();//Primero carga o crea un archivo
+                break;
+
+            case "ready":// si el datapass esta listo por que creo o cargo algo entonces inicia
+                status = "loading";
+                LoadResources();
+                break;
+            case "loading":
+                //....Wait
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+
+
 
 
 
@@ -59,15 +120,26 @@ public class DataPass : MonoBehaviour
     public void LoadResources()
     {
 
-        shapeToken  = Resources.Load<Sprite>( data.pathImg + data.pathShapes[indexTokenImg]);
+        spriteToken = Resources.Load<Sprite>( data.pathImg + data.pathShapes[indexTokenImg]);
+        spriteContainer = Resources.Load<Sprite>(data.pathImg + data.pathShapes[indexContainerImg]);
 
         Debug.Log(Resources.Load<Sprite>(data.pathImg + data.pathShapes[0]));
-
+        status = "end";
     }
 
 
 
-    public void DataInit()
+
+
+
+    //___________DATA MANAGER
+
+
+    /// <summary>
+    /// Detecta el estado actual de tus datos, si tienes uno guardado lo carga
+    /// Sino lo Crea....
+    /// </summary>
+    private void DataInit()
     {
         string path = Application.persistentDataPath + savedPath;
         Debug.Log(File.Exists(path) + "on " + path);
@@ -96,6 +168,7 @@ public class DataPass : MonoBehaviour
 
         formatter.Serialize(stream, data);
         stream.Close();
+        Debug.Log("Guardado");
     }
 
     public void LoadData()
@@ -108,15 +181,13 @@ public class DataPass : MonoBehaviour
         stream.Close();
 
         /// Aqui cargamos a DataPass la información
-            savedDataStorage.indexPower = indexPower;
-            savedDataStorage.indexTokenImg = indexTokenImg;
-            savedDataStorage.indexContainerImg = indexContainerImg;
-
-            savedDataStorage.shapesUnlock = shapesUnlock;
-            savedDataStorage.powersUnlock = powersUnlock;
-
-            savedDataStorage.highScore = highScore;
+            indexPower = savedDataStorage.indexPower ;
+            indexTokenImg = savedDataStorage.indexTokenImg ;
+            indexContainerImg = savedDataStorage.indexContainerImg;
+            shapesUnlock = savedDataStorage.shapesUnlock;
+            powersUnlock = savedDataStorage.powersUnlock;
+            highScore = savedDataStorage.highScore;
         ///________
-
+            Debug.Log("Cargado");
     }
 }
