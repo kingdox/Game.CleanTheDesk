@@ -49,34 +49,44 @@ public class Detector : MonoBehaviour
     }
 
 
-void Update()
+    private void Update()
     {
+        //TODO, mejor manejo de esto....
+        //que te muestre cualquiera random :), tocará cargarlos pero no problem 
         gameObject.transform.Rotate(0.0f, 0.0f, 45 * Time.deltaTime);
         // aqui debe rotar el detector
     }
 
-    public void Detect(string opt)
-    {
-
-        Debug.Log(opt);
-
-        if (opt.Contains("Music"))
-        {   
-
-        }
-        if (opt.Contains("Play"))
-        {
-            SceneManager.LoadScene(1);
-        }
-        if (opt.Contains("Shop"))
-        {
-
-        }
-
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       Detect(collision.name);
+        Detect(collision.gameObject);
     }
+
+    public void Detect(GameObject token)
+    {
+
+        //Debug.Log(token.name);
+
+        string text = token.name;
+
+        switch (text)
+        {
+            case "Music":
+
+                break;
+            case "Play":
+                SceneManager.LoadScene(1);
+
+                break;
+            case "Shop":
+                break;
+
+            default:
+                // cualquier otro no importante...
+                break;
+        }
+        Destroy(token);
+    }
+
+    
 }

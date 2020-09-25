@@ -9,25 +9,30 @@ public class DataPass : MonoBehaviour
 {
 
     public static DataPass Instance;//Singleton....
+    private Data data = new Data();
 
 
 
     ////DataStorage && Data comunication
     //_____
-    [Header("DataStorage && Data comunication")]
 
-        // Saved File
-        private readonly string savedPath = "/saved3.txt";
+    // Saved File
+    private readonly string savedPath = "/saved3.txt";
+
+    [Header("Index to DataStorage && Data comunication")]
 
         //  Last Used
-        public int indexPower = 0; //--> default 0
         public int indexTokenImg = 0; //--> default 0
         public int indexContainerImg = 1; //--> default 1
+        //________Exception
+        public int indexPower = 0; //--> default 0
 
-    // Unlockables
+    [Header("Unlockables")]
+        // Unlockables
         public bool[] shapesUnlock;
         public bool[] powersUnlock;
 
+    [Header("Score")]
         //  Score
         public int highScore = 0;
         public int lastScore;
@@ -36,8 +41,7 @@ public class DataPass : MonoBehaviour
 
     ///GameManager Comunication
     //____
-    [Header("GameManager Comunication")]
-        private Data data = new Data();
+    [Header("Loaded to Manager Comunication")]
 
         public Sprite spriteToken;
         public Sprite spriteContainer;
@@ -45,6 +49,8 @@ public class DataPass : MonoBehaviour
 
         //public AudioClip Audio; //Musica ? TODO bruno ver
 
+    //la animacion de los power miralo luego que va pa late
+    //
     //____
 
 
@@ -92,8 +98,9 @@ public class DataPass : MonoBehaviour
         switch (status)
         {
             case "start":
-                status = "ready";
+                status = "loading";
                 DataInit();//Primero carga o crea un archivo
+                status = "ready";
                 break;
 
             case "ready":// si el datapass esta listo por que creo o cargo algo entonces inicia
@@ -123,7 +130,9 @@ public class DataPass : MonoBehaviour
         spriteToken = Resources.Load<Sprite>( data.pathImg + data.pathShapes[indexTokenImg]);
         spriteContainer = Resources.Load<Sprite>(data.pathImg + data.pathShapes[indexContainerImg]);
 
-        Debug.Log(Resources.Load<Sprite>(data.pathImg + data.pathShapes[0]));
+        //Loading /Images/Name of powers with indexPower
+        spritePower = Resources.Load<Sprite>(data.pathImg + data.Pathpowers[indexPower]);
+        //Debug.Log(Resources.Load<Sprite>(data.pathImg + data.pathShapes[0]));
         status = "end";
     }
 
@@ -188,6 +197,6 @@ public class DataPass : MonoBehaviour
             powersUnlock = savedDataStorage.powersUnlock;
             highScore = savedDataStorage.highScore;
         ///________
-            Debug.Log("Cargado");
+            //Debug.Log("Cargado");
     }
 }
