@@ -9,7 +9,7 @@ public class DataPass : MonoBehaviour
 {
 
     public static DataPass Instance;//Singleton....
-    private Data data = new Data();
+    private readonly Data data = new Data();
 
 
 
@@ -17,15 +17,15 @@ public class DataPass : MonoBehaviour
     //_____
 
     // Saved File
-    private readonly string savedPath = "/saved3.txt";
+    private readonly string savedPath = "/saved5.txt";
 
     [Header("Index to DataStorage && Data comunication")]
 
         //  Last Used
-        public int indexTokenImg = 0; //--> default 0
-        public int indexContainerImg = 1; //--> default 1
+        public int indexTokenImg; //--> default 0
+        public int indexContainerImg; //--> default 1
         //________Exception
-        public int indexPower = 0; //--> default 0
+        public int indexPower; //--> default 0
 
     [Header("Unlockables")]
         // Unlockables
@@ -76,6 +76,7 @@ public class DataPass : MonoBehaviour
 
     private void Start()
     {
+        SetDefault();
         // start
         status = "start";
         StatusUpdate();
@@ -91,6 +92,13 @@ public class DataPass : MonoBehaviour
         }
     }
 
+    private void SetDefault()
+    {
+        indexTokenImg = 0; //--> default 0
+        indexContainerImg = 1; //--> default 1
+        indexPower = 0; //--> default 0
+
+    }
 
 
     public void StatusUpdate()
@@ -114,14 +122,6 @@ public class DataPass : MonoBehaviour
                 break;
         }
     }
-
-
-
-
-
-
-
-
 
 
     public void LoadResources()

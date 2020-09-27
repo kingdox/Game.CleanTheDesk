@@ -24,6 +24,26 @@ public class Data // es como un enviroment
     };
 
 
+    public Color[] palletes =
+    {
+        new Color(1,0,0),
+        new Color(1,0.5f,0),
+        new Color(1,1,0),
+        new Color(0,1,0),
+        new Color(0,1,0.5f),
+        new Color(0,1,1),
+        new Color(0,0.5f,1),
+        new Color(0,0,1),
+        new Color(0.5f,0,1),
+        new Color(1,0,0),
+        new Color(1,0,1),
+        new Color(1,0,0.5f),
+        //--->Extras
+        new Color(129, 60, 0 ),
+        new Color(0, 129, 0 )
+        //new Color(0, 0, 0 )
+        //new Color(1, 1, 1 ),
+    };
 
 
 
