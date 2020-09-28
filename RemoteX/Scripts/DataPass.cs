@@ -12,7 +12,7 @@ public class DataPass : MonoBehaviour
     private readonly Data data = new Data();
 
     // Saved File
-    private readonly string savedPath = "/saved6.txt";
+    private readonly string savedPath = "/saved7.txt";
 
     [Header("Saved Data")]
     
@@ -106,28 +106,10 @@ public class DataPass : MonoBehaviour
                 break;
         }
 
-        while (count != 8)
+        for (int i = 0; i < lastStore.Length; i++)
         {
-            bool hasCopy = false;
-
-            lastStore[count] = Random.Range(0, maxLength);
-
-            for (int i = 0; i < lastStore.Length; i++)
-            {
-                if (lastStore[i] == lastStore[count])
-                {
-                    hasCopy = true;
-                }
-            }
-
-            if (!hasCopy)
-            {
-                count++;
-            }
-
+            lastStore[i] = Random.Range(0, maxLength);
         }
-        //tenemos LastStore con las fichas para la store :)
-
 
     }
 
