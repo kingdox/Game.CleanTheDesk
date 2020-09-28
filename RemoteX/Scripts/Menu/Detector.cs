@@ -47,7 +47,7 @@ public class Detector : MonoBehaviour
 
             Image img = t.GetComponent<Image>();
             int randomNumber = Random.Range(0, data.pathShapes.Length);
-            Sprite sp = Resources.Load<Sprite>(data.pathImg + data.pathShapes[randomNumber]);
+            Sprite sp = Resources.Load<Sprite>(data.path_Img + data.pathShapes[randomNumber]);
             Color col = data.palletes[Random.Range( 0, data.palletes.Length)];
 
             img.sprite = sp;

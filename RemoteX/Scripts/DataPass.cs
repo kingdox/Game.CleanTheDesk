@@ -11,49 +11,30 @@ public class DataPass : MonoBehaviour
     public static DataPass Instance;//Singleton....
     private readonly Data data = new Data();
 
-
-
-    ////DataStorage && Data comunication
-    //_____
-
     // Saved File
-    private readonly string savedPath = "/saved5.txt";
+    private readonly string savedPath = "/saved6.txt";
 
-    [Header("Index to DataStorage && Data comunication")]
-
-        //  Last Used
-        public int indexTokenImg; //--> default 0
-        public int indexContainerImg; //--> default 1
-        //________Exception
-        public int indexPower; //--> default 0
-
-    [Header("Unlockables")]
-        // Unlockables
-        public bool[] shapesUnlock;
-        public bool[] powersUnlock;
-
-    [Header("Score")]
-        //  Score
-        public int highScore = 0;
-        public int lastScore;
-    //______
+    [Header("Saved Data")]
+    
+    public int indexTokenImg; //--> default 0
+    public int indexContainerImg; //--> default 1
+    public int indexPower; //--> default 0
+    
+    public int highScore = 0;
+    
+    public int[] lastStore = new int[8];//La creamos aquí
+    public string storeType = "shapes";//shapes, powers, ¿ colors ?
 
 
-    ///GameManager Comunication
-    //____
-    [Header("Loaded to Manager Comunication")]
 
-        public Sprite spriteToken;
-        public Sprite spriteContainer;
-        public Sprite spritePower;//sprite o animation?
+    [Space]
+    [Header("To Manage")]
+    public int lastScore;
+    public Sprite spriteToken;
+    public Sprite spriteContainer;
+    public Sprite spritePower;//sprite o animation?
 
-        //public AudioClip Audio; //Musica ? TODO bruno ver
-
-    //la animacion de los power miralo luego que va pa late
-    //
-    //____
-
-
+    [Header("Status")]
     public string status;
 
 
@@ -98,6 +79,56 @@ public class DataPass : MonoBehaviour
         indexContainerImg = 1; //--> default 1
         indexPower = 0; //--> default 0
 
+        SetStore();
+
+
+        
+    }
+
+    private void SetStore()
+    {
+        lastStore = new int[8];
+        int count = 0;
+        int maxLength;
+        switch (storeType)
+        {
+            case "shapes":
+                maxLength =  data.pathShapes.Length;
+                break;
+            case "powers":
+                maxLength = data.pathpowers.Length;
+                break;
+            case "colors": //not used yet
+                maxLength = data.palletes.Length;
+                break;
+            default:
+                maxLength = 8;
+                break;
+        }
+
+        while (count != 8)
+        {
+            bool hasCopy = false;
+
+            lastStore[count] = Random.Range(0, maxLength);
+
+            for (int i = 0; i < lastStore.Length; i++)
+            {
+                if (lastStore[i] == lastStore[count])
+                {
+                    hasCopy = true;
+                }
+            }
+
+            if (!hasCopy)
+            {
+                count++;
+            }
+
+        }
+        //tenemos LastStore con las fichas para la store :)
+
+
     }
 
 
@@ -127,11 +158,11 @@ public class DataPass : MonoBehaviour
     public void LoadResources()
     {
 
-        spriteToken = Resources.Load<Sprite>( data.pathImg + data.pathShapes[indexTokenImg]);
-        spriteContainer = Resources.Load<Sprite>(data.pathImg + data.pathShapes[indexContainerImg]);
+        spriteToken = Resources.Load<Sprite>( data.path_Img + data.pathShapes[indexTokenImg]);
+        spriteContainer = Resources.Load<Sprite>(data.path_Img + data.pathShapes[indexContainerImg]);
 
         //Loading /Images/Name of powers with indexPower
-        spritePower = Resources.Load<Sprite>(data.pathImg + data.Pathpowers[indexPower]);
+        spritePower = Resources.Load<Sprite>(data.path_Img + data.pathpowers[indexPower]);
         //Debug.Log(Resources.Load<Sprite>(data.pathImg + data.pathShapes[0]));
         status = "end";
     }
@@ -193,10 +224,10 @@ public class DataPass : MonoBehaviour
             indexPower = savedDataStorage.indexPower ;
             indexTokenImg = savedDataStorage.indexTokenImg ;
             indexContainerImg = savedDataStorage.indexContainerImg;
-            shapesUnlock = savedDataStorage.shapesUnlock;
-            powersUnlock = savedDataStorage.powersUnlock;
             highScore = savedDataStorage.highScore;
+
+            lastStore = savedDataStorage.lastStore;
+            storeType = savedDataStorage.storeType;
         ///________
-            //Debug.Log("Cargado");
     }
 }

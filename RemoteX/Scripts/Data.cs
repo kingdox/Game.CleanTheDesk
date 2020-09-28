@@ -7,7 +7,7 @@ public class Data // es como un enviroment
 {
 
     //estos tienes que tener un obj que posea la img y luego volverla a prefab, es un peo, verlo luego, separarlo por carpetas bro...
-    public string[] Pathpowers =
+    public string[] pathpowers =
     {
         "Time",//Default Power
     };
@@ -18,9 +18,12 @@ public class Data // es como un enviroment
         "Diamond",//Default IMG Container
         "Time",//Default IMG to Power
         "Spark",
-        "Belt"
-
-
+        "Belt",
+        "Arrow",
+        "C",
+        "T",
+        "D",
+        "Music"
     };
 
 
@@ -48,11 +51,15 @@ public class Data // es como un enviroment
 
 
     // Paths
-    public string pathImg = "Images/";//GetComponent<Image>().sprite = sprite;
-    public string pathAnimation = "Animations/";//GetComponent<>().??= ???;
+    public string path_Img = "Images/";//GetComponent<Image>().sprite = sprite;
+    public string path_Animation = "Animations/";//GetComponent<>().??= ???;
 
     //Audio
     //Animated(powers?)
 }
 
-//poner las letras en otro lado?, es un extra especial :9
+
+/*
+ -La store es un sitio donde intercambias tus cosas por otras que te interesan
+ 
+ */

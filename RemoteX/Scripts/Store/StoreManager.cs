@@ -26,3 +26,19 @@ Aqui se muestra 2 lineas con puros diseños para container y Token
 (Cuandos los compras se van hacia Area Upper donde puedes equipartelos
 
 */
+
+
+
+
+/*
+ 
+ Como tecnicamente estas intercambiando poderes o fichas con el mercado
+
+cada vez que inicias el juego, el Datapass contendrá la información que se pondrá
+en el mercado, de manera que esta siemrpe va a ser la misma a no ser que
+juegues x cantidad de partidas, de manera que no se puede abusar de la tienda
+estas cosas se guardarán en ladata guardada
+un array con la store actual
+ 
+ 
+ */
