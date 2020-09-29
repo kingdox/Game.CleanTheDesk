@@ -12,7 +12,7 @@ public class DataPass : MonoBehaviour
     private readonly Data data = new Data();
 
     // Saved File
-    private readonly string savedPath = "/saved7.txt";
+    private readonly string savedPath = "/saved8.txt";
 
     [Header("Saved Data")]
     
@@ -22,7 +22,7 @@ public class DataPass : MonoBehaviour
     
     public int highScore = 0;
     
-    public int[] lastStore = new int[8];//La creamos aquí
+    public int[] lastStore = new int[9];//La creamos aquí
     public string storeType = "shapes";//shapes, powers, ¿ colors ?
 
 
@@ -87,7 +87,7 @@ public class DataPass : MonoBehaviour
 
     private void SetStore()
     {
-        lastStore = new int[8];
+        lastStore = new int[9];
         int count = 0;
         int maxLength;
         switch (storeType)

@@ -4,21 +4,36 @@ using UnityEngine;
 
 public class StoreManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private DataPass datapass = null;
+    private StoreContainer storeContainer;
+    private bool wantLoad = true;
+
     void Start()
     {
-        
+        datapass =  FindObjectOfType<DataPass>();
+        storeContainer = FindObjectOfType<StoreContainer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (!!datapass && wantLoad)//si ya hay datapass...
+        {
+            wantLoad = false;
+
+            storeContainer.CreatePrefabs_IMG(datapass.lastStore);
+
+        }
     }
+
+
+
+
+
+
+
+
 }
 /*
-
-
 
 Aqui se muestra 2 lineas con puros diseños para container y Token
 ( tambien colores y poderes) ?
