@@ -35,7 +35,7 @@ public class StoreContainer : MonoBehaviour
             Image prefImg = prefab.GetComponent<Image>();
             Sprite prefSpr = Resources.Load<Sprite>(data.path_Img + data.pathShapes[lastStore[i]]);
             prefImg.sprite = prefSpr; //aqui le otorgamos el sprite guardado del store
-            prefImg.color = data.palletes[Random.Range(0, data.palletes.Length)];
+            //prefImg.color = data.palletes[Random.Range(0, data.palletes.Length)];
             //
             storeChilds[i] = prefab;
         }

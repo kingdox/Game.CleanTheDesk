@@ -63,3 +63,20 @@ public class Data // es como un enviroment
  -La store es un sitio donde intercambias tus cosas por otras que te interesan
  
  */
+
+
+
+/*
+ Reglas:
+
+
+    - Todo lo que rote es un Container
+    - Todo lo que sea estatico es un Token
+    - Todo lo que tenga animación es un Power
+
+
+
+cuando ganas algo nuevo te abre a auna pantalla de recompensa con el container y
+el token de la cosa, al arrastras y te da a entender que lo has ganado
+
+ */

@@ -19,7 +19,7 @@ public class DataStorage
 
 
     //Store
-    public int[] lastStore = new int[9];//siemrpe son 8
+    public int[] lastStore;
     public string storeType = "shapes";//shapes, powers, ¿ colors ?
 
 
