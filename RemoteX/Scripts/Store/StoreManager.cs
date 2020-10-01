@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StoreManager : MonoBehaviour
 {
+    //private Data data = new Data();
     private DataPass datapass = null;
     private StoreContainer storeContainer;
     private bool wantLoad = true;
@@ -16,41 +17,27 @@ public class StoreManager : MonoBehaviour
 
     void Update()
     {
-        if (!!datapass && wantLoad)//si ya hay datapass...
+        if (!!datapass && wantLoad)
         {
             wantLoad = false;
-
-            storeContainer.CreatePrefabs_IMG(datapass.lastStore);
-
+            LoadStore();
         }
     }
 
 
-
-
+    /// <summary>
+    /// Cargas todos los datos a mostrar en la store
+    /// </summary>
+    private void LoadStore()
+    {
+        storeContainer.CreatePrefabs_Shapes(datapass.shapesStore);
+        storeContainer.CreatePrefabs_Powers(datapass.powersStore);
+        storeContainer.CreatePrefabs_Palletes(datapass.palleteStore);
+        storeContainer.ChangeTo();
+    }
 
 }
-/*
-
-Aqui se muestra 2 lineas con puros diseños para container y Token
-( tambien colores y poderes) ?
-
-(Cuandos los compras se van hacia Area Upper donde puedes equipartelos
-
-*/
 
 
 
-
-/*
- 
- Como tecnicamente estas intercambiando poderes o fichas con el mercado
-
-cada vez que inicias el juego, el Datapass contendrá la información que se pondrá
-en el mercado, de manera que esta siemrpe va a ser la misma a no ser que
-juegues x cantidad de partidas, de manera que no se puede abusar de la tienda
-estas cosas se guardarán en ladata guardada
-un array con la store actual
- 
- 
- */
+//Puedes usar ads para cargar denuevo la tienda? asi te salen otras cosas?

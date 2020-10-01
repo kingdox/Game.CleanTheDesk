@@ -11,9 +11,6 @@ public class DataPass : MonoBehaviour
     public static DataPass Instance;//Singleton....
     private readonly Data data = new Data();
 
-    // Saved File
-    private readonly string savedPath = "/saved9.txt";
-
     [Header("Saved Data")]
     
     public int indexTokenImg; //--> default 0
@@ -22,9 +19,9 @@ public class DataPass : MonoBehaviour
     
     public int highScore = 0;
 
-    public int[] lastStore;
-    public string storeType = "shapes";//shapes, powers, ¿ colors ?
-
+    public int[] palleteStore;
+    public int[] powersStore;
+    public int[] shapesStore;
 
 
     [Space]
@@ -50,14 +47,16 @@ public class DataPass : MonoBehaviour
         {
             Destroy(gameObject);
         }
-            
+
+        // Set Default Things...
+        SetDefault();
+
     }
 
 
 
     private void Start()
     {
-        SetDefault();
         // start
         status = "start";
         StatusUpdate();
@@ -80,17 +79,40 @@ public class DataPass : MonoBehaviour
         indexPower = 0; //--> default 0
 
         SetStore();
-
-
-        
     }
+
 
     private void SetStore()
     {
-        lastStore = new int[6];
-        int count = 0;
+        foreach (var type in data.storeTypes)
+        {
+            switch (type)
+            {
+                case "shapes":
+                    shapesStore = SetStoreOf(type);
+                    break;
+                case "powers":
+                    powersStore = SetStoreOf(type);
+                    break;
+                case "palletes":
+                    palleteStore = SetStoreOf(type);
+                    break;
+                default:
+                    Debug.LogError("Has escrito algo mal...");
+                    break;
+            }
+
+        }
+    }
+
+
+    private int[] SetStoreOf(string type)
+    {
+
+        int[] storeOf = new int[6];
         int maxLength;
-        switch (storeType)
+
+        switch (type)
         {
             case "shapes":
                 maxLength =  data.pathShapes.Length;
@@ -98,19 +120,21 @@ public class DataPass : MonoBehaviour
             case "powers":
                 maxLength = data.pathpowers.Length;
                 break;
-            case "colors": //not used yet
+            case "palletes": //not used yet
                 maxLength = data.palletes.Length;
                 break;
             default:
-                maxLength = lastStore.Length;
+                Debug.LogError("Linea 110: Error con el Tipo de Store...?");
+                maxLength = storeOf.Length;
                 break;
         }
 
-        for (int i = 0; i < lastStore.Length; i++)
+        for (int i = 0; i < storeOf.Length; i++)
         {
-            lastStore[i] = Random.Range(0, maxLength);
+            storeOf[i] = Random.Range(0, maxLength);
         }
 
+        return storeOf;
     }
 
 
@@ -163,7 +187,7 @@ public class DataPass : MonoBehaviour
     /// </summary>
     private void DataInit()
     {
-        string path = Application.persistentDataPath + savedPath;
+        string path = Application.persistentDataPath + data.savedPath;
         Debug.Log(File.Exists(path) + "on " + path);
 
         if (File.Exists(path))
@@ -181,21 +205,21 @@ public class DataPass : MonoBehaviour
 
     public void SaveData(DataPass dataPass)
     {
-        string path = Application.persistentDataPath + savedPath;
+        string path = Application.persistentDataPath + data.savedPath;
 
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        DataStorage data = new DataStorage(dataPass);
+        DataStorage dataS = new DataStorage(dataPass);
 
-        formatter.Serialize(stream, data);
+        formatter.Serialize(stream, dataS);
         stream.Close();
         Debug.Log("Guardado");
     }
 
     public void LoadData()
     {
-        string path = Application.persistentDataPath + savedPath;
+        string path = Application.persistentDataPath + data.savedPath;
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Open);
 
@@ -206,10 +230,13 @@ public class DataPass : MonoBehaviour
             indexPower = savedDataStorage.indexPower ;
             indexTokenImg = savedDataStorage.indexTokenImg ;
             indexContainerImg = savedDataStorage.indexContainerImg;
+
             highScore = savedDataStorage.highScore;
 
-            lastStore = savedDataStorage.lastStore;
-            storeType = savedDataStorage.storeType;
+            shapesStore = savedDataStorage.shapesStore;
+            powersStore = savedDataStorage.powersStore;
+            palleteStore = savedDataStorage.palleteStore;
+
         ///________
     }
 }

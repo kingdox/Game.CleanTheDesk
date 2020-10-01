@@ -19,9 +19,9 @@ public class DataStorage
 
 
     //Store
-    public int[] lastStore;
-    public string storeType = "shapes";//shapes, powers, ¿ colors ?
-
+    public int[] shapesStore;
+    public int[] powersStore;
+    public int[] palleteStore;
 
     public DataStorage (DataPass dataPass) 
     {
@@ -33,8 +33,9 @@ public class DataStorage
 
         highScore = dataPass.highScore;
 
-        lastStore = dataPass.lastStore;
-        storeType = dataPass.storeType;
+        shapesStore = dataPass.shapesStore;
+        powersStore = dataPass.powersStore;
+        palleteStore = dataPass.palleteStore;
 
     }
 }

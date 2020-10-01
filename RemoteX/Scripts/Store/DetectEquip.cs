@@ -23,6 +23,7 @@ public class DetectEquip : MonoBehaviour
 
     public void Detect(GameObject token)
     {
+        Debug.Log("Detection!!");
         if (token.name == nameToDetect)
         {
             Debug.Log("Reemplaza la imagen de este objeto con el entrante");

@@ -86,6 +86,8 @@ public class Detector : MonoBehaviour
 
                 break;
             case "Shop":
+                SceneManager.LoadScene(2);
+
                 break;
 
             default:
