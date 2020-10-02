@@ -7,17 +7,22 @@ public class StoreContainer : MonoBehaviour
 {
     private readonly Data data = new Data();
 
-    public GameObject tokenPrefab;
-    public GameObject tokenStore;
-
-    public GameObject[] storeChilds;
-
-
     private GameObject[] shapesStore;
     private GameObject[] powersStore;
     private GameObject[] palletesStore;
 
+    [Header("Create")]
+    public GameObject tokenPrefab;
+    public GameObject tokenStore;
+    public GameObject[] storeChilds;
+
+    
+
+
+
     public string lastStore;
+
+
 
 
     private void Awake()
@@ -35,8 +40,7 @@ public class StoreContainer : MonoBehaviour
     /// </summary>
     public void ChangeTo(string type="shapes")//por defecto es shapes
     {
-        GameObject[] recipeStore = new GameObject[0]; 
-
+        GameObject[] recipeStore = new GameObject[0];
 
         foreach (var t in data.storeTypes ) 
         {
@@ -46,21 +50,26 @@ public class StoreContainer : MonoBehaviour
             {
                 case "shapes":
                     recipeStore = shapesStore;
+                    //recipeEquipment = shapesArea.transform;
+                    //EnableDisableRotationOfChilds(shapesArea.transform, isActive);
+
                     break;
                 case "powers":
                     recipeStore = powersStore;
+                    //recipeEquipment = powersArea;
                     break;
                 case "palletes":
                     recipeStore = palletesStore;
+                    //recipeEquipment = colorArea;
                     break;
                 default:
                     Debug.LogError("Error escribiendo..");
+                    //recipeStore = new GameObject[0];
+                    //recipeEquipment = null;
                     break;
             }
-            if (recipeStore.Length > 0)
-            {
-                EnableDisableObjects(recipeStore, isActive);
-            }
+
+            EnableDisableObjects(recipeStore, isActive);
         }
 
         lastStore = type;
@@ -69,11 +78,14 @@ public class StoreContainer : MonoBehaviour
 
 
 
-    public void EnableDisableObjects(GameObject[] obj, bool setActive=true)
+    public void EnableDisableObjects(GameObject[] objects, bool setActive=true)
     {
-        foreach (GameObject o in obj)
+        if (objects.Length > 0) 
         {
-            o.SetActive(setActive); 
+            foreach (GameObject o in objects)
+            {
+                o.SetActive(setActive); 
+            }
         }
 
     }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    private Data data = new Data();
 
     /*
 
@@ -27,7 +28,12 @@ public class MenuManager : MonoBehaviour
     [Header("Cosas")]
 
     public GameObject loadScreen;
+    public Text versionText;
 
+    private void Awake()
+    {
+        versionText.text = data.version;
+    }
 
     private void Start()
     {

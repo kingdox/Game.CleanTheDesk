@@ -26,7 +26,7 @@ public class StoreManager : MonoBehaviour
 
 
     /// <summary>
-    /// Cargas todos los datos a mostrar en la store
+    /// Cargas los datos a mostrar en la store
     /// </summary>
     private void LoadStore()
     {
@@ -35,6 +35,11 @@ public class StoreManager : MonoBehaviour
         storeContainer.CreatePrefabs_Palletes(datapass.palleteStore);
         storeContainer.ChangeTo();
     }
+
+
+
+
+
 
 }
 
