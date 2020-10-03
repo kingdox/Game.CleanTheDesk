@@ -109,7 +109,7 @@ public class StoreContainer : MonoBehaviour
 
             GameObject prefab = Instantiate(tokenPrefab, shapesStore[i].transform);
 
-            prefab.name = "Shapes[" + i + "]";
+            prefab.name = "shapes";
 
             Image prefImg = prefab.GetComponent<Image>();
             Sprite prefSpr = Resources.Load<Sprite>(data.path_Img + data.pathShapes[shapes[i]]);
@@ -126,7 +126,22 @@ public class StoreContainer : MonoBehaviour
 
     public void CreatePrefabs_Palletes(int[] palletes)
     {
-        palletesStore = new GameObject[0];
+        //palletesStore = new GameObject[storeChilds.Length];
 
+        //for (int i = 0; i < storeChilds.Length; i++)
+        //{
+        //    shapesStore[i] = gameObject.transform.GetChild(i).gameObject;
+        //    GameObject prefab = Instantiate(tokenPrefab, shapesStore[i].transform);
+
+        //    prefab.name = "palletes";
+        //    Image prefImg = prefab.GetComponent<Image>();
+
+        //    prefImg.color = data.palletes[palletes[i]];
+
+
+        //}
+
+        //Mientras tanto
+        palletesStore = new GameObject[0];
     }
 }

@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StoreManager : MonoBehaviour
 {
     //private Data data = new Data();
     private DataPass datapass = null;
     private StoreContainer storeContainer;
+    private DetectorHome detectorHome;
     private bool wantLoad = true;
+
 
     void Start()
     {
         datapass =  FindObjectOfType<DataPass>();
         storeContainer = FindObjectOfType<StoreContainer>();
+        detectorHome = FindObjectOfType<DetectorHome>();
     }
 
     void Update()
@@ -21,6 +25,11 @@ public class StoreManager : MonoBehaviour
         {
             wantLoad = false;
             LoadStore();
+        }
+
+        if (detectorHome.wantGoHome)
+        {
+            ReturnHome();
         }
     }
 
@@ -38,8 +47,17 @@ public class StoreManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Hacemos un proceso de regreso a casa, debemos guardar los cambios
+    /// </summary>
+    private void ReturnHome()
+    {
 
+        datapass.SaveData(datapass);
 
+        Debug.Log("A casa");
+        SceneManager.LoadScene(0);// te lleva al menú
+    }
 
 }
 

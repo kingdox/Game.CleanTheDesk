@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class DetectEquip : MonoBehaviour
 {
-    public string nameToDetect = "Token"; // buscaremos si el objeto posee ese nombre, entonces aplica
+
+    [Header("El nombre tiene que ser igual al del objeto")]
+    public string nameToDetect = "shapes"; // buscaremos si el objeto posee ese nombre, entonces aplica
 
     /*
      * TODO

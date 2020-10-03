@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 94404140}
   - component: {fileID: 94404142}
   m_Layer: 5
-  m_Name: Colors Area
+  m_Name: palletes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1563,6 +1563,9 @@ GameObject:
   - component: {fileID: 1138696756}
   - component: {fileID: 1138696758}
   - component: {fileID: 1138696757}
+  - component: {fileID: 1138696762}
+  - component: {fileID: 1138696761}
+  - component: {fileID: 1138696760}
   - component: {fileID: 1138696759}
   m_Layer: 5
   m_Name: Co-Slot
@@ -1580,14 +1583,14 @@ RectTransform:
   m_GameObject: {fileID: 1138696755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9998039, y: 0.9998039, z: 0.9998039}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1716219592}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.666, y: 0.116000004}
-  m_AnchorMax: {x: 0.827, y: 0.88000005}
-  m_AnchoredPosition: {x: 0.5, y: 0.1772461}
+  m_AnchorMin: {x: 0.66, y: 0.11}
+  m_AnchorMax: {x: 0.82, y: 0.88000005}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138696757
@@ -1639,6 +1642,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intensity: 45
+--- !u!114 &1138696760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138696755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72992882155b450cab6efdf12c4dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameToDetect: shapes
+--- !u!58 &1138696761
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138696755}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 24
+--- !u!50 &1138696762
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138696755}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1139331343
 GameObject:
   m_ObjectHideFlags: 0
@@ -3098,7 +3151,7 @@ GameObject:
   - component: {fileID: 1686265903}
   - component: {fileID: 1686265905}
   m_Layer: 5
-  m_Name: Power Area
+  m_Name: powers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3218,7 +3271,7 @@ GameObject:
   - component: {fileID: 1716219592}
   - component: {fileID: 1716219594}
   m_Layer: 5
-  m_Name: Shapes Area
+  m_Name: shapes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3438,8 +3491,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.16645458, y: 0.116000004}
   m_AnchorMax: {x: 0.333, y: 0.88000005}
-  m_AnchoredPosition: {x: 0, y: 0.1772461}
-  m_SizeDelta: {x: -1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1839490186
 MonoBehaviour:
@@ -3489,7 +3542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72992882155b450cab6efdf12c4dfa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameToDetect: Token
+  nameToDetect: shapes
 --- !u!58 &1839490189
 CircleCollider2D:
   m_ObjectHideFlags: 0

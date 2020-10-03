@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DetectorHome : MonoBehaviour
 {
+
+    public bool wantGoHome = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Detect(collision.gameObject);
@@ -12,10 +14,9 @@ public class DetectorHome : MonoBehaviour
 
     public void Detect(GameObject token)
     {
-        if (token.name == "Token Back")
+        if (token.name == "Token Back" && !wantGoHome)
         {
-            Debug.Log("De vuelta al menú");
-            SceneManager.LoadScene(0);// te lleva al menú
+            wantGoHome = true;
         }
 
     }
