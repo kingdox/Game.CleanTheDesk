@@ -7,6 +7,8 @@ public class StoreContainer : MonoBehaviour
 {
     private readonly Data data = new Data();
 
+    private Equipation equipation;
+
     private GameObject[] shapesStore;
     private GameObject[] powersStore;
     private GameObject[] palletesStore;
@@ -14,9 +16,11 @@ public class StoreContainer : MonoBehaviour
     [Header("Create")]
     public GameObject tokenPrefab;
     public GameObject tokenStore;
-    public GameObject[] storeChilds;
 
-    
+
+    public GameObject[] storeChilds;//TODO Revisar influencia de esta var....
+
+
 
 
 
@@ -27,6 +31,8 @@ public class StoreContainer : MonoBehaviour
 
     private void Awake()
     {
+        equipation = FindObjectOfType<Equipation>();
+
         storeChilds = new GameObject[gameObject.transform.childCount];
         shapesStore = new GameObject[0];
         powersStore = new GameObject[0];
@@ -50,9 +56,6 @@ public class StoreContainer : MonoBehaviour
             {
                 case "shapes":
                     recipeStore = shapesStore;
-                    //recipeEquipment = shapesArea.transform;
-                    //EnableDisableRotationOfChilds(shapesArea.transform, isActive);
-
                     break;
                 case "powers":
                     recipeStore = powersStore;
@@ -70,7 +73,11 @@ public class StoreContainer : MonoBehaviour
             }
 
             EnableDisableObjects(recipeStore, isActive);
+
+            //Debug.Log("recipe:" + recipeStore.Length);
         }
+
+        equipation.AreaOnOff(type);
 
         lastStore = type;
     }

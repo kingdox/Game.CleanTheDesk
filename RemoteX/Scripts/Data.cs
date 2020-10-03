@@ -65,6 +65,7 @@ public class Data // es como un enviroment
 
 
 
+    //NO DESORGANIZAR
     public string[] storeTypes =
    {
         "shapes",
