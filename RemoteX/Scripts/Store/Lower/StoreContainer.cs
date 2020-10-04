@@ -40,8 +40,8 @@ public class StoreContainer : MonoBehaviour
         {
             storeSlots[i] = gameObject.transform.GetChild(i).gameObject;
             tokenSlots[i] = tokenStore.transform.GetChild(i).gameObject;
-            storeSlots[i].name = "sS [" + i + "]";
-            tokenSlots[i].name = "tS [" + i + "]";
+            storeSlots[i].name = "sS [ " + i + " ]";
+            tokenSlots[i].name = "tS [ " + i + " ]";
         }
     }
 

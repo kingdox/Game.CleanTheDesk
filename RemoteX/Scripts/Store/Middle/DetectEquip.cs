@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class DetectEquip : MonoBehaviour
 {
+    private Equipation equipation;
 
-    [Header("El nombre tiene que ser igual al del objeto")]
+    [Header("El nombre tiene que ser igual al del objeto a detectar")]
     public string nameToDetect = "shapes"; // buscaremos si el objeto posee ese nombre, entonces aplica
 
-    /*
-     * TODO
-     * Tipos:
-     * -Color
-     * -Poder
-     * -Imagen
-     */
+    private void Awake()
+    {
+        equipation = FindObjectOfType<Equipation>();
+
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,21 +24,9 @@ public class DetectEquip : MonoBehaviour
 
     public void Detect(GameObject token)
     {
-        Debug.Log("Detection!!");
         if (token.name == nameToDetect)
         {
-            Debug.Log("Reemplaza la imagen de este objeto con el entrante");
-            ChangeEquip();
+            equipation.ChangeEquip(gameObject, token);
         }
     }
-
-
-    private void ChangeEquip()
-    {
-
-    }
-
-    /// Dependiendo del tipo cambia su img, color, o animación....
-
-
 }

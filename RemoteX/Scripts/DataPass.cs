@@ -12,11 +12,14 @@ public class DataPass : MonoBehaviour
     private readonly Data data = new Data();
 
     [Header("Saved Data")]
-    
+
+    //Cambiar estos 2 a un array ?
     public int indexTokenImg; //--> default 0
     public int indexContainerImg; //--> default 1
     public int indexPower; //--> default 0
-    
+
+    public int[] indexPalletes; //---> default 0-n //TODO Poner cuando se peuda y que se guarde...
+
     public int highScore = 0;
 
     public int[] palleteStore;
@@ -52,17 +55,12 @@ public class DataPass : MonoBehaviour
         SetDefault();
 
     }
-
-
-
     private void Start()
     {
         // start
         status = "start";
         StatusUpdate();
     }
-
-
     private void Update()
     {
 
@@ -72,6 +70,8 @@ public class DataPass : MonoBehaviour
         }
     }
 
+
+
     private void SetDefault()
     {
         indexTokenImg = 0; //--> default 0
@@ -80,8 +80,6 @@ public class DataPass : MonoBehaviour
 
         SetStore();
     }
-
-
     private void SetStore()
     {
         foreach (var type in data.storeTypes)
@@ -104,8 +102,6 @@ public class DataPass : MonoBehaviour
 
         }
     }
-
-
     private int[] SetStoreOf(string type)
     {
 
@@ -136,8 +132,6 @@ public class DataPass : MonoBehaviour
 
         return storeOf;
     }
-
-
     public void StatusUpdate()
     {
         switch (status)
@@ -159,6 +153,7 @@ public class DataPass : MonoBehaviour
                 break;
         }
     }
+
 
 
     public void LoadResources()
