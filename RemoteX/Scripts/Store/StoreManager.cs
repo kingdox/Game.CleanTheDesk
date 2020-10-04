@@ -40,7 +40,7 @@ public class StoreManager : MonoBehaviour
     private void LoadStore()
     {
         storeContainer.CreatePrefabs_Shapes(datapass.shapesStore);
-        storeContainer.CreatePrefabs_Powers(datapass.powersStore);
+        //storeContainer.CreatePrefabs_Powers(datapass.powersStore);
         storeContainer.CreatePrefabs_Palletes(datapass.palleteStore);
         storeContainer.ChangeTo();
     }
