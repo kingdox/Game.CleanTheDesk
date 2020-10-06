@@ -26,7 +26,6 @@ public class MenuManager : MonoBehaviour
 
 
     [Header("Cosas")]
-
     public GameObject loadScreen;
     public Text versionText;
 

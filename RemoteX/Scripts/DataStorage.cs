@@ -13,6 +13,7 @@ public class DataStorage
     public int indexPower = 0;
     public int indexTokenImg = 0;
     public int indexContainerImg = 1;
+    public int[] indexPalletes;
 
     // Score
     public int highScore = 0;
@@ -30,6 +31,7 @@ public class DataStorage
         indexPower = dataPass.indexPower;
         indexTokenImg = dataPass.indexTokenImg;
         indexContainerImg = dataPass.indexContainerImg;
+        indexPalletes = dataPass.indexPalletes;
 
         highScore = dataPass.highScore;
 

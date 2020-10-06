@@ -17,7 +17,6 @@ public class DataPass : MonoBehaviour
     public int indexTokenImg; //--> default 0
     public int indexContainerImg; //--> default 1
     public int indexPower; //--> default 0
-
     public int[] indexPalletes; //---> default 0-n //TODO Poner cuando se peuda y que se guarde...
 
     public int highScore = 0;
@@ -33,6 +32,7 @@ public class DataPass : MonoBehaviour
     public Sprite spriteToken;
     public Sprite spriteContainer;
     public Sprite spritePower;//sprite o animation?
+    public Color[] palletes; // TODO
 
     [Header("Status")]
     public string status;
@@ -51,15 +51,12 @@ public class DataPass : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //NO cambiar orden..
         // Set Default Things...
-        SetDefault();
+        SetDefault(); // pone cosas por defecto
+        status = "start"; // setea el estado de inicio
+        StatusUpdate(); // actualiza constantemente el status...
 
-    }
-    private void Start()
-    {
-        // start
-        status = "start";
-        StatusUpdate();
     }
     private void Update()
     {
@@ -77,7 +74,13 @@ public class DataPass : MonoBehaviour
         indexTokenImg = 0; //--> default 0
         indexContainerImg = 1; //--> default 1
         indexPower = 0; //--> default 0
-
+        indexPalletes = new int[data.palleteLength]; //--> default 6
+        palletes = new Color[data.palleteLength];
+        for (int x = 0; x < indexPalletes.Length; x++)
+        {
+            indexPalletes[x] = x; //--> default color 0-5
+            palletes[x] = data.palletes[indexPalletes[x]];
+        }
         SetStore();
     }
     private void SetStore()
@@ -162,6 +165,12 @@ public class DataPass : MonoBehaviour
         spriteToken = Resources.Load<Sprite>( data.path_Img + data.pathShapes[indexTokenImg]);
         spriteContainer = Resources.Load<Sprite>(data.path_Img + data.pathShapes[indexContainerImg]);
 
+
+        for (int x = 0; x < indexPalletes.Length; x++)
+        {
+            palletes[x] = data.palletes[indexPalletes[x]];
+        }
+
         //Loading /Images/Name of powers with indexPower
         spritePower = Resources.Load<Sprite>(data.path_Img + data.pathpowers[indexPower]);
         //Debug.Log(Resources.Load<Sprite>(data.pathImg + data.pathShapes[0]));
@@ -183,7 +192,7 @@ public class DataPass : MonoBehaviour
     private void DataInit()
     {
         string path = Application.persistentDataPath + data.savedPath;
-        Debug.Log(File.Exists(path) + "on " + path);
+        Debug.Log( "Exist? " + File.Exists(path) + " | on " + path);
 
         if (File.Exists(path))
         {
@@ -233,5 +242,6 @@ public class DataPass : MonoBehaviour
             palleteStore = savedDataStorage.palleteStore;
 
         ///________
+        ///
     }
 }

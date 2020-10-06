@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.4.0";
-    public string savedPath = "/saved12.txt";
+    public readonly string version = "V 0.4.6";
+    public string savedPath = "/saved14.txt";
 
-
+    public int palleteLength = 6;
 
 
     //estos tienes que tener un obj que posea la img y
@@ -44,7 +44,7 @@ public class Data // es como un enviroment
         new Color(0,0.5f,1),
         new Color(0,0,1),
         new Color(0.5f,0,1),
-        new Color(1,0,0),
+        //new Color(1,0,0), --> repetido
         new Color(1,0,1),
         new Color(1,0,0.5f),
         //--->Extras

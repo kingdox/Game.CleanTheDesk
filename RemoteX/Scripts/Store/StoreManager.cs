@@ -7,11 +7,15 @@ using UnityEngine.UI;
 
 public class StoreManager : MonoBehaviour
 {
-    //private Data data = new Data();
+    private Data data = new Data();
     private DataPass datapass = null;
     private StoreContainer storeContainer;
     private DetectorHome detectorHome;
+    private Equipation equipation;
     private bool wantLoad = true;
+
+
+    //[Header("Setting")]//---> aqui es la sección de poner las cosas correctas
 
 
     void Start()
@@ -19,13 +23,15 @@ public class StoreManager : MonoBehaviour
         datapass =  FindObjectOfType<DataPass>();
         storeContainer = FindObjectOfType<StoreContainer>();
         detectorHome = FindObjectOfType<DetectorHome>();
+        equipation = FindObjectOfType<Equipation>();
     }
 
     void Update()
     {
-        if (!!datapass && wantLoad)
+        if (!!datapass && !!equipation && !!storeContainer && wantLoad)
         {
             wantLoad = false;
+            LoadArea();
             LoadStore();
         }
 
@@ -34,6 +40,71 @@ public class StoreManager : MonoBehaviour
             ReturnHome();
         }
     }
+
+
+
+    private void LoadArea()
+    {
+        ///la idea es que dependiendo del nombre cargue esa dependiendo del orden en data
+        ///
+
+
+        for (int i = 0; i < data.storeTypes.Length; i++)
+        {
+            for (int x = 0; x < equipation.areas[i].Length; x++)
+            {
+                TypeOfLoad(data.storeTypes[i], equipation.areas[i][x], x);
+            }
+            //Debug.Log("De " + data.storeTypes[i] + "  Se cargaron: "+ equipation.areas[i].Length);
+        }
+    }
+
+
+    /// <summary>
+    /// Cargas uno a uno los hijos del tipo
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="childsOfType"></param>
+    private GameObject TypeOfLoad(string type, GameObject childOfType, int extraIndex)
+    {
+
+        switch (type)
+        {
+            case "shapes":
+
+                Image img_child = childOfType.GetComponent<Image>();
+
+                if (extraIndex == 0) // token
+                {
+                    img_child.sprite = datapass.spriteToken;
+                }
+                else // container
+                {
+                    img_child.sprite = datapass.spriteContainer;
+                }
+
+                break;
+            case "powers":
+
+                break;
+            case "palletes":
+
+                Image img_pal = childOfType.GetComponent<Image>();
+               
+                img_pal.color = data.palletes[ datapass.indexPalletes[extraIndex]];
+
+                break;
+            default:
+                Debug.LogError("Typo desconocido....");
+                break;
+        }
+        //datapass.spriteToken
+        //    spriteContainer
+        //    spritePower
+        return childOfType;
+    }
+
+
 
 
     /// <summary>
@@ -50,6 +121,14 @@ public class StoreManager : MonoBehaviour
 
 
 
+
+
+
+
+
+
+
+
     //__________________
 
 
@@ -60,6 +139,9 @@ public class StoreManager : MonoBehaviour
 
         
         int last_storeValue = GetSelectedStoreValue(type, storeIndex);
+
+        Debug.Log("Last store Val: " + last_storeValue);
+
 
         ChangeDataPass( last_equipedValue,  last_storeValue, storeIndex,  type,  equipedOfType);
     }
@@ -90,6 +172,14 @@ public class StoreManager : MonoBehaviour
                 //datapass.powersStore[storeIndex] = last_equipedValue;
                 break;
             case "palletes":
+
+
+                Debug.Log(last_storeValue + " | " + last_equipedValue + " | " + storeIndex + " | " + equipedOfType);
+                for (int x = 0; x < data.palletes.Length; x++)
+                {
+                        //datapass.palletes[x] = last_storeValue
+                }
+
                 //aqui varía ya que en teoría va a  ser un array de colores...
                 //TODO
                 break;
@@ -136,8 +226,8 @@ public class StoreManager : MonoBehaviour
     private void ReturnHome()
     {
         datapass.SaveData(datapass);
-        datapass.LoadData(); //--->TODO ver si con esto refresco als imagenes....
-
+        datapass.LoadData();
+        datapass.LoadResources();
         Debug.Log("A casa");
         SceneManager.LoadScene(0);// te lleva al menú
     }

@@ -265,9 +265,12 @@ GameObject:
   - component: {fileID: 72799818}
   - component: {fileID: 72799820}
   - component: {fileID: 72799819}
+  - component: {fileID: 72799824}
   - component: {fileID: 72799821}
+  - component: {fileID: 72799823}
+  - component: {fileID: 72799822}
   m_Layer: 5
-  m_Name: C-Slot
+  m_Name: C3-Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -342,6 +345,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intensity: 45
+--- !u!50 &72799822
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72799817}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &72799823
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72799817}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 24
+--- !u!114 &72799824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72799817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72992882155b450cab6efdf12c4dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameToDetect: palletes
 --- !u!1 &94404139
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +780,7 @@ MonoBehaviour:
   indexTokenImg: 0
   indexContainerImg: 0
   indexPower: 0
+  indexPalletes: 
   highScore: 0
   palleteStore: 
   powersStore: 
@@ -735,6 +789,7 @@ MonoBehaviour:
   spriteToken: {fileID: 0}
   spriteContainer: {fileID: 0}
   spritePower: {fileID: 0}
+  palletes: []
   status: 
 --- !u!4 &452314309
 Transform:
@@ -1064,9 +1119,12 @@ GameObject:
   - component: {fileID: 658299186}
   - component: {fileID: 658299188}
   - component: {fileID: 658299187}
+  - component: {fileID: 658299192}
   - component: {fileID: 658299189}
+  - component: {fileID: 658299191}
+  - component: {fileID: 658299190}
   m_Layer: 5
-  m_Name: C-Slot
+  m_Name: C5-Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1141,6 +1199,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intensity: 45
+--- !u!50 &658299190
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658299185}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &658299191
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658299185}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 24
+--- !u!114 &658299192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658299185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72992882155b450cab6efdf12c4dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameToDetect: palletes
 --- !u!1 &797931663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,9 +1260,12 @@ GameObject:
   - component: {fileID: 797931664}
   - component: {fileID: 797931666}
   - component: {fileID: 797931665}
+  - component: {fileID: 797931670}
   - component: {fileID: 797931667}
+  - component: {fileID: 797931669}
+  - component: {fileID: 797931668}
   m_Layer: 5
-  m_Name: C-Slot
+  m_Name: C2-Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,6 +1340,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intensity: 45
+--- !u!50 &797931668
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797931663}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &797931669
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797931663}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 24
+--- !u!114 &797931670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797931663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72992882155b450cab6efdf12c4dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameToDetect: palletes
 --- !u!1 &878040284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,9 +1864,12 @@ GameObject:
   - component: {fileID: 1139331344}
   - component: {fileID: 1139331346}
   - component: {fileID: 1139331345}
+  - component: {fileID: 1139331350}
   - component: {fileID: 1139331347}
+  - component: {fileID: 1139331349}
+  - component: {fileID: 1139331348}
   m_Layer: 5
-  m_Name: C-Slot
+  m_Name: C6-Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1780,6 +1944,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intensity: 45
+--- !u!50 &1139331348
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139331343}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &1139331349
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139331343}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 24
+--- !u!114 &1139331350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139331343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72992882155b450cab6efdf12c4dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameToDetect: palletes
 --- !u!1 &1152589351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,7 +2271,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba2238f5ad9c4455f9df1f8430a893db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d86848e7353b4a6a994d0d056313f31, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2087,7 +2301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9af8d664826b46c2ad14194e7b879c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 45
+  intensity: -45
 --- !u!114 &1197445148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2147,9 +2361,12 @@ GameObject:
   - component: {fileID: 1262054596}
   - component: {fileID: 1262054598}
   - component: {fileID: 1262054597}
+  - component: {fileID: 1262054602}
   - component: {fileID: 1262054599}
+  - component: {fileID: 1262054601}
+  - component: {fileID: 1262054600}
   m_Layer: 5
-  m_Name: C-Slot
+  m_Name: C1-Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2224,6 +2441,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intensity: 45
+--- !u!50 &1262054600
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262054595}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &1262054601
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262054595}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 24
+--- !u!114 &1262054602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262054595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72992882155b450cab6efdf12c4dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameToDetect: palletes
 --- !u!1 &1271093504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,9 +3224,12 @@ GameObject:
   - component: {fileID: 1606971087}
   - component: {fileID: 1606971089}
   - component: {fileID: 1606971088}
+  - component: {fileID: 1606971093}
   - component: {fileID: 1606971090}
+  - component: {fileID: 1606971092}
+  - component: {fileID: 1606971091}
   m_Layer: 5
-  m_Name: C-Slot
+  m_Name: C4-Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3034,6 +3304,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intensity: 45
+--- !u!50 &1606971091
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606971086}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &1606971092
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606971086}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 24
+--- !u!114 &1606971093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606971086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72992882155b450cab6efdf12c4dfa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameToDetect: palletes
 --- !u!1 &1623438153
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class Equipation : MonoBehaviour
     private readonly Data data = new Data();
     private StoreContainer storeContainer;
     private StoreManager storeManager;
-    private GameObject[][] areas;//muestra matrix
+    public GameObject[][] areas;//muestra matrix
     private GameObject[] equipAreas;
     //[Header("Equipment")]
 
@@ -107,6 +107,7 @@ public class Equipation : MonoBehaviour
             case "palletes": //TODO, revisar que sirva
 
                 last_equipedValue = SearchIndexOf_Palletes(data.palletes, equip_img.color);
+                //Debug.LogError("palletes...");
 
                 //Hace el cambio
                 Color recipe_col = equip_img.color;
@@ -152,11 +153,13 @@ public class Equipation : MonoBehaviour
     private int SearchIndexOf_Palletes(Color[] toSearch, Color search)
     {
         int index = -1; // si es -1 no encontró
+        Debug.Log("@@@@@@@ index = " + index);
 
         for (int x = 0; x < toSearch.Length; x++)
         {
             if (toSearch[x] == search)
             {
+                Debug.Log("@@@@@@@ index = " + x);
                 index = x;
             }
         }
@@ -192,7 +195,11 @@ public class Equipation : MonoBehaviour
 
         for (int i = 0; i < parent_trans.childCount; i++)
         {
-            if (parent_trans.GetChild(i).name == obj.name)
+
+            //TODO, creo que el problema viene por que no corrobora enteramente.. los floats se los salta
+
+            //TODO, NO esta contando los float bien...
+            if (parent_trans.GetChild(i).name == obj.name && index == -1)
             {
 
                 index = i;

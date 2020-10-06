@@ -111,7 +111,7 @@ public class StoreContainer : MonoBehaviour
             Image pref_img = prefab.GetComponent<Image>();
 
 
-            Color pref_col = data.palletes[x];
+            Color pref_col = data.palletes[palletes[x]];
             pref_img.color = pref_col;
 
 
