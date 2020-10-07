@@ -140,7 +140,7 @@ public class StoreManager : MonoBehaviour
         
         int last_storeValue = GetSelectedStoreValue(type, storeIndex);
 
-        Debug.Log("Last store Val: " + last_storeValue);
+        Debug.Log("@@@@_STORE El de la tienda pertenecía de su colección a la posición: " + last_storeValue);
 
 
         ChangeDataPass( last_equipedValue,  last_storeValue, storeIndex,  type,  equipedOfType);
@@ -174,14 +174,11 @@ public class StoreManager : MonoBehaviour
             case "palletes":
 
 
-                Debug.Log(last_storeValue + " | " + last_equipedValue + " | " + storeIndex + " | " + equipedOfType);
-                for (int x = 0; x < data.palletes.Length; x++)
-                {
-                        //datapass.palletes[x] = last_storeValue
-                }
+                Debug.Log("Ultimo valor de store: "+last_storeValue + " | Ultimo valor equipado: " + last_equipedValue + " | Posición extraida del store: " + storeIndex + " | Posición extraida del equipado: " + equipedOfType);
 
-                //aqui varía ya que en teoría va a  ser un array de colores...
-                //TODO
+                datapass.indexPalletes[equipedOfType] = last_storeValue;
+                datapass.palleteStore[storeIndex] = last_equipedValue;
+
                 break;
             default:
                 Debug.LogError("Type incorrecto");

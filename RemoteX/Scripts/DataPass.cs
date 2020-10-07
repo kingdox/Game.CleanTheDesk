@@ -32,7 +32,7 @@ public class DataPass : MonoBehaviour
     public Sprite spriteToken;
     public Sprite spriteContainer;
     public Sprite spritePower;//sprite o animation?
-    public Color[] palletes; // TODO
+    public Color[] palletes;
 
     [Header("Status")]
     public string status;
@@ -79,7 +79,7 @@ public class DataPass : MonoBehaviour
         for (int x = 0; x < indexPalletes.Length; x++)
         {
             indexPalletes[x] = x; //--> default color 0-5
-            palletes[x] = data.palletes[indexPalletes[x]];
+            palletes[x] = data.palletes[x];
         }
         SetStore();
     }
@@ -116,14 +116,14 @@ public class DataPass : MonoBehaviour
             case "shapes":
                 maxLength =  data.pathShapes.Length;
                 break;
-            case "powers":
+            case "powers":  //not used yet
                 maxLength = data.pathpowers.Length;
                 break;
-            case "palletes": //not used yet
+            case "palletes":
                 maxLength = data.palletes.Length;
                 break;
             default:
-                Debug.LogError("Linea 110: Error con el Tipo de Store...?");
+                Debug.LogError("Error con el Tipo de Store...?");
                 maxLength = storeOf.Length;
                 break;
         }
@@ -234,6 +234,7 @@ public class DataPass : MonoBehaviour
             indexPower = savedDataStorage.indexPower ;
             indexTokenImg = savedDataStorage.indexTokenImg ;
             indexContainerImg = savedDataStorage.indexContainerImg;
+            indexPalletes = savedDataStorage.indexPalletes;
 
             highScore = savedDataStorage.highScore;
 

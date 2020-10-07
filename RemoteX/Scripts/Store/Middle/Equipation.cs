@@ -106,6 +106,7 @@ public class Equipation : MonoBehaviour
 
             case "palletes": //TODO, revisar que sirva
 
+                //permite saber el indice del color en data.palletes
                 last_equipedValue = SearchIndexOf_Palletes(data.palletes, equip_img.color);
                 //Debug.LogError("palletes...");
 
@@ -122,7 +123,7 @@ public class Equipation : MonoBehaviour
         }
 
 
-        Debug.Log("El index del sprite equipado era: " + last_equipedValue);
+        //Debug.Log("El index de su colección, del equipado era: " + last_equipedValue);
 
 
         //TODO
@@ -150,16 +151,16 @@ public class Equipation : MonoBehaviour
     {
         return -1;
     }//TODO
+
+
     private int SearchIndexOf_Palletes(Color[] toSearch, Color search)
     {
         int index = -1; // si es -1 no encontró
-        Debug.Log("@@@@@@@ index = " + index);
-
         for (int x = 0; x < toSearch.Length; x++)
         {
             if (toSearch[x] == search)
             {
-                Debug.Log("@@@@@@@ index = " + x);
+                Debug.Log("@@@@_EQUIPED encuentra el equipado en data.Palletes Nº = " + x);
                 index = x;
             }
         }
@@ -206,7 +207,7 @@ public class Equipation : MonoBehaviour
             }
 
         }
-        Debug.Log("Detection on: " + index);
+        Debug.Log("Cambiando el equipado Nª: " + index);
         return index;
     }
 }
