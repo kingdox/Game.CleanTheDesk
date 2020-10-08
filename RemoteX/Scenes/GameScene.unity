@@ -598,17 +598,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17dd03d9b57d94680bf9191e66865d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indexPower: 0
   indexTokenImg: 0
   indexContainerImg: 0
-  shapesUnlock: 
-  powersUnlock: 
+  indexPower: 0
+  indexPalletes: 
   highScore: 0
+  palleteStore: 
+  powersStore: 
+  shapesStore: 
   lastScore: 0
-  shapeToken: {fileID: 0}
-  shapeContainer: {fileID: 0}
-  shapePower: {fileID: 0}
-  loadingData: 1
+  spriteToken: {fileID: 0}
+  spriteContainer: {fileID: 0}
+  spritePower: {fileID: 0}
+  palletes: []
+  status: 
 --- !u!4 &310694652
 Transform:
   m_ObjectHideFlags: 0

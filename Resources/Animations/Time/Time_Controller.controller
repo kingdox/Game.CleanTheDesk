@@ -7,8 +7,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TimeAnimation
-  m_Speed: 22
+  m_Name: TimeFast
+  m_Speed: 20
   m_CycleOffset: 1
   m_Transitions:
   - {fileID: 5940727033137896686}
@@ -38,7 +38,7 @@ AnimatorController:
   m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Base Layer
+    m_Name: AnimationTime
     m_StateMachine: {fileID: 197550914861334174}
     m_Mask: {fileID: 0}
     m_Motions: []
@@ -56,7 +56,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: AnimationTime
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 9168793917349837338}
@@ -67,15 +67,15 @@ AnimatorStateMachine:
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:
-  - {fileID: 3304577039839362783}
+  - {fileID: 2793316269875181625}
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 20, z: 0}
+  m_AnyStatePosition: {x: 140, y: 30, z: 0}
   m_EntryPosition: {x: 90, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 9168793917349837338}
---- !u!1109 &3304577039839362783
+  m_DefaultState: {fileID: -3513985646835423768}
+--- !u!1109 &2793316269875181625
 AnimatorTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,8 +140,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Time
-  m_Speed: 4
+  m_Name: TimeSlow
+  m_Speed: 10
   m_CycleOffset: 1
   m_Transitions:
   - {fileID: 4746394596679574481}

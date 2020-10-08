@@ -65,7 +65,19 @@ public class Data // es como un enviroment
 
 
 
-    //NO DESORGANIZAR
+    //NO DESORGANIZAR NI CAMBIAR.. :
+
+
+    //Hacemos con los tipos de animación
+    //Nota: por como veo, el componente 'Animator' solo pide el 'controller', así que podríamos obviar el 'Animation' en el uso de scripts, a no ser que quisieramos repetir configuraciones?
+    public string controllerName = "_Controller";// con esta vemos por al del tipo...
+    public string[] animationType =
+    {
+        "_Animation",
+        "_Controller"
+    };
+
+    //Hacemos con los tipos de store
     public string[] storeTypes =
    {
         "shapes",
