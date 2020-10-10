@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.4.8";
-    public string savedPath = "/saved15.txt";
-
+    public readonly string version = "V 0.5.0";
+    public string savedPath = "/saved16.txt";
     public int palleteLength = 6;
 
 
     //estos tienes que tener un obj que posea la img y
     // luego volverla a prefab, es un peo, verlo luego, separarlo por carpetas bro...
-    public string[] pathpowers =
+    public string[] pathPowers =
     {
         "Time",//Default Power
+        "Multiplier"//Ganas x2 los puntosque metas
     };
 
 
@@ -61,21 +61,13 @@ public class Data // es como un enviroment
     public string path_Animation = "Animations/";//GetComponent<>().??= ???;
 
     //Audio
-    //Animated(powers?)
+
+    // PowerControllerName
+    public string controllerName = "_Controller";// con esta vemos controlamos la animación
 
 
 
     //NO DESORGANIZAR NI CAMBIAR.. :
-
-
-    //Hacemos con los tipos de animación
-    //Nota: por como veo, el componente 'Animator' solo pide el 'controller', así que podríamos obviar el 'Animation' en el uso de scripts, a no ser que quisieramos repetir configuraciones?
-    public string controllerName = "_Controller";// con esta vemos por al del tipo...
-    public string[] animationType =
-    {
-        "_Animation",
-        "_Controller"
-    };
 
     //Hacemos con los tipos de store
     public string[] storeTypes =
@@ -92,3 +84,9 @@ public class Data // es como un enviroment
     cuando ganas algo nuevo te abre a auna pantalla de recompensa con el container y
     el token de la cosa, al arrastras y te da a entender que lo has ganado
 */
+
+/*
+ TODO
+https://genial.guru/creacion-hogar/super-guia-para-combinar-colores-132905/
+ 
+ */

@@ -17,7 +17,7 @@ public class DataPass : MonoBehaviour
     public int indexTokenImg; //--> default 0
     public int indexContainerImg; //--> default 1
     public int indexPower; //--> default 0
-    public int[] indexPalletes; //---> default 0-n //TODO Poner cuando se peuda y que se guarde...
+    public int[] indexPalletes; //---> default 0-n
 
     public int highScore = 0;
 
@@ -31,7 +31,9 @@ public class DataPass : MonoBehaviour
     public int lastScore;
     public Sprite spriteToken;
     public Sprite spriteContainer;
-    public Sprite spritePower;//sprite o animation?
+
+    public RuntimeAnimatorController controllerPower; // TODO Test
+
     public Color[] palletes;
 
     [Header("Status")]
@@ -116,8 +118,8 @@ public class DataPass : MonoBehaviour
             case "shapes":
                 maxLength =  data.pathShapes.Length;
                 break;
-            case "powers":  //not used yet
-                maxLength = data.pathpowers.Length;
+            case "powers": 
+                maxLength = data.pathPowers.Length;
                 break;
             case "palletes":
                 maxLength = data.palletes.Length;
@@ -161,19 +163,21 @@ public class DataPass : MonoBehaviour
 
     public void LoadResources()
     {
-
+        // Sprites
         spriteToken = Resources.Load<Sprite>( data.path_Img + data.pathShapes[indexTokenImg]);
         spriteContainer = Resources.Load<Sprite>(data.path_Img + data.pathShapes[indexContainerImg]);
 
-
+        // Color
         for (int x = 0; x < indexPalletes.Length; x++)
         {
             palletes[x] = data.palletes[indexPalletes[x]];
         }
 
-        //Loading /Images/Name of powers with indexPower
-        spritePower = Resources.Load<Sprite>(data.path_Img + data.pathpowers[indexPower]);
-        //Debug.Log(Resources.Load<Sprite>(data.pathImg + data.pathShapes[0]));
+        // AnimatorController
+        string powerName = data.pathPowers[indexPower];
+        string animatorPath = data.path_Animation + powerName + "/" + powerName + data.controllerName;
+        controllerPower = Resources.Load<RuntimeAnimatorController>(animatorPath);
+
         status = "end";
     }
 

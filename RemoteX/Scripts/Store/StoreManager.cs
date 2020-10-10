@@ -86,6 +86,8 @@ public class StoreManager : MonoBehaviour
                 break;
             case "powers":
 
+                Animator animator = childOfType.GetComponent<Animator>();
+                animator.runtimeAnimatorController = datapass.controllerPower;
                 break;
             case "palletes":
 
@@ -113,7 +115,7 @@ public class StoreManager : MonoBehaviour
     private void LoadStore()
     {
         storeContainer.CreatePrefabs_Shapes(datapass.shapesStore);
-        storeContainer.CreatePrefabs_Powers(datapass.powersStore); //TODO
+        storeContainer.CreatePrefabs_Powers(datapass.powersStore);
         storeContainer.CreatePrefabs_Palletes(datapass.palleteStore);
         storeContainer.ChangeTo();
     }
@@ -136,13 +138,7 @@ public class StoreManager : MonoBehaviour
     public void ChangesOn(int last_equipedValue,int storeIndex,string type,int equipedOfType)
     {
         //Hay que buscar del store escogido
-
-        
         int last_storeValue = GetSelectedStoreValue(type, storeIndex);
-
-        Debug.Log("@@@@_STORE El de la tienda pertenecía de su colección a la posición: " + last_storeValue);
-
-
         ChangeDataPass( last_equipedValue,  last_storeValue, storeIndex,  type,  equipedOfType);
     }
 
@@ -167,14 +163,17 @@ public class StoreManager : MonoBehaviour
 
                 break;
             case "powers":
-                //TODO
-                //datapass.indexPower = last_storeValue;
-                //datapass.powersStore[storeIndex] = last_equipedValue;
+                //Debug.Log(
+                //    "Ultimo valor de store: " + last_storeValue +
+                //    " | Ultimo valor equipado: " + last_equipedValue +
+                //    " | Posición extraida del store: " + storeIndex +
+                //    " | Posición extraida del equipado: " + equipedOfType); //--- ignorar esta para power....
+
+                datapass.indexPower = last_storeValue;
+                datapass.powersStore[storeIndex] = last_equipedValue;
+
                 break;
             case "palletes":
-
-
-                Debug.Log("Ultimo valor de store: "+last_storeValue + " | Ultimo valor equipado: " + last_equipedValue + " | Posición extraida del store: " + storeIndex + " | Posición extraida del equipado: " + equipedOfType);
 
                 datapass.indexPalletes[equipedOfType] = last_storeValue;
                 datapass.palleteStore[storeIndex] = last_equipedValue;
@@ -190,7 +189,7 @@ public class StoreManager : MonoBehaviour
 
 
     /// <summary>
-    /// Tomas el valor de la posicion de la store
+    /// Tomas el valor de la posicion de la store guardada de tu datapass
     /// </summary>
     /// <param name="type"></param>
     /// <param name="storeIndex"></param>

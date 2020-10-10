@@ -1,19 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DetectEquip : MonoBehaviour
 {
     private Equipation equipation;
 
-    [Header("El nombre tiene que ser igual al del objeto a detectar")]
-    public string nameToDetect = "shapes"; // buscaremos si el objeto posee ese nombre, entonces aplica
+    private string nameToDetect; // buscamos si posee el nombre del parent
 
     private void Awake()
     {
         equipation = FindObjectOfType<Equipation>();
-
+        nameToDetect = gameObject.transform.parent.name;
     }
 
 

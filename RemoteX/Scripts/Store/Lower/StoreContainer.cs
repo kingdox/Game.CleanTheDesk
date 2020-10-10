@@ -96,7 +96,24 @@ public class StoreContainer : MonoBehaviour
 
     public void CreatePrefabs_Powers(int[] powers)
     {
-      
+        for (int x = 0; x < countProduct; x++)
+        {
+
+            GameObject prefab = Instantiate(tokenPrefab, tokenSlots[x].transform).gameObject;
+
+            prefab.name = "powers";
+            string powerName = data.pathPowers[powers[x]];
+            string animatorPath = data.path_Animation + powerName + "/" + powerName + data.controllerName;
+
+            //La imagen la ignora con el animator
+            //Image prefImg = prefab.GetComponent<Image>();
+            //Sprite prefSpr = Resources.Load<Sprite>(data.path_Img + powerName);
+            //prefImg.sprite = prefSpr;
+
+            Animator animator = prefab.GetComponent<Animator>();
+            animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(animatorPath);
+
+        }
     }
 
     public void CreatePrefabs_Palletes(int[] palletes)
@@ -108,12 +125,12 @@ public class StoreContainer : MonoBehaviour
 
             prefab.name = "palletes";
 
-            Image pref_img = prefab.GetComponent<Image>();
 
+
+            Image pref_img = prefab.GetComponent<Image>();
 
             Color pref_col = data.palletes[palletes[x]];
             pref_img.color = pref_col;
-
 
             Sprite pref_spr = Resources.Load<Sprite>(data.path_Img + data.pathShapes[0]);
             pref_img.sprite = pref_spr;

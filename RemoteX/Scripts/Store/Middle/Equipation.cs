@@ -101,14 +101,20 @@ public class Equipation : MonoBehaviour
 
             case "powers":
 
-                last_equipedValue = SearchIndexOf_Powers();
+                last_equipedValue = SearchIndexOf_Powers(data.pathPowers, equip_img.sprite.name);
+
+                Animator equip_ani = equiped.GetComponent<Animator>();
+                Animator token_ani = token.GetComponent<Animator>();
+                RuntimeAnimatorController recipe_ani = equip_ani.runtimeAnimatorController;
+
+                equip_ani.runtimeAnimatorController = token_ani.runtimeAnimatorController;
+                token_ani.runtimeAnimatorController = recipe_ani;
+
                 break;
 
-            case "palletes": //TODO, revisar que sirva
+            case "palletes":
 
-                //permite saber el indice del color en data.palletes
                 last_equipedValue = SearchIndexOf_Palletes(data.palletes, equip_img.color);
-                //Debug.LogError("palletes...");
 
                 //Hace el cambio
                 Color recipe_col = equip_img.color;
@@ -124,9 +130,6 @@ public class Equipation : MonoBehaviour
 
 
         //Debug.Log("El index de su colección, del equipado era: " + last_equipedValue);
-
-
-        //TODO
         storeManager.ChangesOn(last_equipedValue, storeIndex, type, equipedOfType);
     }
 
@@ -147,10 +150,19 @@ public class Equipation : MonoBehaviour
         }
         return index;
     }
-    private int SearchIndexOf_Powers()
-    {
-        return -1;
-    }//TODO
+    private int SearchIndexOf_Powers(string[] toSearch, string search)
+    {   //Va a buscar el primero que coincida de la palabra con alguno de los de pathPower
+        int index = -1;
+        for (int i = 0; i < toSearch.Length; i++)
+        {
+            if (search.Contains(toSearch[i]))
+            {
+                //Debug.Log("@@@---> encontró power "+ toSearch[i] + " parecido nombre en :" + i + " | : " + search);
+                index = i;// encontró uno parecido
+            }
+        }
+        return index;
+    }
 
 
     private int SearchIndexOf_Palletes(Color[] toSearch, Color search)
@@ -160,7 +172,7 @@ public class Equipation : MonoBehaviour
         {
             if (toSearch[x] == search)
             {
-                Debug.Log("@@@@_EQUIPED encuentra el equipado en data.Palletes Nº = " + x);
+                //Debug.Log("@@@@_EQUIPED encuentra el equipado en data.Palletes Nº = " + x);
                 index = x;
             }
         }
@@ -196,18 +208,13 @@ public class Equipation : MonoBehaviour
 
         for (int i = 0; i < parent_trans.childCount; i++)
         {
-
-            //TODO, creo que el problema viene por que no corrobora enteramente.. los floats se los salta
-
-            //TODO, NO esta contando los float bien...
             if (parent_trans.GetChild(i).name == obj.name && index == -1)
             {
-
                 index = i;
             }
 
         }
-        Debug.Log("Cambiando el equipado Nª: " + index);
+        //Debug.Log("Cambiando el equipado Nª: " + index);
         return index;
     }
 }
