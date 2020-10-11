@@ -196,7 +196,7 @@ public class DataPass : MonoBehaviour
     private void DataInit()
     {
         string path = Application.persistentDataPath + data.savedPath;
-        Debug.Log( "Exist? " + File.Exists(path) + " | on " + path);
+        //Debug.Log( "Exist? " + File.Exists(path) + " | on " + path);
 
         if (File.Exists(path))
         {
@@ -222,7 +222,7 @@ public class DataPass : MonoBehaviour
 
         formatter.Serialize(stream, dataS);
         stream.Close();
-        Debug.Log("Guardado");
+        //Debug.Log("Guardado");
     }
 
     public void LoadData()

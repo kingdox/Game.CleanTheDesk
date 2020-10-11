@@ -224,7 +224,7 @@ public class StoreManager : MonoBehaviour
         datapass.SaveData(datapass);
         datapass.LoadData();
         datapass.LoadResources();
-        Debug.Log("A casa");
+        //Debug.Log("A casa");
         SceneManager.LoadScene(0);// te lleva al menú
     }
 

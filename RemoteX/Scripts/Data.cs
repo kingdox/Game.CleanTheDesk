@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.5.0";
+    public readonly string version = "V 0.5.1";
     public string savedPath = "/saved16.txt";
     public int palleteLength = 6;
 
@@ -29,7 +29,8 @@ public class Data // es como un enviroment
         "C",
         "T",
         "D",
-        "Music"
+        "Music",
+        "Mistery"
     };
 
 

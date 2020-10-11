@@ -78,8 +78,11 @@ public class Detector : MonoBehaviour
 
         switch (text)
         {
+            case "About":
+                SceneManager.LoadScene(3);
+                break;
             case "Music":
-
+                SceneManager.LoadScene(4);
                 break;
             case "Play":
                 SceneManager.LoadScene(1);
@@ -87,7 +90,6 @@ public class Detector : MonoBehaviour
                 break;
             case "Shop":
                 SceneManager.LoadScene(2);
-
                 break;
 
             default:
