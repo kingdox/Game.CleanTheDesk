@@ -32,7 +32,7 @@ public class DataPass : MonoBehaviour
     public Sprite spriteToken;
     public Sprite spriteContainer;
 
-    public RuntimeAnimatorController controllerPower; // TODO Test
+    public RuntimeAnimatorController controllerPower;
 
     public Color[] palletes;
 

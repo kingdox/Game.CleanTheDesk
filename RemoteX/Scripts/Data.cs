@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.5.1";
+    public readonly string version = "V 0.5.2";
     public string savedPath = "/saved16.txt";
     public int palleteLength = 6;
 
@@ -17,6 +17,8 @@ public class Data // es como un enviroment
         "Time",//Default Power
         "Multiplier"//Ganas x2 los puntosque metas
     };
+    //se asigna la cantidad requerida para el uso de cada poder
+    public int[] powersRequireds = { 30,40, };
 
 
     public string[] pathShapes = { //use pathImg
@@ -66,17 +68,12 @@ public class Data // es como un enviroment
     // PowerControllerName
     public string controllerName = "_Controller";// con esta vemos controlamos la animación
 
-
-
     //NO DESORGANIZAR NI CAMBIAR.. :
 
     //Hacemos con los tipos de store
-    public string[] storeTypes =
-   {
-        "shapes",
-        "powers",
-        "palletes"
-    };
+    public string[] storeTypes ={"shapes","powers","palletes"};
+
+    
 
 }
 
@@ -89,12 +86,5 @@ public class Data // es como un enviroment
 /*
  TODO
 https://genial.guru/creacion-hogar/super-guia-para-combinar-colores-132905/
-
-
-
-volver responsive las imagenes
-HACK
-imagen  screen (x) / img-esperada (32)  = cellSize
-32 /  1280 = 40
 
  */

@@ -1487,7 +1487,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 886556273}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 964103819}
+        m_MethodName: WasPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &886556273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,6 +1544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 964103818}
+  - component: {fileID: 964103819}
   m_Layer: 5
   m_Name: Panel Power
   m_TagString: Untagged
@@ -1561,6 +1573,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 0, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &964103819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964103817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3fdcedaa44b48a78c3a4a937b4a8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPressed: 0
+  isAvailable: 0
+  power_anim: {fileID: 1399596649}
 --- !u!1 &965873603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2241,6 +2268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1292635235}
+  - component: {fileID: 1292635236}
   m_Layer: 0
   m_Name: GameManager(Menu)
   m_TagString: Untagged
@@ -2262,6 +2290,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1292635236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292635234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ff901499d6246fe9c9883cfb347f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wantInit: 1
+  power_count: 40
 --- !u!1 &1340928224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,7 +2468,7 @@ GameObject:
   - component: {fileID: 1399596650}
   - component: {fileID: 1399596649}
   m_Layer: 5
-  m_Name: Animation
+  m_Name: PowerAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2488,7 +2530,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 897785315250141396, guid: 97cd0eb9b9a69460798dd25296f32056, type: 3}
+  m_Sprite: {fileID: -3092223754324887936, guid: 97cd0eb9b9a69460798dd25296f32056,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2837,6 +2880,7 @@ GameObject:
   - component: {fileID: 1939272936}
   - component: {fileID: 1939272938}
   - component: {fileID: 1939272937}
+  - component: {fileID: 1939272939}
   m_Layer: 5
   m_Name: Panel Capacity
   m_TagString: Untagged
@@ -2901,6 +2945,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939272935}
   m_CullTransparentMesh: 0
+--- !u!114 &1939272939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939272935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f324d3b2098964b9fac3e1eee5f25280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  token_spr: {fileID: 0}
+  isGameOver: 0
+  limit: 20
 --- !u!1 &1943471512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3287,6 +3346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   limit: 4
+  powerItem_prefab: {fileID: 112514995166653999, guid: a858f9147d28d426f891a583ee92d548,
+    type: 3}
 --- !u!1001 &1897354946324084258
 PrefabInstance:
   m_ObjectHideFlags: 0
