@@ -89,5 +89,12 @@ public class Data // es como un enviroment
 /*
  TODO
 https://genial.guru/creacion-hogar/super-guia-para-combinar-colores-132905/
- 
+
+
+
+volver responsive las imagenes
+HACK
+imagen  screen (x) / img-esperada (32)  = cellSize
+32 /  1280 = 40
+
  */

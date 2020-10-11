@@ -206,7 +206,6 @@ public class StoreManager : MonoBehaviour
                 break;
             case "powers":
                 selected_Store = datapass.powersStore;
-
                 break;
             case "palletes":
                 selected_Store = datapass.palleteStore;
