@@ -11,15 +11,19 @@ public class GameManager : MonoBehaviour
     private Capacity capacity;
     private Power power;
 
+
+
+
     [Header("GameManager info")]
     public bool wantInit = true;
     public int score = 0;
     public Text scoreText;
 
     [Header("Capacity Section")]
-    private int capacity_limit = 20;
+    private int capacity_limit = 20; //dejar las privadas aqui para saber ubicarlas
 
-    //[Header("Container Section")]
+    [Header("Container Section")]
+
 
     [Header("Power Section")]
     public int power_count = 0;
@@ -84,7 +88,7 @@ public class GameManager : MonoBehaviour
         //Si se acaba la partida
         if (capacity.isGameOver)
         {
-
+            Debug.Log("Game Over");
 
         }
     }
