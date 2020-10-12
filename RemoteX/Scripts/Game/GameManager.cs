@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     [Header("GameManager info")]
     public bool wantInit = true;
+    public int score = 0;
+    public Text scoreText;
 
     [Header("Capacity Section")]
     private int capacity_limit = 20;
@@ -30,9 +32,11 @@ public class GameManager : MonoBehaviour
         capacity = FindObjectOfType<Capacity>();
         power = FindObjectOfType<Power>();
         dataPass = FindObjectOfType<DataPass>();
-       
-        wantInit = true;
 
+        //GameManager Starter
+        wantInit = true;
+        score = 0;
+        scoreText.text = score.ToString();
     }
 
 
@@ -60,7 +64,7 @@ public class GameManager : MonoBehaviour
         wantInit = false;
 
         // Init Capacity
-        capacity.token_spr = dataPass.spriteToken;
+        capacity.SetLimit(capacity_limit);
 
         // Init Power
         power_count = 0;

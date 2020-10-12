@@ -1,37 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Capacity : MonoBehaviour
 {
-    public Sprite token_spr;
+    private CapacityBar capacityBar;
+    private int limit = 20;
 
+    [Header("Capacity info")]
     public bool isGameOver = false;
-    public int limit = 20;
+    public Text capacityText;
 
+    private void Awake()
+    {
+        capacityBar = FindObjectOfType<CapacityBar>();
+    }
 
     private void Start()
     {
-            
+
+
     }
 
 
     private void Update()
     {
-
+        capacityText.text = capacityBar.transform.childCount + " / " + limit.ToString();
         CheckGameStatus();
 
     }
 
 
-
     private void CheckGameStatus()
     {
-        if (transform.childCount == limit)
+        if (capacityBar.transform.childCount >= limit)
         {
             isGameOver = true;  
         }
     }
+
+
+    public void SetLimit(int l)
+    {
+        limit = l; //-- actualizamos
+        capacityBar.ReSize(limit);
+
+    }
+
+
 
 
 
