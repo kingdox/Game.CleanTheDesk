@@ -8,7 +8,8 @@ public class GameDetector : MonoBehaviour
 {
 
     private int tokensCreateds = 0;
-    private float countTime = 0; 
+    private float countTime = 0;
+
     [Header("Container Settings")]
     public Sprite token_spr;
     public Color[] palletes_col;
@@ -19,11 +20,6 @@ public class GameDetector : MonoBehaviour
     public GameObject space;
     public float spawnCooldown = 1.2f;
     public bool init = false;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -56,14 +52,13 @@ public class GameDetector : MonoBehaviour
         SetTokenImage(g);
     }
 
-
     private void SetToken(GameObject g)
     {
         Vector2 pos = GetRandomPosition();
 
         Token g_tok = g.GetComponent<Token>();
         g_tok.posToGo = new Vector3(pos.x, pos.y, 40);
-        g_tok.productionNumber = tokensCreateds;
+        g_tok.productionNumber = tokensCreateds; tokensCreateds++; g_tok.name = "T" + g_tok.productionNumber;
         g_tok.speed = 10.0f;
     }
     private void SetTokenImage(GameObject g)
@@ -90,6 +85,11 @@ public class GameDetector : MonoBehaviour
         Vector2 pos2D = new Vector2(X, Y);
         return pos2D;
     }
+
+
+
+
+
 }
 
 /*

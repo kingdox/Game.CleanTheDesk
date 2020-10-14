@@ -30,17 +30,18 @@ public class Field : MonoBehaviour
 
 
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (!hasContainer)
-    //    {
-    //        //añade todos los objetos que encuentra
-    //        GameObject obj = collision.gameObject;
-    //        obj.transform.SetParent(transform); //gameobj.transform
-    //        bool containerExist = obj.CompareTag("Container");
-    //        CheckTokens(containerExist);
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Detect!" + collision.name);
+        if (!hasContainer)
+        {
+            //añade todos los objetos que encuentra
+            GameObject obj = collision.gameObject;
+            obj.transform.SetParent(transform); //gameobj.transform
+            bool containerExist = obj.CompareTag("Detector");
+            //CheckTokens(containerExist);//TODO
+        }
+    }
 
 
 

@@ -13,7 +13,7 @@ public class Token : MonoBehaviour
     [Header("Token Info")]
     [Space]
     public bool isDraggin;
-    public bool isNew = false;
+    public bool isNew = true;
 
 
     //startPos = transform.position;
@@ -33,6 +33,10 @@ public class Token : MonoBehaviour
         el "Contenedor"
      */
 
+    private void Awake()
+    {
+        isNew = true;
+    }
     void Update()
     {
         if (isDraggin)
@@ -63,11 +67,15 @@ public class Token : MonoBehaviour
             transform.position = Vector3.MoveTowards(
               transform.position, posToGo, Time.deltaTime * speed);
         }
+        else
+        {
+            isNew = false;
+        }
     }
 
     private void OnMouseDown()
     {
-        isDraggin = true;
+        isDraggin = !isNew;
     }
     private void OnMouseUp()
     {
@@ -77,10 +85,10 @@ public class Token : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //TODO
-        //if (collision.CompareTag("Trash") && isDraggin)
-        //{
-        //    //collision.GetComponent<Container>().ChangeType)
-        //    //Destroy(gameObject);
-        //}
+        if (collision.CompareTag("Detector") && isDraggin)
+        {
+            //collision.GetComponent<Container>().ChangeType)
+            Destroy(gameObject);
+        }
     }
 }
