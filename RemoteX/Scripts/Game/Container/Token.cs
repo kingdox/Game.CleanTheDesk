@@ -6,8 +6,9 @@ public class Token : MonoBehaviour
 {
 
     [Header("Container Settings")]
+    public int productionNumber = -1;
     public Vector3 posToGo;
-    private float speed = 10.0f;
+    public float speed = 10.0f;
 
     [Header("Token Info")]
     [Space]

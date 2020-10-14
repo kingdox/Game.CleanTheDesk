@@ -7,15 +7,18 @@ using UnityEngine.UI ;
 public class GameDetector : MonoBehaviour
 {
 
-
-    [Header("Game Detector info")]
+    private int tokensCreateds = 0;
+    private float countTime = 0; 
+    [Header("Container Settings")]
     public Sprite token_spr;
     public Color[] palletes_col;
     public Field[] fields;
 
-    [Header("Container Settings")]
+    [Header("Game Detector info")]
     public GameObject token_prefab;
     public GameObject space;
+    public float spawnCooldown = 1.2f;
+    public bool init = false;
 
     void Start()
     {
@@ -24,55 +27,69 @@ public class GameDetector : MonoBehaviour
 
     void Update()
     {
-        
+
+        if (init)
+        {
+            CreateToken();
+        }
     }
 
 
-    /// <summary>
-    /// TODO
-    /// - Busca las posiciones esperadas por los fields
-    /// </summary>
     public void InitGameDetector()
     {
-        //En teoria ya tenemos los fields..
-
+        //nos ponemos un color cualquiera al inicio de momento
+        GetComponent<Image>().color = GetRandomColor();
         CreateToken();
+        init = true;
     }
-
-
 
     private void CreateToken()
     {
-
-        int fIndex = 4;
-        while (fIndex == 4) //-- 4 == pos del gameDetector...
+        if (Time.time < countTime)
         {
-            fIndex = Random.Range(0, fields.Length);
+            return;
         }
+        countTime = Time.time + spawnCooldown;
 
-        Vector2 pos = KnowWantedPositions(fields[fIndex]);
-        GameObject g = Instantiate(token_prefab, space.transform);//transform.parent.transform); //
+        GameObject g = Instantiate(token_prefab, space.transform);
+        SetToken(g);
+        SetTokenImage(g);
+    }
+
+
+    private void SetToken(GameObject g)
+    {
+        Vector2 pos = GetRandomPosition();
 
         Token g_tok = g.GetComponent<Token>();
         g_tok.posToGo = new Vector3(pos.x, pos.y, 40);
-
+        g_tok.productionNumber = tokensCreateds;
+        g_tok.speed = 10.0f;
+    }
+    private void SetTokenImage(GameObject g)
+    {
         Image g_img = g.GetComponent<Image>();
         g_img.sprite = token_spr;
-
-        int col = palletes_col.Length;
-        g_img.color = palletes_col[Random.Range(0, col - 1)];
+        g_img.color = GetRandomColor();
 
     }
-
-    private Vector2 KnowWantedPositions(Field f)
+    private Color GetRandomColor()
     {
-        float X = f.transform.position.x;
-        float Y = f.transform.position.y;
+        int col = palletes_col.Length;
+        return palletes_col[Random.Range(0, col - 1)];
+    }
+    private Vector2 GetRandomPosition()
+    {
+        int i = 4;
+        while (i == 4) //-- 4 == pos del gameDetector...
+        {
+            i = Random.Range(0, fields.Length);
+        }
+        float X = fields[i].transform.position.x;
+        float Y = fields[i].transform.position.y;
         Vector2 pos2D = new Vector2(X, Y);
         return pos2D;
     }
-
-
 }
 
 /*
