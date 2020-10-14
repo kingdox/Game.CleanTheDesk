@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI ;
+
 
 public class GameDetector : MonoBehaviour
 {
@@ -11,10 +13,8 @@ public class GameDetector : MonoBehaviour
     public Color[] palletes_col;
     public Field[] fields;
 
-    [Header("Settings")]
+    [Header("Container Settings")]
     public GameObject token_prefab;
-    public Vector2[] wantedPositions;
-
     public GameObject space;
 
     void Start()
@@ -36,33 +36,43 @@ public class GameDetector : MonoBehaviour
     {
         //En teoria ya tenemos los fields..
 
-        KnowWantedPositions();
+        CreateToken();
     }
 
 
 
-    private void KnowWantedPositions()
+    private void CreateToken()
     {
-        Debug.Log(fields[0].transform.position);
 
-        float pos_X = fields[5].transform.position.x;
-        float pos_Y = fields[5].transform.position.y;
+        int fIndex = 4;
+        while (fIndex == 4) //-- 4 == pos del gameDetector...
+        {
+            fIndex = Random.Range(0, fields.Length);
+        }
 
-        GameObject g = Instantiate(token_prefab, space.transform);
+        Vector2 pos = KnowWantedPositions(fields[fIndex]);
+        GameObject g = Instantiate(token_prefab, space.transform);//transform.parent.transform); //
 
-        //g.transform.localPosition = new Vector3(pos_X,pos_Y,0);
-        g.GetComponent<Token>().posToGo = new Vector3(pos_X, pos_Y, 40);
+        Token g_tok = g.GetComponent<Token>();
+        g_tok.posToGo = new Vector3(pos.x, pos.y, 40);
+
+        Image g_img = g.GetComponent<Image>();
+        g_img.sprite = token_spr;
+
+        int col = palletes_col.Length;
+        g_img.color = palletes_col[Random.Range(0, col - 1)];
 
     }
 
-    //TEST
-    //IEnumerator StartGame(float time)
-    //{
-    //    yield return new WaitForSeconds(time);
+    private Vector2 KnowWantedPositions(Field f)
+    {
+        float X = f.transform.position.x;
+        float Y = f.transform.position.y;
+        Vector2 pos2D = new Vector2(X, Y);
+        return pos2D;
+    }
 
-    //    // do something
-    //    KnowWantedPositions();
-    //}
+
 }
 
 /*
