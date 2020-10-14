@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 3558307829726578870}
   - component: {fileID: 5844435444088872260}
   m_Layer: 5
-  m_Name: Token1
-  m_TagString: Untagged
+  m_Name: GameDetector
+  m_TagString: Detector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

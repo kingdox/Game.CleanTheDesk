@@ -1,28 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Container : MonoBehaviour
 {
 
-    private Sprite container_spr;
-    private Sprite token_spr;
-    private Color[] colors;
-
-    private GameObject[] fields;
-    private GameObject[] matrix_tokens; // en el futuro usaremos esto apra saber los tokens ?, nesecitaría actualizarse
-
-    private Stack<GameObject> tokens; //Aquí contendremos todos los tokens existentes... ?
+    private GameDetector gameDetector;
+    //private Stack<GameObject> tokens; //Aquí contendremos todos los tokens existentes... ?
 
     [Header("Container info")]
-
+    public Field[] fields;
     private bool isInit;
 
     public GameObject[] top_tokens;
 
+    public bool wantInit= false;
+
+    private void Awake()
+    {
+        gameDetector = FindObjectOfType<GameDetector>();   
+    }
+
     void Start()
     {
-        
+        InitFields();
+        /* 
+         * TODO
+         * - Consigo los fields [listo]
+         * - Pregunto por sus posiciones en el mundo espacial, y de ello creo un arreglo
+         * - Este arreglo se lo entrego al Detector
+         * - *-El detector basado en lo entregado podrá empezar a generar fichas
+         * 
+         */
     }
 
     void Update()
@@ -33,40 +43,43 @@ public class Container : MonoBehaviour
     }
 
 
-
-
     /// <summary>
-    /// Obtenemos localizados los fields para uso futuro
+    /// Desde gameManager le pasamos la informacion a GameDetector
     /// </summary>
-    private void SearchFields()
+    /// <param name="container_spr"></param>
+    /// <param name="token_spr"></param>
+    /// <param name="palletes_col"></param>
+    public void SetGameDetector(Sprite container_spr, Sprite token_spr, Color[] palletes_col)
     {
-        int  size = 3; // tamaño del matrix 3 * 3 = 9; 9 fields...
+        Image gd_img = gameDetector.GetComponent<Image>();
+        gd_img.sprite = container_spr;
 
-        Transform[] rowss = new Transform[size];
+        gameDetector.token_spr = token_spr;
+        gameDetector.palletes_col = palletes_col;
 
-        fields = new GameObject[size * size];
+    }
 
+    private void InitFields()
+    {
+        Transform[] rowss = new Transform[3];
+        fields = new Field[9];
         int fieldCount = 0;
-
-        for (int k = 0; k < size; k++)
+        for (int k = 0; k < 3; k++)
         {
-            Transform row_trans = transform.GetChild(k);
-            rowss[k] = row_trans;
-
-            for (int i = 0; i < size; i++)
+            rowss[k] = transform.GetChild(k);
+            for (int i = 0; i < 3; i++)
             {
-                fields[fieldCount] = row_trans.GetChild(i).gameObject;
+                fields[fieldCount] = rowss[k].GetChild(i).gameObject.GetComponent<Field>();
+                fields[fieldCount].name = "F"+fieldCount;
                 fieldCount++;
             }
         }
+        StartGameDetector();
     }
 
-
-
-
-    private void UpdateTopTokens()
+    public void StartGameDetector()
     {
-
+        gameDetector.fields = fields; //entregamos el fields a gameDetector;
+        gameDetector.InitGameDetector();
     }
-
 }

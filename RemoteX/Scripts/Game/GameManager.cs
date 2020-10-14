@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
 {
     private Data data = new Data();
     private DataPass dataPass = null;
+
     private Capacity capacity;
+    private Container container;
     private Power power;
 
 
@@ -69,6 +71,9 @@ public class GameManager : MonoBehaviour
 
         // Init Capacity
         capacity.SetLimit(capacity_limit);
+
+        // Init Container
+        container.SetGameDetector(dataPass.spriteContainer, dataPass.spriteToken, dataPass.palletes);
 
         // Init Power
         power_count = 0;
