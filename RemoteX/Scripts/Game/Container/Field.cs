@@ -15,75 +15,89 @@ public class Field : MonoBehaviour
         initialName = name;
     }
 
-    private void Update()
-    {
+    //private void Update()
+    //{
 
-        //Si hay container, checkeara constantemente si este está presente, sino desactiva..
-        if (hasContainer)
-        {
-            hasContainer = transform.childCount == 0;
-        }
+    //    //Si hay container, checkeara constantemente si este está presente, sino desactiva..
+    //    if (hasContainer)
+    //    {
+    //        hasContainer = transform.childCount == 0;
+    //    }
 
-        name = initialName + " [" + transform.childCount + "]";
+    //    name = initialName + " [" + transform.childCount + "]";
 
-    }
-
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!hasContainer)
-        {
-            //añade todos los objetos que encuentra
-            GameObject obj = collision.gameObject;
-            obj.transform.SetParent(transform); //gameobj.transform
-            bool containerExist = obj.CompareTag("Container");
-            CheckTokens(containerExist);
-        }
-    }
-    
+    //}
 
 
-    /// <summary>
-    /// Revisa los tokens y los añade a un arreglo
-    /// </summary>
-    private void CheckTokens(bool containerExist) {
 
-        int count = transform.childCount; // Sabemos los childs
-        GameObject[] childs = new GameObject[count];
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (!hasContainer)
+    //    {
+    //        //añade todos los objetos que encuentra
+    //        GameObject obj = collision.gameObject;
+    //        obj.transform.SetParent(transform); //gameobj.transform
+    //        bool containerExist = obj.CompareTag("Container");
+    //        CheckTokens(containerExist);
+    //    }
+    //}
 
-        //si no hay container pone los tokens, si hay elimina los tokens existentes 
-        if (containerExist)
-        {
-            childs = new GameObject[1];
 
-            for (int i = 0; i < count; i++)
-            {
-                GameObject obj = transform.GetChild(i).gameObject;
-                if (!obj.CompareTag("Container"))
-                {
-                    Destroy(obj);
-                }
-                else
-                {
-                    childs = new GameObject[1];
-                    childs[0] = obj;
-                }
-            }
-        }
-        else
-        {
-            for (int x = 0; x < count; x++)
-            {
-                childs[x] = transform.GetChild(x).gameObject;
-            }
-        }
 
-        //Cuando toma todos los objetos los envia directamente al childObj
-        childObjects = childs;
-        hasContainer = containerExist;
+    ///// <summary>
+    ///// Revisa los tokens y los añade a un arreglo
+    ///// </summary>
+    //private void CheckTokens(bool containerExist) {
 
-    }
+    //    int count = transform.childCount; // Sabemos los childs
+    //    GameObject[] childs = new GameObject[count];
+
+    //    //si no hay container pone los tokens, si hay elimina los tokens existentes 
+    //    if (containerExist)
+    //    {
+    //        childs = new GameObject[1];
+
+    //        for (int i = 0; i < count; i++)
+    //        {
+    //            GameObject obj = transform.GetChild(i).gameObject;
+    //            if (!obj.CompareTag("Container"))
+    //            {
+    //                Destroy(obj);
+    //            }
+    //            else
+    //            {
+    //                childs = new GameObject[1];
+    //                childs[0] = obj;
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int x = 0; x < count; x++)
+    //        {
+    //            childs[x] = transform.GetChild(x).gameObject;
+    //        }
+    //    }
+
+    //    //Cuando toma todos los objetos los envia directamente al childObj
+    //    childObjects = childs;
+    //    hasContainer = containerExist;
+
+    //}
+
+
+
+    //TODO
+    //TODO descomentar lo de arriba, es lo NEW TODO
+    //TODO
+
+
+
+
+    //________________
+
+
+
 
     //    public GameObject groupField;
     //    public int lastType;//FIXME

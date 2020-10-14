@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         capacity = FindObjectOfType<Capacity>();
+        container = FindObjectOfType<Container>();
         power = FindObjectOfType<Power>();
         dataPass = FindObjectOfType<DataPass>();
 

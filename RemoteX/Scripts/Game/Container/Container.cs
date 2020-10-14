@@ -8,7 +8,7 @@ public class Container : MonoBehaviour
 
     private GameDetector gameDetector;
     //private Stack<GameObject> tokens; //Aquí contendremos todos los tokens existentes... ?
-
+    public GameObject token_prefab;
     [Header("Container info")]
     public Field[] fields;
     private bool isInit;
@@ -27,7 +27,7 @@ public class Container : MonoBehaviour
         InitFields();
         /* 
          * TODO
-         * - Consigo los fields [listo]
+         * - Consigo los fields [HACK]
          * - Pregunto por sus posiciones en el mundo espacial, y de ello creo un arreglo
          * - Este arreglo se lo entrego al Detector
          * - *-El detector basado en lo entregado podrá empezar a generar fichas
@@ -80,6 +80,7 @@ public class Container : MonoBehaviour
     public void StartGameDetector()
     {
         gameDetector.fields = fields; //entregamos el fields a gameDetector;
+        gameDetector.token_prefab = token_prefab;
         gameDetector.InitGameDetector();
     }
 }

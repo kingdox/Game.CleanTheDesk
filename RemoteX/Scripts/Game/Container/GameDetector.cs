@@ -12,11 +12,10 @@ public class GameDetector : MonoBehaviour
     public Field[] fields;
 
     [Header("Settings")]
-    public GameObject tokenPrefab;
-
-    [Header("Datos creados aqui")]
+    public GameObject token_prefab;
     public Vector2[] wantedPositions;
 
+    public GameObject space;
 
     void Start()
     {
@@ -35,9 +34,35 @@ public class GameDetector : MonoBehaviour
     /// </summary>
     public void InitGameDetector()
     {
+        //En teoria ya tenemos los fields..
+
+        KnowWantedPositions();
+    }
+
+
+
+    private void KnowWantedPositions()
+    {
+        Debug.Log(fields[0].transform.position);
+
+        float pos_X = fields[5].transform.position.x;
+        float pos_Y = fields[5].transform.position.y;
+
+        GameObject g = Instantiate(token_prefab, space.transform);
+
+        //g.transform.localPosition = new Vector3(pos_X,pos_Y,0);
+        g.GetComponent<Token>().posToGo = new Vector3(pos_X, pos_Y, 40);
 
     }
 
+    //TEST
+    //IEnumerator StartGame(float time)
+    //{
+    //    yield return new WaitForSeconds(time);
+
+    //    // do something
+    //    KnowWantedPositions();
+    //}
 }
 
 /*
