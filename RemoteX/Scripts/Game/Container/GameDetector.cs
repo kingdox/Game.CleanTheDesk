@@ -6,7 +6,7 @@ using UnityEngine.UI ;
 
 public class GameDetector : MonoBehaviour
 {
-
+    private GameManager gameManager;
     private int tokensCreateds = 0;
     private float countTime = 0;
 
@@ -20,6 +20,11 @@ public class GameDetector : MonoBehaviour
     public GameObject space;
     public float spawnCooldown = 1.2f;
     public bool init = false;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     void Update()
     {
@@ -57,7 +62,7 @@ public class GameDetector : MonoBehaviour
         Vector2 pos = GetRandomPosition();
 
         Token g_tok = g.GetComponent<Token>();
-        g_tok.posToGo = new Vector3(pos.x, pos.y, 40);
+        g_tok.posToGo = new Vector3(pos.x, pos.y, 45);
         g_tok.productionNumber = tokensCreateds; tokensCreateds++; g_tok.name = "T" + g_tok.productionNumber;
         g_tok.speed = 10.0f;
     }
@@ -89,14 +94,39 @@ public class GameDetector : MonoBehaviour
 
 
 
+    public void CheckToken(Token token)
+    {
+        Image t_img = token.GetComponent<Image>();
+        Image g_img = transform.GetComponent<Image>();
+
+
+        bool isCorrect = t_img.color == g_img.color;
+
+        if (isCorrect)
+        {
+            //La ficha introducida es correcta
+            SetDetectorColor();
+
+        }
+        else
+        {
+            //ponemos un castigo aqui? TODO
+        }
+
+        gameManager.ContainerResult(t_img.color, isCorrect);
+
+    }
+
+
+
+
+    private void SetDetectorColor()
+    {
+        Image g_img = transform.GetComponent<Image>();
+        //Ponemos un color si es correcto
+        int random = Random.Range(0, palletes_col.Length);
+        g_img.color = palletes_col[random];
+    }
+
 
 }
-
-/*
- TODO
-
-    - recibiremos el sprite, el shape nuestro
-    y las posiciones esperadas
- 
- 
- */

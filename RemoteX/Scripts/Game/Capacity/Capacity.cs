@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Capacity : MonoBehaviour
 {
+    private TokenSpace tokenSpace;
     private CapacityBar capacityBar;
     private int limit = 20;
 
@@ -12,16 +13,18 @@ public class Capacity : MonoBehaviour
     public bool isGameOver = false;
     public Text capacityText;
 
+    private Color[] lastColors;
+
     private void Awake()
     {
+        lastColors = new Color[0];
         capacityBar = FindObjectOfType<CapacityBar>();
+        tokenSpace = FindObjectOfType<TokenSpace>();
     }
-
     private void Update()
     {
         capacityText.text = capacityBar.transform.childCount + " / " + limit.ToString();
         CheckGameStatus();
-
     }
 
 
@@ -29,9 +32,14 @@ public class Capacity : MonoBehaviour
     {
         if (capacityBar.transform.childCount >= limit)
         {
-            isGameOver = true;  
+            isGameOver = true;
         }
-    }
+
+        if (!isGameOver)
+        {
+            testGenerator();
+        }
+    }   
 
 
     public void SetLimit(int l)
@@ -41,20 +49,44 @@ public class Capacity : MonoBehaviour
     }
 
 
-    //TODO usar
-    /// <summary>
-    /// Este es el que hace comunicación con game manager
-    /// </summary>
-    /// <param name="cols"></param>
-    public void CheckColors( Color[] cols)
+    private void testGenerator()
     {
-        //TODO aqui ponemos el color uno por uno
+        bool hasChanges = CheckColors(tokenSpace.tok_col);
+
+        if (hasChanges)
+        {
+            lastColors = tokenSpace.tok_col;
+
+            int lastQty = capacityBar.transform.childCount;
+            for (int k = 0; k < lastQty; k++)
+            {
+                capacityBar.DeleteItem(k);
+            }
+            foreach (var c in lastColors)
+            {
+                capacityBar.CreateItem(c);
+            }
+            
+
+        }
+
+    }
+    public bool CheckColors(Color[] cols)
+    {
+        if (cols.Length != lastColors.Length)
+        {
+            return true;
+        }
+
+        bool hasChanges = false;
 
         for (int x = 0; x < cols.Length; x++)
         {
-            capacityBar.SetColor(cols[x], x);
+            if (cols[x] != lastColors[x])
+            {
+                hasChanges = true;
+            }
         }
-            
+        return hasChanges;
     }
-
 }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class CapacityBar : MonoBehaviour
 {
-    private Image img; //TODO esta haremos que cambie de colores cuando quede poca vida...
     private GridLayoutGroup gridLayoutGroup;
     private readonly float wanted_h = 32; // 32 es el tamaño de las img en teoria...
 
@@ -18,7 +17,6 @@ public class CapacityBar : MonoBehaviour
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        img = GetComponent<Image>();
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
 
     }
@@ -33,19 +31,14 @@ public class CapacityBar : MonoBehaviour
         gridLayoutGroup.cellSize = new Vector2(new_w, new_h);
     }
 
-    //Aqui coloca el color respectivo
-    public void SetColor(Color col, int index)
-    {
-        Transform trans = gameObject.transform.GetChild(index) ;
-        Image trans_img = trans.GetComponent<Image>();
-        trans_img.color = col;
-    }
-
     public void CreateItem(Color col)
     {
         GameObject obj = Instantiate(capacityItem_prefab, gameObject.transform);
         Image obj_img = obj.GetComponent<Image>();
         obj_img.color = col;
+
+        Image img = transform.GetComponent<Image>();
+        img.color = new Color(col.r, col.b, col.g, 0.2f);
     }
 
     public void DeleteItem(int index)
@@ -54,3 +47,14 @@ public class CapacityBar : MonoBehaviour
         Destroy(obj);
     }
 }
+
+/*
+ 
+  //Aqui coloca el color respectivo
+    public void SetColor(Color col, int index)
+    {
+        Transform trans = gameObject.transform.GetChild(index) ;
+        Image trans_img = trans.GetComponent<Image>();
+        trans_img.color = col;
+    }
+ */

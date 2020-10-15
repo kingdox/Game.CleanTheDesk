@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     private Capacity capacity;
     private Container container;
     private Power power;
+    private bool isEnd = false;
+    private int capacity_limit = 20; //dejar las privadas aqui para saber ubicarlas
+    private int power_need = 10;
 
 
     [Header("GameManager info")]
@@ -18,15 +21,9 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public Text scoreText;
 
-    [Header("Capacity Section")]
-    private int capacity_limit = 20; //dejar las privadas aqui para saber ubicarlas
-
-    [Header("Container Section")]
-
 
     [Header("Power Section")]
     public int power_count = 0;
-    private int power_need = 10;
 
 
 
@@ -46,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        scoreText.text = score.ToString();
+
         if (dataPass.status == "end")
         {
             if (wantInit)
@@ -66,14 +65,12 @@ public class GameManager : MonoBehaviour
     private void InitGameManager()
     {
         wantInit = false;
-
         // Init Capacity
         capacity.SetLimit(capacity_limit);
 
         // Init Container
         container.InitContainer();
         container.SetGameDetector(dataPass.spriteContainer, dataPass.spriteToken, dataPass.palletes);
-
 
         // Init Power
         power_count = 0;
@@ -84,17 +81,47 @@ public class GameManager : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// CAPACITY
-    /// </summary>
+   
+
+    public void isGameOver()
+    {
+        if (isEnd)
+        {
+            return;
+        }
+        isEnd = true;
+
+
+        Debug.Log("Game Over");
+        container.ShutDownContainer();
+
+    }
+
+
+
+    public void ContainerResult(Color c , bool isSuccesful)
+    {
+        Image container_img = container.GetComponent<Image>();
+
+        if (isSuccesful)
+        {
+            score++;
+            container_img.color = c;
+        }
+        else
+        {
+            container_img.color = new Color(1,1,1,1);
+        }
+
+    }
+
+    // ##-------UPDATES---
+
     private void CapacityUpdate()
     {
-
-        //Si se acaba la partida
         if (capacity.isGameOver)
         {
-            Debug.Log("Game Over");
-
+            isGameOver();
         }
     }
 

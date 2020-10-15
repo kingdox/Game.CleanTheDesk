@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.5.4";
+    public readonly string version = "V 0.5.8";
     public string savedPath = "/saved16.txt";
     public int palleteLength = 6;
 
@@ -18,7 +18,7 @@ public class Data // es como un enviroment
         "Multiplier"//Ganas x2 los puntosque metas
     };
     //se asigna la cantidad requerida para el uso de cada poder
-    public int[] powersRequireds = { 30,40, };
+    public int[] powersRequireds = { 30,40 };
 
 
     public string[] pathShapes = { //use pathImg

@@ -10,35 +10,11 @@ public class Container : MonoBehaviour
     [Header("Container info")]
     public GameObject token_prefab;
 
-    [Header("Container->GameManager Comunication")]
-    public Color[] token_col; // TODO
-
-    /* 
-    * - [HACK] Consigo los fields 
-    * - [HACK] Pregunto por sus posiciones en el mundo espacial, y de ello creo un arreglo
-    * - [HACK] Este arreglo se lo entrego al Detector
-    * - [HACK] El detector basado en lo entregado podrá empezar a generar fichas
-    * ACCIONES:
-    * TODO--> Envia a GameManager un arreglo con el arreglo de los colores de los tokens ORDENADOS por el Nª de produccion
-    */
-
     private void Awake()
     {
         gameDetector = FindObjectOfType<GameDetector>();
 
     }
-
-
-
-    private void Update()
-    {
-
-        //Buscar todos los tokens y ordenarlos, y tomar su color, haciendo un arreglo de colores
-
-
-    }
-
-
 
 
     public void InitContainer()
@@ -53,6 +29,8 @@ public class Container : MonoBehaviour
             {
                 fields[fieldCount] = rowss[k].GetChild(i).gameObject.GetComponent<Field>();
                 fields[fieldCount].name = "F" + fieldCount;
+
+                fields[fieldCount].hasContainer = fieldCount == 4;
                 fieldCount++;
             }
         }
@@ -72,23 +50,11 @@ public class Container : MonoBehaviour
 
     public void StartGameDetector() // uso unico
     {
-        
         gameDetector.InitGameDetector();
     }
+
+    public void ShutDownContainer()
+    {
+        gameDetector.gameObject.SetActive(false);
+    }
 }
-
-
-
-
-
-
-/*
- HACK pero te vienen sin orden :(
-
- //fields = FindObjectsOfType<Field>();
-        //for (int i = 0; i < fields.Length; i++)
-        //{
-        //    fields[i].name = "F" + i;
-        //}
- 
- */
