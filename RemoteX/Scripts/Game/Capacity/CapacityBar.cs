@@ -13,7 +13,6 @@ public class CapacityBar : MonoBehaviour
     [Header("CapacityBar info")]
     public GameObject capacityItem_prefab;
 
-
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -23,11 +22,11 @@ public class CapacityBar : MonoBehaviour
 
     public void ReSize(int limit)
     {
-        float objWidth = Screen.width * (rectTransform.anchorMax.x - rectTransform.anchorMin.x);
         float new_h = Screen.height / wanted_h;
-        float new_w = objWidth / limit;
 
-        gridLayoutGroup.padding.left = Mathf.RoundToInt(gridLayoutGroup.spacing.x * 2);
+        //ancho del objeto basado en el screen
+        float objWidth = Screen.width * (rectTransform.anchorMax.x - rectTransform.anchorMin.x);
+        float new_w = (objWidth / limit) - gridLayoutGroup.spacing.x;
         gridLayoutGroup.cellSize = new Vector2(new_w, new_h);
     }
 

@@ -6,9 +6,11 @@ using UnityEngine.UI ;
 
 public class GameDetector : MonoBehaviour
 {
+    private Data data = new Data();
     private GameManager gameManager;
     private int tokensCreateds = 0;
     private float countTime = 0;
+
 
     [Header("Container Settings")]
     public Sprite token_spr;
@@ -20,6 +22,7 @@ public class GameDetector : MonoBehaviour
     public GameObject space;
     public float spawnCooldown = 1.2f;
     public bool init = false;
+    public int punishCount = 0;
 
     private void Awake()
     {
@@ -29,9 +32,15 @@ public class GameDetector : MonoBehaviour
     void Update()
     {
 
+
         if (init)
         {
-            CreateToken();
+
+            if (Time.time > countTime)
+            {
+                countTime = Time.time + spawnCooldown;
+                CreateToken();
+            }
         }
     }
 
@@ -46,12 +55,6 @@ public class GameDetector : MonoBehaviour
 
     private void CreateToken()
     {
-        if (Time.time < countTime)
-        {
-            return;
-        }
-        countTime = Time.time + spawnCooldown;
-
         GameObject g = Instantiate(token_prefab, space.transform);
         SetToken(g);
         SetTokenImage(g);
@@ -70,7 +73,8 @@ public class GameDetector : MonoBehaviour
     {
         Image g_img = g.GetComponent<Image>();
         g_img.sprite = token_spr;
-        g_img.color = GetRandomColor();
+
+        g_img.color = GetRandomColor();//KnowMostColorOnTop();
 
     }
     private Color GetRandomColor()
@@ -110,7 +114,12 @@ public class GameDetector : MonoBehaviour
         }
         else
         {
-            //ponemos un castigo aqui? TODO
+            punishCount++;
+            for (int i = 0; i < punishCount; i++)
+            {
+
+                CreateToken();  
+            }
         }
 
         gameManager.ContainerResult(t_img.color, isCorrect);
@@ -129,4 +138,54 @@ public class GameDetector : MonoBehaviour
     }
 
 
+
+
+    private Color KnowMostColorOnTop()
+    {
+        int[] colorCount = new int[palletes_col.Length];
+        int most_color = 0;
+
+
+        for (int x = 0; x < fields.Length; x++)
+        {
+            if (fields[x].tokenChilds.Length > 0)
+            {
+                Image t_img = fields[x].tokenChilds[0].GetComponent<Image>();
+
+                for (int i = 0; i < palletes_col.Length; i++)
+                {
+                    if (t_img.color == palletes_col[i])
+                    {
+                        colorCount[i]++;
+
+                        if (most_color < colorCount[i])
+                        {
+                            most_color = colorCount[i];
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+        // como sabemos cual tiene el mayor color,
+        // sabemos cuales son posibles para permanecer
+        int index = -1;
+
+        while (most_color != 0 || index == -1 || colorCount[index] != most_color)
+        {
+
+            index = Random.Range(0, colorCount.Length);
+
+        }
+
+        //retornará el color que mas hay
+        //TODO
+        return
+            most_color != 0
+            ? palletes_col[index]
+            : GetRandomColor();
+
+    }
 }

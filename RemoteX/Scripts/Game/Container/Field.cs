@@ -31,74 +31,50 @@ public class Field : MonoBehaviour
             if (tok.isNew)
             {
                 tok.isNew = false;
-                UpdateTokens(tok);
+                stack.Push(tok);
+                UpdateTokens();
+
             }
         }
     }
 
 
     //hay que quitar los que sean missing...
-    private void UpdateTokens(Token t_new = null)
+    private void UpdateTokens()
     {
-        //stack.Push(tok);TODO
 
         //tokenChilds;
         Stack<Token> recipe_stack = new Stack<Token>();
         Token[] recipe_token = stack.ToArray();
 
-
         //esta haciendo un push alreves....
         //los push siempre van al inicio, en vez de al final...
-        for (int x = recipe_token.Length; x < 0; x--)
+        for (int x = recipe_token.Length; x > 0; x--)
         {
-
+            if (!!recipe_token[x- 1])
+            {
+                recipe_stack.Push(recipe_token[x - 1]);
+            }
             
         }
-
-
-        foreach (var t in recipe_token)
-        {
-
-            if (!!t)
-            {
-                recipe_stack.Push(t);
-            }
-        }
-
-
         stack = recipe_stack;
         tokenChilds = recipe_stack.ToArray();
-
+        VerifyLastToken();
     }
 
 
-
-
-
-
-
+    /// <summary>
+    /// Partiendo de que [0] es la ultima ficha que poseemos podemos saber la ultima..., en caso de que
+    /// sea agarrada o, no este en su posición, se puede permanecer como enable
+    /// </summary>
+    private void VerifyLastToken()
+    {
+        for (int x = 0; x < tokenChilds.Length; x++)
+        {
+            tokenChilds[x].enabled =
+                x == 0
+                || tokenChilds[x].isDraggin
+                || tokenChilds[x].posToGo != tokenChilds[x].transform.position;
+        }
+    }
 }
-
-
-// TODO ten actualizado aqui 
-
-///// <summary>
-///// Hace que poseas un array con los tokens actualizados
-///// </summary>
-//private void UpdateTokenArray()
-//{
-//    //revisa el arreglo y si hay una missing se va
-//    Token[] tokens  = stack.ToArray();
-//    Stack<Token> token_stack = new Stack<Token>();
-
-//    foreach (var t in tokens)
-//    {
-//        if (!!t)
-//        {
-//            token_stack.Push(t);
-//        }
-//    }
-
-//    //Entrega lo mas actualizado...
-//    tokenChilds = token_stack.ToArray();
-//}
