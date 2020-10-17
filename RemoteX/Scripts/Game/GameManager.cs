@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -11,16 +12,17 @@ public class GameManager : MonoBehaviour
     private Capacity capacity;
     private Container container;
     private Power power;
+    private DetectorHome detectorHome;
     private bool isEnd = false;
     //private int capacity_limit = 20; //dejar las privadas aqui para saber ubicarlas
     private int power_need = 10;
 
 
     [Header("GameManager info")]
+    public GameObject game;
     public bool wantInit = true;
     public int score = 0;
     public Text scoreText;
-
 
     [Header("Container Section")]
     public bool BGisDark = false;
@@ -28,6 +30,12 @@ public class GameManager : MonoBehaviour
     [Header("Power Section")]
     public int power_count = 0;
 
+    [Header("Pause Section")]
+    public GameObject pause;
+    public Text pauseScoreText;
+    public Text pauseHighScoreText;
+    public PauseDetector pauseDetector;
+    public bool pauseWasInit = true;
 
 
     private void Start()
@@ -36,8 +44,11 @@ public class GameManager : MonoBehaviour
         container = FindObjectOfType<Container>();
         power = FindObjectOfType<Power>();
         dataPass = FindObjectOfType<DataPass>();
+        detectorHome = FindObjectOfType<DetectorHome>();
+        pauseDetector = FindObjectOfType<PauseDetector>();
 
         //GameManager Starter
+        pauseWasInit = false;
         wantInit = true;
         score = 0;
         scoreText.text = score.ToString();
@@ -47,20 +58,48 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         scoreText.text = score.ToString();
+        pauseScoreText.text = score.ToString();
+        pauseHighScoreText.text = "*"+dataPass.highScore.ToString() + "*";
 
-        if (dataPass.status == "end")
+
+
+        if (dataPass.status == "end" )
         {
-            if (wantInit)
+            if (game.activeInHierarchy)
             {
-                //Debug.Log("Init");
-                InitGameManager();
-            }
-            else
-            {
-                ChildUpdates();
+                if (wantInit)
+                {
+                    //Debug.Log("Init");
+                    InitGameManager();
+                }
+                else
+                {
+                    ChildUpdates();
                 
+                }
             }
+
+            if (pause.activeInHierarchy)
+            {
+                if (!pauseWasInit)
+                {
+                    pauseWasInit = true;
+
+                    pauseDetector.img.sprite = dataPass.spriteContainer;
+
+                }
+                if (detectorHome.wantGoHome)
+                {
+                    SceneManager.LoadScene(0);
+                }
+
+            }
+            
         }
+
+        
+
+        
     }
 
 

@@ -32,7 +32,7 @@ public class PowerBar : MonoBehaviour
 
         //ancho del objeto basado en el screen
         float objWidth = Screen.width * (rectTransform.anchorMax.x - rectTransform.anchorMin.x);
-        float new_w = (objWidth / limit) - gridLayoutGroup.spacing.x - (gridLayoutGroup.padding.right);//gridLayoutGroup.padding.left +
+        float new_w = (objWidth / limit) - gridLayoutGroup.spacing.x - gridLayoutGroup.padding.right;
         gridLayoutGroup.cellSize = new Vector2(new_w, new_h);
     }
 

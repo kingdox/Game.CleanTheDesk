@@ -12,12 +12,13 @@ public class CapacityBar : MonoBehaviour
 
     [Header("CapacityBar info")]
     public GameObject capacityItem_prefab;
+    public Image img;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         gridLayoutGroup = GetComponent<GridLayoutGroup>();
-
+        img = GetComponent<Image>();
     }
 
     public void ReSize(int limit)
@@ -26,7 +27,7 @@ public class CapacityBar : MonoBehaviour
 
         //ancho del objeto basado en el screen
         float objWidth = Screen.width * (rectTransform.anchorMax.x - rectTransform.anchorMin.x);
-        float new_w = (objWidth / limit) - gridLayoutGroup.spacing.x;
+        float new_w = (objWidth / limit) - gridLayoutGroup.spacing.x - gridLayoutGroup.padding.right;
         gridLayoutGroup.cellSize = new Vector2(new_w, new_h);
     }
 
@@ -36,7 +37,6 @@ public class CapacityBar : MonoBehaviour
         Image obj_img = obj.GetComponent<Image>();
         obj_img.color = col;
 
-        Image img = transform.GetComponent<Image>();
         img.color = new Color(col.r, col.b, col.g, 0.2f);
     }
 

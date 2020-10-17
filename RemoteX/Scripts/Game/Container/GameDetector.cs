@@ -6,6 +6,8 @@ using UnityEngine.UI ;
 
 public class GameDetector : MonoBehaviour
 {
+    private readonly Data data = new Data();
+
     private GameManager gameManager;
     private int tokensCreateds = 0;
     private float countTime = 0;
@@ -78,7 +80,7 @@ public class GameDetector : MonoBehaviour
         g_token.posToGo = new Vector3(X, Y, 45);
         g_token.productionNumber = tokensCreateds; tokensCreateds++;
         g_token.name = "T" + g_token.productionNumber;
-        g_token.speed = 10.0f;
+        g_token.speed = data.tokenSpeed;
         g_token.img.sprite = token_spr;
 
 
@@ -132,11 +134,10 @@ public class GameDetector : MonoBehaviour
                 existType = true;
             }
         }
-            
+
         return existType;
     }
 
-    //TODO
     private Color KnowMostColorOnTop()
     {
         //colorCount posee el indice de los colores y vemos cual posee mas actualmente

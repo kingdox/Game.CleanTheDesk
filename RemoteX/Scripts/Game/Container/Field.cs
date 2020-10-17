@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Field : MonoBehaviour
 {
+    private readonly Data data = new Data();
+    private Stack<Token> stack = new Stack<Token>();
+
 
     [Header("Container settings")]
     public bool hasContainer;
@@ -13,12 +16,13 @@ public class Field : MonoBehaviour
 
     [Header("Field info")]
     public Token[] tokenChilds;
-    private Stack<Token> stack = new Stack<Token>();
     public Color colorTop;
 
     private void Update()
     {
         UpdateTokens();
+        UpdatePosToGoZ();
+
         if (tokenChilds.Length > 0)
         {
             colorTop = tokenChilds[0].GetComponent<Image>().color;
@@ -38,8 +42,6 @@ public class Field : MonoBehaviour
             {
                 tok.isNew = false;
                 stack.Push(tok);
-                UpdateTokens();
-
             }
         }
     }
@@ -78,10 +80,37 @@ public class Field : MonoBehaviour
     {
         for (int x = 0; x < tokenChilds.Length; x++)
         {
-            tokenChilds[x].enabled =
-                x == 0
+            bool condition = x == 0
                 || tokenChilds[x].isDraggin
                 || tokenChilds[x].posToGo != tokenChilds[x].transform.position;
+
+            tokenChilds[x].enabled = condition;
+
+            //tokenChilds[x].img.enabled = condition || x == 1;
+
+
+        }
+    }
+
+
+
+    private void UpdatePosToGoZ()
+    {
+        for (int x = 0; x < tokenChilds.Length; x++)
+        {
+            Vector2 pos2D = transform.position;
+            Vector2 token_pos2D = tokenChilds[x].transform.position;
+
+            
+                
+            if (token_pos2D == pos2D)
+            {
+                float X = tokenChilds[x].posToGo.x;
+                float Y = tokenChilds[x].posToGo.y;
+                float Z = data.tokenPosInit_z + (data.separeMagnitude * x);
+
+                tokenChilds[x].posToGo = new Vector3(X, Y, Z);
+            }
         }
     }
 }

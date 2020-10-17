@@ -9,7 +9,9 @@ public class Data // es como un enviroment
     public string savedPath = "/saved16.txt";
     public int palleteLength = 6;
     public int token_limit = 25;
-
+    public float tokenPosInit_z = 45.0f;
+    public float separeMagnitude = 10.0f;
+    public float tokenSpeed = 10.0f; // velocidad inicial
     //estos tienes que tener un obj que posea la img y
     // luego volverla a prefab, es un peo, verlo luego, separarlo por carpetas bro...
     public string[] pathPowers =
