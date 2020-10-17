@@ -6,7 +6,6 @@ using UnityEngine.UI ;
 
 public class GameDetector : MonoBehaviour
 {
-    private Data data = new Data();
     private GameManager gameManager;
     private int tokensCreateds = 0;
     private float countTime = 0;
@@ -23,19 +22,18 @@ public class GameDetector : MonoBehaviour
     public float spawnCooldown = 1.2f;
     public bool init = false;
     public int punishCount = 0;
+    public Image img;
 
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+        img = GetComponent<Image>();
     }
 
-    void Update()
+    private void Update()
     {
-
-
         if (init)
         {
-
             if (Time.time > countTime)
             {
                 countTime = Time.time + spawnCooldown;
@@ -47,42 +45,26 @@ public class GameDetector : MonoBehaviour
 
     public void InitGameDetector()
     {
-        //nos ponemos un color cualquiera al inicio de momento
-        GetComponent<Image>().color = GetRandomColor();
+        Color randomColor = GetRandomColor();
+        GetComponent<Image>().color = randomColor;
         CreateToken();
         init = true;
-    }
-
-    private void CreateToken()
-    {
-        GameObject g = Instantiate(token_prefab, space.transform);
-        SetToken(g);
-        SetTokenImage(g);
-    }
-
-    private void SetToken(GameObject g)
-    {
-        Vector2 pos = GetRandomPosition();
-
-        Token g_tok = g.GetComponent<Token>();
-        g_tok.posToGo = new Vector3(pos.x, pos.y, 45);
-        g_tok.productionNumber = tokensCreateds; tokensCreateds++; g_tok.name = "T" + g_tok.productionNumber;
-        g_tok.speed = 10.0f;
-    }
-    private void SetTokenImage(GameObject g)
-    {
-        Image g_img = g.GetComponent<Image>();
-        g_img.sprite = token_spr;
-
-        g_img.color = GetRandomColor();//KnowMostColorOnTop();
-
     }
     private Color GetRandomColor()
     {
         int col = palletes_col.Length;
-        return palletes_col[Random.Range(0, col - 1)];
+        return palletes_col[Random.Range(0, col)];
     }
-    private Vector2 GetRandomPosition()
+
+    //DONE
+    private void CreateToken()
+    {
+        GameObject g = Instantiate(token_prefab, space.transform);
+        Token g_token = g.GetComponent<Token>();
+        SetToken(g_token);
+    }
+    //DONE
+    private void SetToken(Token g_token)
     {
         int i = 4;
         while (i == 4) //-- 4 == pos del gameDetector...
@@ -91,25 +73,36 @@ public class GameDetector : MonoBehaviour
         }
         float X = fields[i].transform.position.x;
         float Y = fields[i].transform.position.y;
-        Vector2 pos2D = new Vector2(X, Y);
-        return pos2D;
+
+
+        g_token.posToGo = new Vector3(X, Y, 45);
+        g_token.productionNumber = tokensCreateds; tokensCreateds++;
+        g_token.name = "T" + g_token.productionNumber;
+        g_token.speed = 10.0f;
+        g_token.img.sprite = token_spr;
+
+
+
+        bool existTypeOnTop = ExistThisTypeOnTops();
+        if (existTypeOnTop)
+        {
+            g_token.img.color = GetRandomColor();
+        }
+        else
+        {
+            g_token.img.color = img.color;
+        }
     }
-
-
-
-
+    //DONE
     public void CheckToken(Token token)
     {
-        Image t_img = token.GetComponent<Image>();
-        Image g_img = transform.GetComponent<Image>();
 
-
-        bool isCorrect = t_img.color == g_img.color;
+        bool isCorrect = token.img.color == img.color;
 
         if (isCorrect)
         {
             //La ficha introducida es correcta
-            SetDetectorColor();
+            img.color = KnowMostColorOnTop();
 
         }
         else
@@ -117,48 +110,57 @@ public class GameDetector : MonoBehaviour
             punishCount++;
             for (int i = 0; i < punishCount; i++)
             {
-
-                CreateToken();  
+                CreateToken();
             }
         }
 
-        gameManager.ContainerResult(t_img.color, isCorrect);
+        gameManager.ContainerResult(token.img.color, isCorrect);
 
     }
-
-
-
-
-    private void SetDetectorColor()
+    //DONE
+    private bool ExistThisTypeOnTops()
     {
-        Image g_img = transform.GetComponent<Image>();
-        //Ponemos un color si es correcto
-        int random = Random.Range(0, palletes_col.Length);
-        g_img.color = palletes_col[random];
+        bool existType = false;
+        
+        for (int i = 0; i < fields.Length; i++)
+        {
+            if (
+                fields[i].tokenChilds.Length > 0
+                && fields[i].tokenChilds[0]
+                && fields[i].tokenChilds[0].img.color == img.color
+            ){
+                existType = true;
+            }
+        }
+            
+        return existType;
     }
 
-
-
-
+    //TODO
     private Color KnowMostColorOnTop()
     {
+        //colorCount posee el indice de los colores y vemos cual posee mas actualmente
         int[] colorCount = new int[palletes_col.Length];
+        //most color nos permite saber la cantidad que mas hubo, de manera que sabemos si hay repetida
         int most_color = 0;
 
-
+        //aqui se recorre los fields
         for (int x = 0; x < fields.Length; x++)
         {
-            if (fields[x].tokenChilds.Length > 0)
+            //por cada field revisamos si poseen tokens
+            if (fields[x].tokenChilds.Length > 0 && fields[x].tokenChilds[0])
             {
-                Image t_img = fields[x].tokenChilds[0].GetComponent<Image>();
-
+                //recorremos la paleta de colores
                 for (int i = 0; i < palletes_col.Length; i++)
                 {
-                    if (t_img.color == palletes_col[i])
+                    //si el color del top de este field es igual a alguno
+                    if (fields[x].tokenChilds[0].img.color * 100 == palletes_col[i])
                     {
+                        //asignamos al contador 1 punto en el indice correspondiente
                         colorCount[i]++;
 
-                        if (most_color < colorCount[i])
+                        //revisamos si este es el contador mas grande actualmente
+                        if (colorCount[i] > most_color)
                         {
                             most_color = colorCount[i];
                         }
@@ -168,24 +170,41 @@ public class GameDetector : MonoBehaviour
             }
         }
 
+        Color col;
 
-        // como sabemos cual tiene el mayor color,
-        // sabemos cuales son posibles para permanecer
-        int index = -1;
-
-        while (most_color != 0 || index == -1 || colorCount[index] != most_color)
+        if (most_color != 0)
         {
+            Stack<Color> stack_col = new Stack<Color>();
 
-            index = Random.Range(0, colorCount.Length);
+            for (int k = 0; k < colorCount.Length; k++)
+            {
+                if (colorCount[k] == most_color)
+                {
+                    //col = palletes_col[k];
+                    stack_col.Push(palletes_col[k]);
+                }
 
+            }
+            col = GetBetweenMostColors(stack_col);
+        }
+        else
+        {
+            col = palletes_col[Random.Range(0, palletes_col.Length)];
         }
 
-        //retornará el color que mas hay
-        //TODO
-        return
-            most_color != 0
-            ? palletes_col[index]
-            : GetRandomColor();
-
+        return col;
     }
+
+
+
+    private Color GetBetweenMostColors(Stack<Color> stack_c)
+    {
+        Color[] colors = stack_c.ToArray();
+        int random = Random.Range(0, colors.Length);
+        //Debug.Log("RANDOM---------" + random+ " | sobre : " + colors.Length);
+        return colors[random];
+    }
+
+
+
 }

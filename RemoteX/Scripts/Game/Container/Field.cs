@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Field : MonoBehaviour
 {
@@ -12,11 +14,15 @@ public class Field : MonoBehaviour
     [Header("Field info")]
     public Token[] tokenChilds;
     private Stack<Token> stack = new Stack<Token>();
-
+    public Color colorTop;
 
     private void Update()
     {
         UpdateTokens();
+        if (tokenChilds.Length > 0)
+        {
+            colorTop = tokenChilds[0].GetComponent<Image>().color;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,12 +57,13 @@ public class Field : MonoBehaviour
         //los push siempre van al inicio, en vez de al final...
         for (int x = recipe_token.Length; x > 0; x--)
         {
-            if (!!recipe_token[x- 1])
+            if (!!recipe_token[x - 1])
             {
                 recipe_stack.Push(recipe_token[x - 1]);
             }
             
         }
+
         stack = recipe_stack;
         tokenChilds = recipe_stack.ToArray();
         VerifyLastToken();

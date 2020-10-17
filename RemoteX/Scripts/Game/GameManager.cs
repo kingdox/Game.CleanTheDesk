@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     private Container container;
     private Power power;
     private bool isEnd = false;
-    private int capacity_limit = 20; //dejar las privadas aqui para saber ubicarlas
+    //private int capacity_limit = 20; //dejar las privadas aqui para saber ubicarlas
     private int power_need = 10;
 
 
@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public Text scoreText;
 
+
+    [Header("Container Section")]
+    public bool BGisDark = false;
 
     [Header("Power Section")]
     public int power_count = 0;
@@ -49,14 +52,13 @@ public class GameManager : MonoBehaviour
         {
             if (wantInit)
             {
-                Debug.Log("Init");
+                //Debug.Log("Init");
                 InitGameManager();
             }
             else
             {
-                //Aqui se pone las cosas cuando ya ha sido cargado...
-                CapacityUpdate();
-                PowerUpdate();
+                ChildUpdates();
+                
             }
         }
     }
@@ -66,7 +68,7 @@ public class GameManager : MonoBehaviour
     {
         wantInit = false;
         // Init Capacity
-        capacity.SetLimit(capacity_limit);
+        capacity.SetLimit(data.token_limit);
 
         // Init Container
         container.InitContainer();
@@ -83,7 +85,7 @@ public class GameManager : MonoBehaviour
 
    
 
-    public void isGameOver()
+    public void IsGameOver()
     {
         if (isEnd)
         {
@@ -94,6 +96,11 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Game Over");
         container.ShutDownContainer();
+
+        // revisar si tenemos highScore
+
+        dataPass.highScore = score > dataPass.highScore ? score : dataPass.highScore;
+        dataPass.SaveData(dataPass);
 
     }
 
@@ -106,7 +113,11 @@ public class GameManager : MonoBehaviour
         if (isSuccesful)
         {
             score++;
-            container_img.color = c;
+            power_count++;
+            power.UpdatePowerBarCount(power_count);
+
+            container_img.color = new Color(c.r, c.g, c.b, BGisDark ? 0.7f : 1);
+            BGisDark = !BGisDark;
         }
         else
         {
@@ -117,30 +128,33 @@ public class GameManager : MonoBehaviour
 
     // ##-------UPDATES---
 
+    private void ChildUpdates()
+    {
+        if (!isEnd)
+        {
+            //Aqui se pone las cosas cuando ya ha sido cargado...
+            CapacityUpdate();
+            PowerUpdate();
+        }
+    }
+
     private void CapacityUpdate()
     {
         if (capacity.isGameOver)
         {
-            isGameOver();
+            IsGameOver();
         }
     }
-
-
-
-
-    /// <summary>
-    /// POWER
-    /// </summary>
     private void PowerUpdate()
     {
         // si fue presionado
         if (power.isPressed)
         {
             power.isPressed = false;
-            if (power.isAvailable)
+            if (power_count >= power_need)
             {
-                power.isAvailable = false;
-                Debug.Log("Ha sido presionado y puede usar poder");
+                power_count = 0;
+                power.UpdatePowerBarCount(power_count);
                 ActivePower();
             }
         }
@@ -148,6 +162,7 @@ public class GameManager : MonoBehaviour
 
     private void ActivePower()
     {
+        Debug.Log("Ha sido presionado y puede usar poder");
         //dependiendo del poder que tiene datapass jugamos algo distinto...
     }
 }

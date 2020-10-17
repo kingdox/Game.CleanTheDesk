@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.5.8";
+    public readonly string version = "V 0.6.3";
     public string savedPath = "/saved16.txt";
     public int palleteLength = 6;
-
+    public int token_limit = 25;
 
     //estos tienes que tener un obj que posea la img y
     // luego volverla a prefab, es un peo, verlo luego, separarlo por carpetas bro...
@@ -18,7 +18,7 @@ public class Data // es como un enviroment
         "Multiplier"//Ganas x2 los puntosque metas
     };
     //se asigna la cantidad requerida para el uso de cada poder
-    public int[] powersRequireds = { 30,40 };
+    public int[] powersRequireds = { 30,4 };
 
 
     public string[] pathShapes = { //use pathImg

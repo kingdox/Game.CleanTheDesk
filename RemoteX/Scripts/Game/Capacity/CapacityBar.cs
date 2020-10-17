@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class CapacityBar : MonoBehaviour
 {
     private GridLayoutGroup gridLayoutGroup;
+    private RectTransform rectTransform;
     private readonly float wanted_h = 32; // 32 es el tamaño de las img en teoria...
 
-    private RectTransform rectTransform;
 
     [Header("CapacityBar info")]
     public GameObject capacityItem_prefab;
@@ -46,14 +46,3 @@ public class CapacityBar : MonoBehaviour
         Destroy(obj);
     }
 }
-
-/*
- 
-  //Aqui coloca el color respectivo
-    public void SetColor(Color col, int index)
-    {
-        Transform trans = gameObject.transform.GetChild(index) ;
-        Image trans_img = trans.GetComponent<Image>();
-        trans_img.color = col;
-    }
- */

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Token : MonoBehaviour
 {
@@ -14,10 +15,13 @@ public class Token : MonoBehaviour
     [Space]
     public bool isDraggin;
     public bool isNew = true;
+    public Image img;
+
 
     private void Awake()
     {
         isNew = true;
+        img = GetComponent<Image>();
     }
     void Update()
     {
@@ -47,10 +51,10 @@ public class Token : MonoBehaviour
             transform.position = Vector3.MoveTowards(
               transform.position, posToGo, Time.deltaTime * speed);
         }
-        else
-        {
-            isNew = false;
-        }
+        //else
+        //{
+        //    isNew = false;
+        //}
     }
 
     private void OnMouseDown()

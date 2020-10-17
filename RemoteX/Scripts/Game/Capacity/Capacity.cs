@@ -37,7 +37,7 @@ public class Capacity : MonoBehaviour
 
         if (!isGameOver)
         {
-            testGenerator();
+            CheckForChanges();
         }
     }   
 
@@ -49,22 +49,26 @@ public class Capacity : MonoBehaviour
     }
 
 
-    private void testGenerator()
+    private void CheckForChanges()
     {
         bool hasChanges = CheckColors(tokenSpace.tok_col);
 
         if (hasChanges)
         {
             lastColors = tokenSpace.tok_col;
+            int colorsOnCreation = lastColors.Length > limit ? limit : lastColors.Length;
 
             int lastQty = capacityBar.transform.childCount;
+
+            //Limpiamos
             for (int k = 0; k < lastQty; k++)
             {
                 capacityBar.DeleteItem(k);
             }
-            foreach (var c in lastColors)
+            //Creamos
+            for (int x = 0; x < colorsOnCreation; x++)
             {
-                capacityBar.CreateItem(c);
+                capacityBar.CreateItem(lastColors[x]);
             }
             
 

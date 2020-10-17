@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasContainer: 0
   tokenChilds: []
+  colorTop: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &43806509
 Rigidbody2D:
   serializedVersion: 4
@@ -484,6 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasContainer: 0
   tokenChilds: []
+  colorTop: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &180579069
 Rigidbody2D:
   serializedVersion: 4
@@ -708,7 +710,7 @@ PrefabInstance:
     - target: {fileID: 3558307829726578870, guid: 5b81e8d78d34749e09ddb48bd6d7abfd,
         type: 3}
       propertyPath: spawnCooldown
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3558307829726578870, guid: 5b81e8d78d34749e09ddb48bd6d7abfd,
         type: 3}
@@ -794,6 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasContainer: 0
   tokenChilds: []
+  colorTop: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &270978431
 Rigidbody2D:
   serializedVersion: 4
@@ -1769,7 +1772,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPressed: 0
-  isAvailable: 0
   power_anim: {fileID: 1399596649}
 --- !u!1 &965873603
 GameObject:
@@ -1961,6 +1963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasContainer: 0
   tokenChilds: []
+  colorTop: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1024272238
 Rigidbody2D:
   serializedVersion: 4
@@ -2094,6 +2097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasContainer: 0
   tokenChilds: []
+  colorTop: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1123170404
 Rigidbody2D:
   serializedVersion: 4
@@ -2991,6 +2995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasContainer: 0
   tokenChilds: []
+  colorTop: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1458787090
 Rigidbody2D:
   serializedVersion: 4
@@ -3189,6 +3194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasContainer: 0
   tokenChilds: []
+  colorTop: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1829643035
 Rigidbody2D:
   serializedVersion: 4
@@ -3287,6 +3293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasContainer: 0
   tokenChilds: []
+  colorTop: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1928344302
 Rigidbody2D:
   serializedVersion: 4
@@ -3671,6 +3678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasContainer: 0
   tokenChilds: []
+  colorTop: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &2050868385
 Rigidbody2D:
   serializedVersion: 4
@@ -3804,5 +3812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   limit: 4
+  powerCount: 0
   powerItem_prefab: {fileID: 112514995166653999, guid: a858f9147d28d426f891a583ee92d548,
     type: 3}

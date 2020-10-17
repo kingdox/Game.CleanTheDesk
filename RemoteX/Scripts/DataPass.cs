@@ -28,7 +28,6 @@ public class DataPass : MonoBehaviour
 
     [Space]
     [Header("To Manage")]
-    public int lastScore;
     public Sprite spriteToken;
     public Sprite spriteContainer;
 
