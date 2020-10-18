@@ -7,11 +7,11 @@ public class Capacity : MonoBehaviour
 {
     private TokenSpace tokenSpace;
     private CapacityBar capacityBar;
-    private int limit = 20;
 
     [Header("Capacity info")]
     public bool isGameOver = false;
     public Text capacityText;
+    public int limit = 20;
 
     private Color[] lastColors;
 

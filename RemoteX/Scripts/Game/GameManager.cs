@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     private Power power;
     private DetectorHome detectorHome;
     private bool isEnd = false;
-    //private int capacity_limit = 20; //dejar las privadas aqui para saber ubicarlas
     private int power_need = 10;
 
 
@@ -29,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Power Section")]
     public int power_count = 0;
+    public bool powerDisabled = false;
 
     [Header("Pause Section")]
     public GameObject pause;
@@ -37,6 +37,17 @@ public class GameManager : MonoBehaviour
     public PauseDetector pauseDetector;
     public bool pauseWasInit = true;
 
+    [Header("Transition Section")]
+    public GameObject transition;
+
+    [Header("Power Effects")]
+    public bool multiplierOn = false;
+
+
+    private void Awake()
+    {
+        multiplierOn = false;
+    }
 
     private void Start()
     {
@@ -47,11 +58,14 @@ public class GameManager : MonoBehaviour
         detectorHome = FindObjectOfType<DetectorHome>();
         pauseDetector = FindObjectOfType<PauseDetector>();
 
+        pause.SetActive(false);
+        transition.SetActive(false);
         //GameManager Starter
         pauseWasInit = false;
         wantInit = true;
         score = 0;
         scoreText.text = score.ToString();
+        powerDisabled = false;
     }
 
 
@@ -151,9 +165,13 @@ public class GameManager : MonoBehaviour
 
         if (isSuccesful)
         {
-            score++;
-            power_count++;
-            power.UpdatePowerBarCount(power_count);
+            score += multiplierOn ? 2 : 1;
+
+            if (!powerDisabled)
+            {
+                power_count++;
+                power.UpdatePowerBarCount(power_count);
+            }
 
             container_img.color = new Color(c.r, c.g, c.b, BGisDark ? 0.7f : 1);
             BGisDark = !BGisDark;
@@ -187,7 +205,7 @@ public class GameManager : MonoBehaviour
     private void PowerUpdate()
     {
         // si fue presionado
-        if (power.isPressed)
+        if (power.isPressed && !powerDisabled)
         {
             power.isPressed = false;
             if (power_count >= power_need)
@@ -203,5 +221,90 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Ha sido presionado y puede usar poder");
         //dependiendo del poder que tiene datapass jugamos algo distinto...
+        //TODO activar la animacion del poder por X tiempo, dependiendo de la que sea...
+        float delay = data.powerDelays[dataPass.indexPower];
+        powerDisabled = true;
+        //Basado en PathPowers
+        switch (dataPass.indexPower)
+        {
+            case 0:
+                Debug.Log("Time");
+                container.CanGameDetectorCreateTokens(false);
+                break;
+
+            case 1:
+                Debug.Log("Multiplier");
+                multiplierOn = true;
+                break;
+
+            case 2:
+                Debug.Log("Plus");
+                capacity.SetLimit(capacity.limit + 1);
+                power_need++;
+                power.SetPowerBarLimit(power_need);
+                break;
+
+            case 3:
+                Debug.Log("...--");
+                break;
+
+            case 4:
+                Debug.Log("...");
+                break;
+
+            default:
+                Debug.LogError("Poder Desconocido");
+
+                break;
+        }
+        StartCoroutine(PowerWait(delay));
+
+
+    }
+
+
+    /// <summary>
+    /// Hecho para efectos que requieren tiempo de espera
+    /// </summary>
+    /// <param name="waitTime"></param>
+    /// <returns></returns>
+    private IEnumerator PowerWait(float waitTime)
+    {
+
+        yield return new WaitForSeconds(waitTime);
+        powerDisabled = false;
+
+        //Basado en PathPowers
+        switch (dataPass.indexPower)
+        {
+            case 0:
+                Debug.Log("Time");
+
+                container.CanGameDetectorCreateTokens(true);
+                break;
+
+            case 1:
+                Debug.Log("Multiplier");
+                multiplierOn = false;
+                break;
+
+            case 2:
+                Debug.Log("Plus");
+                break;
+
+            case 3:
+                Debug.Log("...--");
+                break;
+
+            case 4:
+                Debug.Log("...");
+                break;
+
+            default:
+                Debug.LogError("Poder Desconocido");
+
+                break;
+        }
+
     }
 }

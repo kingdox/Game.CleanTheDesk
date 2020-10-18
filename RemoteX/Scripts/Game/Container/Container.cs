@@ -57,4 +57,12 @@ public class Container : MonoBehaviour
     {
         gameDetector.gameObject.SetActive(false);
     }
+
+
+    //Usado en  Power
+    public void CanGameDetectorCreateTokens(bool condition)
+    {
+        //No tan así.....
+        gameDetector.canCreateToken = condition;
+    }
 }

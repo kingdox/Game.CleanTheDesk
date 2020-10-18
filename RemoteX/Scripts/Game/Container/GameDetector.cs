@@ -26,8 +26,12 @@ public class GameDetector : MonoBehaviour
     public int punishCount = 0;
     public Image img;
 
+    [Header("Powers Effects")]
+    public bool canCreateToken = true;
+
     private void Awake()
     {
+        canCreateToken = true;
         gameManager = FindObjectOfType<GameManager>();
         img = GetComponent<Image>();
     }
@@ -39,7 +43,11 @@ public class GameDetector : MonoBehaviour
             if (Time.time > countTime)
             {
                 countTime = Time.time + spawnCooldown;
-                CreateToken();
+
+                if (canCreateToken) // Power
+                {
+                    CreateToken();
+                }
             }
         }
     }
@@ -151,11 +159,13 @@ public class GameDetector : MonoBehaviour
             //por cada field revisamos si poseen tokens
             if (fields[x].tokenChilds.Length > 0 && fields[x].tokenChilds[0])
             {
+
                 //recorremos la paleta de colores
                 for (int i = 0; i < palletes_col.Length; i++)
                 {
+
                     //si el color del top de este field es igual a alguno
-                    if (fields[x].tokenChilds[0].img.color * 100 == palletes_col[i])
+                    if (fields[x].tokenChilds[0].img.color == palletes_col[i])
                     {
                         //asignamos al contador 1 punto en el indice correspondiente
                         colorCount[i]++;
@@ -200,6 +210,7 @@ public class GameDetector : MonoBehaviour
 
     private Color GetBetweenMostColors(Stack<Color> stack_c)
     {
+
         Color[] colors = stack_c.ToArray();
         int random = Random.Range(0, colors.Length);
         //Debug.Log("RANDOM---------" + random+ " | sobre : " + colors.Length);
