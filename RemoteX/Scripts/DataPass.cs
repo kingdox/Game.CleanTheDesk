@@ -84,7 +84,7 @@ public class DataPass : MonoBehaviour
         }
         SetStore();
     }
-    private void SetStore()
+    public void SetStore()
     {
         foreach (var type in data.storeTypes)
         {

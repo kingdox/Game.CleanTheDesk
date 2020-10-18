@@ -153,6 +153,9 @@ public class GameManager : MonoBehaviour
         // revisar si tenemos highScore
 
         dataPass.highScore = score > dataPass.highScore ? score : dataPass.highScore;
+        //TODO temporalmente te cambio la tienda si juegas...
+        //
+        dataPass.SetStore();//TODO temporal
         dataPass.SaveData(dataPass);
 
     }
