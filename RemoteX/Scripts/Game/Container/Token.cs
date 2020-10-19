@@ -10,6 +10,7 @@ public class Token : MonoBehaviour
     public int productionNumber = -1;
     public Vector3 posToGo;
     public float speed = 10.0f;
+    //public bool isReached = false;
 
     [Header("Token Info")]
     [Space]
@@ -20,13 +21,15 @@ public class Token : MonoBehaviour
 
     private void Awake()
     {
+        //isReached = false;
         isNew = true;
         img = GetComponent<Image>();
     }
     void Update()
     {
-        if (isDraggin)
+        if (isDraggin) // & isReached)
         {
+            //then you can move it
             MouseMovement();
         }
         else
@@ -46,15 +49,15 @@ public class Token : MonoBehaviour
 
     private void ReturnMovement()
     {
-        if (transform.position != posToGo)
+        if (!transform.position.Equals(posToGo))
         {
             transform.position = Vector3.MoveTowards(
               transform.position, posToGo, Time.deltaTime * speed);
         }
-        //else
-        //{
-        //    isNew = false;
-        //}
+        else
+        {
+            //isReached = true;
+        }
     }
 
     private void OnMouseDown()

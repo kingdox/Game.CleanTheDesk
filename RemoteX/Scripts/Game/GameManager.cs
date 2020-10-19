@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private Container container;
     private Power power;
     private DetectorHome detectorHome;
+    private PauseDetector pauseDetector;
     private bool isEnd = false;
     private int power_need = 10;
 
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     public GameObject pause;
     public Text pauseScoreText;
     public Text pauseHighScoreText;
-    public PauseDetector pauseDetector;
+    
     public bool pauseWasInit = true;
 
     [Header("Transition Section")]
@@ -135,7 +136,11 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    public void SwitchPause(bool toPause)
+    {
+        pause.SetActive(toPause);
+        game.SetActive(!toPause);
+    }
    
 
     public void IsGameOver()

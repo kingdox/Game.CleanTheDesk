@@ -86,7 +86,7 @@ public class Capacity : MonoBehaviour
 
         for (int x = 0; x < cols.Length; x++)
         {
-            if (cols[x] != lastColors[x])
+            if (!cols[x].Equals(lastColors[x]))
             {
                 hasChanges = true;
             }

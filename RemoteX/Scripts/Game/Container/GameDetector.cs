@@ -7,6 +7,7 @@ using UnityEngine.UI ;
 public class GameDetector : MonoBehaviour
 {
     private readonly Data data = new Data();
+    private ColorService colorService = new ColorService();
 
     private GameManager gameManager;
     private int tokensCreateds = 0;
@@ -107,7 +108,7 @@ public class GameDetector : MonoBehaviour
     public void CheckToken(Token token)
     {
 
-        bool isCorrect = token.img.color == img.color;
+        bool isCorrect = token.img.color.Equals(img.color);
 
         if (isCorrect)
         {
@@ -137,7 +138,7 @@ public class GameDetector : MonoBehaviour
             if (
                 fields[i].tokenChilds.Length > 0
                 && fields[i].tokenChilds[0]
-                && fields[i].tokenChilds[0].img.color == img.color
+                && fields[i].tokenChilds[0].img.color.Equals(img.color)
             ){
                 existType = true;
             }
@@ -165,10 +166,10 @@ public class GameDetector : MonoBehaviour
                 {
 
                     //si el color del top de este field es igual a alguno
-                    if (fields[x].tokenChilds[0].img.color == palletes_col[i])
+                    if (fields[x].tokenChilds[0].img.color.Equals(palletes_col[i]))
                     {
-                        //asignamos al contador 1 punto en el indice correspondiente
-                        colorCount[i]++;
+                            //asignamos al contador 1 punto en el indice correspondiente
+                            colorCount[i]++;
 
                         //revisamos si este es el contador mas grande actualmente
                         if (colorCount[i] > most_color)

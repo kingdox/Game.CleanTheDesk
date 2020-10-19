@@ -82,8 +82,8 @@ public class Field : MonoBehaviour
         {
             bool condition = x == 0
                 || tokenChilds[x].isDraggin
-                || tokenChilds[x].posToGo != tokenChilds[x].transform.position;
-
+                || !tokenChilds[x].posToGo.Equals(tokenChilds[x].transform.position);
+                //|| !tokenChilds[x].isReached;
             tokenChilds[x].enabled = condition;
 
             //tokenChilds[x].img.enabled = condition || x == 1;
@@ -103,7 +103,7 @@ public class Field : MonoBehaviour
 
             
                 
-            if (token_pos2D == pos2D)
+            if (token_pos2D.Equals(pos2D))
             {
                 float X = tokenChilds[x].posToGo.x;
                 float Y = tokenChilds[x].posToGo.y;
