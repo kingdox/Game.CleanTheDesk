@@ -181,6 +181,9 @@ public class GameManager : MonoBehaviour
                 power.UpdatePowerBarCount(power_count);
             }
 
+            power.OnOffPowerAnimation(power_count >= power_need);
+
+
             container_img.color = new Color(c.r, c.g, c.b, BGisDark ? 0.7f : 1);
             BGisDark = !BGisDark;
         }
@@ -216,6 +219,8 @@ public class GameManager : MonoBehaviour
         if (power.isPressed && !powerDisabled)
         {
             power.isPressed = false;
+            //if (power_count >= power_need) OnOffPowerAnimation
+
             if (power_count >= power_need)
             {
                 power_count = 0;

@@ -7,12 +7,11 @@ using UnityEngine.UI ;
 public class GameDetector : MonoBehaviour
 {
     private readonly Data data = new Data();
-    private ColorService colorService = new ColorService();
 
     private GameManager gameManager;
     private int tokensCreateds = 0;
     private float countTime = 0;
-
+    private int lastPos = 0;
 
     [Header("Container Settings")]
     public Sprite token_spr;
@@ -22,7 +21,7 @@ public class GameDetector : MonoBehaviour
     [Header("Game Detector info")]
     public GameObject token_prefab;
     public GameObject space;
-    public float spawnCooldown = 1.2f;
+    public float spawnCooldown = 0.7f;
     public bool init = false;
     public int punishCount = 0;
     public Image img;
@@ -78,10 +77,11 @@ public class GameDetector : MonoBehaviour
     private void SetToken(Token g_token)
     {
         int i = 4;
-        while (i == 4) //-- 4 == pos del gameDetector...
+        while (i == 4 || lastPos == i) //-- 4 == pos del gameDetector...
         {
             i = Random.Range(0, fields.Length);
         }
+        lastPos = i;
         float X = fields[i].transform.position.x;
         float Y = fields[i].transform.position.y;
 

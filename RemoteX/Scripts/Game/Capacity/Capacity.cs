@@ -30,7 +30,7 @@ public class Capacity : MonoBehaviour
 
     private void CheckGameStatus()
     {
-        if (capacityBar.transform.childCount >= limit)
+        if (capacityBar.transform.childCount > limit)
         {
             isGameOver = true;
         }

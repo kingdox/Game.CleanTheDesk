@@ -100,17 +100,23 @@ public class Field : MonoBehaviour
         {
             Vector2 pos2D = transform.position;
             Vector2 token_pos2D = tokenChilds[x].transform.position;
+            float X = tokenChilds[x].posToGo.x;
+            float Y = tokenChilds[x].posToGo.y;
+            float Z = data.tokenPosInit_z + (data.separeMagnitude * x);
 
-            
-                
-            if (token_pos2D.Equals(pos2D))
+            // todos tienen que organizarse, pero si el token es dragged
+            // o si es new no cambia
+
+            //if (token_pos2D.Equals(pos2D))
+
+            if (!tokenChilds[x].isDraggin )//|| !tokenChilds[x].isNew)
             {
-                float X = tokenChilds[x].posToGo.x;
-                float Y = tokenChilds[x].posToGo.y;
-                float Z = data.tokenPosInit_z + (data.separeMagnitude * x);
-
                 tokenChilds[x].posToGo = new Vector3(X, Y, Z);
+                //tokenChilds[x].transform.position = new Vector3(token_pos2D.x, token_pos2D.y, Z);
+                
             }
+            tokenChilds[x].transform.position = new Vector3(token_pos2D.x, token_pos2D.y, Z);
+
         }
     }
 }

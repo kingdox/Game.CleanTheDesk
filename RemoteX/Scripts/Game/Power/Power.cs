@@ -22,13 +22,18 @@ public class Power : MonoBehaviour
     public void SetAnimation(RuntimeAnimatorController ctrl)
     {
         power_anim.runtimeAnimatorController = ctrl;
-        //power_anim.Play("Stop");
+
+        power_anim.gameObject.SetActive(false);
 
     }
 
     public void SetPowerBarLimit(int limit) => powerBar.limit = limit;
 
     public void UpdatePowerBarCount(int count) => powerBar.powerCount = count;
+
+
+    public void OnOffPowerAnimation(bool condition) => power_anim.gameObject.SetActive(condition);
+
 }
 
 
