@@ -43,11 +43,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Power Effects")]
     public bool multiplierOn = false;
-
+    public bool shadowsOn = false;
 
     private void Awake()
     {
         multiplierOn = false;
+        shadowsOn = false;
     }
 
     private void Start()
@@ -169,9 +170,9 @@ public class GameManager : MonoBehaviour
 
     public void ContainerResult(Color c , bool isSuccesful)
     {
-        Image container_img = container.GetComponent<Image>();
+       
 
-        if (isSuccesful)
+        if (isSuccesful || shadowsOn)
         {
             score += multiplierOn ? 2 : 1;
 
@@ -184,12 +185,20 @@ public class GameManager : MonoBehaviour
             power.OnOffPowerAnimation(power_count >= power_need);
 
 
-            container_img.color = new Color(c.r, c.g, c.b, BGisDark ? 0.7f : 1);
-            BGisDark = !BGisDark;
+            if (!shadowsOn)
+            {
+                container.img.color = new Color(c.r, c.g, c.b, BGisDark ? 0.7f : 1);
+                BGisDark = !BGisDark;
+            }
+            else
+            {
+                container.img.color = new Color(c.r, c.g, c.b, 0);
+            }
+
         }
         else
         {
-            container_img.color = new Color(1,1,1,1);
+            container.img.color = new Color(1,1,1,1);
         }
 
     }
@@ -258,7 +267,12 @@ public class GameManager : MonoBehaviour
                 break;
 
             case 3:
-                Debug.Log("...--");
+                Debug.Log("Shadows");
+                Color c = container.img.color;
+                container.img.color = new Color(c.r, c.g, c.b, 0f);
+                shadowsOn = true;
+                container.SetPowerShadows(shadowsOn);
+
                 break;
 
             case 4:
@@ -306,7 +320,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case 3:
-                Debug.Log("...--");
+                Debug.Log("Shadows");
+                shadowsOn = false;
+                container.SetPowerShadows(shadowsOn);
                 break;
 
             case 4:

@@ -30,10 +30,12 @@ public class Capacity : MonoBehaviour
 
     private void CheckGameStatus()
     {
-        if (capacityBar.transform.childCount > limit)
+        if (capacityBar.transform.childCount >= limit)
+        //if (tokenSpace.tok_col.Length > limit)
         {
-            isGameOver = true;
+                isGameOver = true;
         }
+
 
         if (!isGameOver)
         {

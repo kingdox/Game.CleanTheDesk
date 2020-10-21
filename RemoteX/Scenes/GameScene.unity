@@ -901,7 +901,7 @@ PrefabInstance:
     - target: {fileID: 5844435444088872262, guid: 5b81e8d78d34749e09ddb48bd6d7abfd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -640
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5844435444088872262, guid: 5b81e8d78d34749e09ddb48bd6d7abfd,
         type: 3}
@@ -2853,6 +2853,7 @@ MonoBehaviour:
   pauseWasInit: 1
   transition: {fileID: 91071742}
   multiplierOn: 0
+  shadowsOn: 0
 --- !u!1 &1340928224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,7 +3071,7 @@ Animator:
   m_GameObject: {fileID: 1399596647}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 68c36cdb814fe4e7c867c007ae3bb3e7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 82df74953e75f4031a72241f9ee3b947, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3098,7 +3099,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -902346185991720001, guid: 3ecd8f2d5ba3d4fe2b4bbcfcf2a4c526,
+  m_Sprite: {fileID: -8632807521500629345, guid: fb88f3fff2cf54eb4acb4e3775c055bd,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -3317,7 +3318,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545464133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5120}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99968, y: 0.99968, z: 0.99968}
   m_Children:
   - {fileID: 1928196006}

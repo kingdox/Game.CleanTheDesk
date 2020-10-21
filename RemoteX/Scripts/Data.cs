@@ -5,25 +5,29 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.6.8";
+    public readonly string version = "V 0.7.1";
     public string savedPath = "/saved17.txt";
     public int palleteLength = 6;
     public int token_limit = 20;
     public float tokenPosInit_z = 45.0f;
     public float separeMagnitude = 10.0f;
-    public float tokenSpeed = 10.0f; // velocidad inicial
+    public float tokenSpeed = 5.0f; // velocidad inicial
+    public float container_spawnCooldown = 0.8f; // velocidad inicial
+    public Color defaultColor = new Color(1, 1, 1 ,1); // aceptado
+
     //estos tienes que tener un obj que posea la img y
     // luego volverla a prefab, es un peo, verlo luego, separarlo por carpetas bro...
     public string[] pathPowers =
     {
         "Time",//Default Power --> detiene el tiempo de el contenedor por un tiempo...
         "Multiplier",//Ganas x2 los puntos que metas por cierto tiempo...
-        "Plus"//Añade 1 punto en capacidad extra y, cuesta mas usar el poder, basado en el inicial...
+        "Plus",//Añade 1 punto en capacidad extra y, cuesta mas usar el poder, basado en el inicial...
+        "Shadows" // Acepta cualquier ficha por un pequeño tiempo, pone al container en blanco y el fondo en negro
 
     };
     //se asigna la cantidad requerida para el uso de cada poder
-    public int[] powersRequireds = { 10, 15, 4 };
-    public float[] powerDelays = { 3.0f, 5.0f, 0.5f };
+    public int[] powersRequireds = { 10, 15, 4 , 8 };
+    public float[] powerDelays = { 3.0f, 5.0f, 0.1f, 2f };
 
     public string[] pathShapes = { //use pathImg
         "Circle",//Default IMG Token

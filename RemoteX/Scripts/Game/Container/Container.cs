@@ -6,13 +6,19 @@ using UnityEngine.UI;
 public class Container : MonoBehaviour
 {
     private GameDetector gameDetector;
+    private Data data = new Data();
 
     [Header("Container info")]
     public GameObject token_prefab;
+    public Image img;
+
+    [Header("Powers")]
+    public bool test;
 
     private void Awake()
     {
         gameDetector = FindObjectOfType<GameDetector>();
+        img = GetComponent<Image>();
 
     }
 
@@ -60,9 +66,18 @@ public class Container : MonoBehaviour
 
 
     //Usado en  Power
-    public void CanGameDetectorCreateTokens(bool condition)
+    public void CanGameDetectorCreateTokens(bool condition) => gameDetector.canCreateToken = condition;
+
+
+
+    public void SetPowerShadows(bool condition)
     {
-        //No tan así.....
-        gameDetector.canCreateToken = condition;
+        gameDetector.power_shadowOn = condition;
+
+        if (!condition) 
+        {
+            img.color = data.defaultColor;
+        }
     }
+
 }

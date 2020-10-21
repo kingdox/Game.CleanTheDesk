@@ -119,8 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productionNumber: -1
   posToGo: {x: 0, y: 0, z: 0}
-  speed: 10
-  fieldPartenr: {fileID: 0}
+  speed: 5
   isDraggin: 0
   isNew: 0
   img: {fileID: 0}

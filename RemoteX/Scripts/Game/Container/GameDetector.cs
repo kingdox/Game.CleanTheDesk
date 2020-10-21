@@ -28,12 +28,16 @@ public class GameDetector : MonoBehaviour
 
     [Header("Powers Effects")]
     public bool canCreateToken = true;
+    public bool power_shadowOn = false;
 
     private void Awake()
     {
+        power_shadowOn = false;
         canCreateToken = true;
         gameManager = FindObjectOfType<GameManager>();
         img = GetComponent<Image>();
+
+        spawnCooldown = data.container_spawnCooldown;
     }
 
     private void Update()
@@ -49,6 +53,13 @@ public class GameDetector : MonoBehaviour
                     CreateToken();
                 }
             }
+
+
+            if (power_shadowOn)
+            {
+                img.color = data.defaultColor;
+            }
+
         }
     }
 
@@ -70,6 +81,10 @@ public class GameDetector : MonoBehaviour
     private void CreateToken()
     {
         GameObject g = Instantiate(token_prefab, space.transform);
+        Vector3 pos = g.transform.position;
+        Vector3 newPos = new Vector3(pos.x, pos.y, data.tokenPosInit_z);
+        g.transform.position = newPos;
+
         Token g_token = g.GetComponent<Token>();
         SetToken(g_token);
     }
@@ -86,7 +101,7 @@ public class GameDetector : MonoBehaviour
         float Y = fields[i].transform.position.y;
 
 
-        g_token.posToGo = new Vector3(X, Y, 45);
+        g_token.posToGo = new Vector3(X, Y, data.tokenPosInit_z);
         g_token.productionNumber = tokensCreateds; tokensCreateds++;
         g_token.name = "T" + g_token.productionNumber;
         g_token.speed = data.tokenSpeed;
@@ -95,35 +110,56 @@ public class GameDetector : MonoBehaviour
 
 
         bool existTypeOnTop = ExistThisTypeOnTops();
-        if (existTypeOnTop)
+        if (power_shadowOn)
         {
-            g_token.img.color = GetRandomColor();
+            img.color = data.defaultColor;
         }
         else
         {
-            g_token.img.color = img.color;
+            if (existTypeOnTop)
+            {
+                g_token.img.color = GetRandomColor();
+            }
+            else
+            {
+                g_token.img.color = img.color;
+            }
         }
     }
     //DONE
     public void CheckToken(Token token)
     {
 
-        bool isCorrect = token.img.color.Equals(img.color);
+        bool isCorrect = token.img.color.Equals(img.color)
+            || token.img.color.Equals(data.defaultColor)
+            || img.color.Equals(data.defaultColor);
 
-        if (isCorrect)
+
+
+        if (!power_shadowOn)
         {
-            //La ficha introducida es correcta
-            img.color = KnowMostColorOnTop();
 
+            if (isCorrect)
+            {
+                //La ficha introducida es correcta
+                img.color = KnowMostColorOnTop();
+
+            }
+            else
+            {
+                punishCount++;
+                for (int i = 0; i < punishCount; i++)
+                {
+                    CreateToken();
+                }
+            }
         }
         else
         {
-            punishCount++;
-            for (int i = 0; i < punishCount; i++)
-            {
-                CreateToken();
-            }
+            img.color = data.defaultColor;
         }
+
+
 
         gameManager.ContainerResult(token.img.color, isCorrect);
 
