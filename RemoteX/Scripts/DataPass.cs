@@ -13,6 +13,13 @@ public class DataPass : MonoBehaviour
 
     [Header("Saved Data")]
 
+    // played
+    public int gamesPlayed = 0;
+
+    //tutorial
+    public bool tutorial = true;
+
+
     //Cambiar estos 2 a un array ?
     public int indexTokenImg; //--> default 0
     public int indexContainerImg; //--> default 1
@@ -72,6 +79,8 @@ public class DataPass : MonoBehaviour
 
     private void SetDefault()
     {
+        tutorial = true;
+        gamesPlayed = 0;
         indexTokenImg = 0; //--> default 0
         indexContainerImg = 1; //--> default 1
         indexPower = 0; //--> default 0
@@ -233,8 +242,12 @@ public class DataPass : MonoBehaviour
         DataStorage savedDataStorage = formatter.Deserialize(stream) as DataStorage;
         stream.Close();
 
+            gamesPlayed = savedDataStorage.gamesPlayed;
+            tutorial = savedDataStorage.tutorial;
         /// Aqui cargamos a DataPass la información
-            indexPower = savedDataStorage.indexPower ;
+        ///
+
+        indexPower = savedDataStorage.indexPower;
             indexTokenImg = savedDataStorage.indexTokenImg ;
             indexContainerImg = savedDataStorage.indexContainerImg;
             indexPalletes = savedDataStorage.indexPalletes;

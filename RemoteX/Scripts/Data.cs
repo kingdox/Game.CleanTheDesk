@@ -14,6 +14,8 @@ public class Data // es como un enviroment
     public float tokenSpeed = 5.0f; // velocidad inicial
     public float container_spawnCooldown = 0.8f; // velocidad inicial
     public Color defaultColor = new Color(1, 1, 1 ,1); // aceptado
+    public float[] spawnRangeInit = { 0.5f, 1.0f };
+
 
     //estos tienes que tener un obj que posea la img y
     // luego volverla a prefab, es un peo, verlo luego, separarlo por carpetas bro...

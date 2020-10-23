@@ -66,7 +66,12 @@ public class Container : MonoBehaviour
 
 
     //Usado en  Power
-    public void CanGameDetectorCreateTokens(bool condition) => gameDetector.canCreateToken = condition;
+    public void CanGameDetectorCreateTokens(bool condition){
+
+        gameDetector.canCreateToken = condition;
+        gameDetector.rotation.enabled = condition;
+
+    }
 
 
 

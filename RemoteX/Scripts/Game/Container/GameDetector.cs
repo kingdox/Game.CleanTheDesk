@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI ;
 
-
 public class GameDetector : MonoBehaviour
 {
     private readonly Data data = new Data();
-
     private GameManager gameManager;
     private int tokensCreateds = 0;
     private float countTime = 0;
     private int lastPos = 0;
+    private int countInGame = 0;
 
     [Header("Container Settings")]
     public Sprite token_spr;
     public Color[] palletes_col;
     public Field[] fields;
+    public Rotation rotation;
 
     [Header("Game Detector info")]
     public GameObject token_prefab;
@@ -36,6 +36,7 @@ public class GameDetector : MonoBehaviour
         canCreateToken = true;
         gameManager = FindObjectOfType<GameManager>();
         img = GetComponent<Image>();
+        rotation = GetComponent<Rotation>();
 
         spawnCooldown = data.container_spawnCooldown;
     }
@@ -46,7 +47,8 @@ public class GameDetector : MonoBehaviour
         {
             if (Time.time > countTime)
             {
-                countTime = Time.time + spawnCooldown;
+                countTime = SetSpawnCooldown();
+
 
                 if (canCreateToken) // Power
                 {
@@ -63,6 +65,33 @@ public class GameDetector : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Basado en la cantidad de fichas y el limite establece una velocidad
+    /// tambien hay cosas como un minimo y un maximop de velocidad...?
+    /// </summary>
+    /// <returns></returns>
+    private float SetSpawnCooldown()
+    {
+        countInGame = KnowCountTokensInGame();
+
+        float newSpawnCD =  (float) countInGame / gameManager.actualLimit;
+        Debug.Log(newSpawnCD + " | " + countInGame + " | " + gameManager.actualLimit);
+        newSpawnCD = Mathf.Clamp(newSpawnCD, data.spawnRangeInit[0], data.spawnRangeInit[1]);
+        return Time.time + newSpawnCD;
+    }
+
+
+    private int KnowCountTokensInGame()
+    {
+        int c = 0;
+        foreach (var f in fields)
+        {
+            c += f.countTokens;
+        }
+
+        return c;
+    }
 
     public void InitGameDetector()
     {

@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class DataStorage
 {
+    // Played
+    public int gamesPlayed = 0;
 
     // Tutorial 
     public bool tutorial = false;
@@ -26,7 +28,9 @@ public class DataStorage
 
     public DataStorage (DataPass dataPass) 
     {
-        tutorial = true;
+        gamesPlayed = dataPass.gamesPlayed;
+
+        tutorial = dataPass.tutorial;
 
         indexPower = dataPass.indexPower;
         indexTokenImg = dataPass.indexTokenImg;

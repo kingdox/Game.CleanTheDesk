@@ -17,6 +17,7 @@ public class Field : MonoBehaviour
     [Header("Field info")]
     public Token[] tokenChilds;
     public Color colorTop;
+    public int countTokens;
 
     private void Update()
     {
@@ -68,6 +69,7 @@ public class Field : MonoBehaviour
 
         stack = recipe_stack;
         tokenChilds = recipe_stack.ToArray();
+        countTokens = tokenChilds.Length;
         VerifyLastToken();
     }
 

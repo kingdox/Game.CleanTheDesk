@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public bool wantInit = true;
     public int score = 0;
     public Text scoreText;
+    public int actualLimit = 0;
 
     [Header("Container Section")]
     public bool BGisDark = false;
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
         pauseScoreText.text = score.ToString();
         pauseHighScoreText.text = "*"+dataPass.highScore.ToString() + "*";
 
+        actualLimit = capacity.limit;
 
 
         if (dataPass.status == "end" )
@@ -162,6 +164,8 @@ public class GameManager : MonoBehaviour
         //TODO temporalmente te cambio la tienda si juegas...
         //
         dataPass.SetStore();//TODO temporal
+        dataPass.gamesPlayed++;
+        Debug.Log(dataPass.gamesPlayed);
         dataPass.SaveData(dataPass);
 
     }
