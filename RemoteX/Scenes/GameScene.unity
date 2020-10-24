@@ -218,6 +218,7 @@ MonoBehaviour:
   hasContainer: 0
   tokenChilds: []
   colorTop: {r: 0, g: 0, b: 0, a: 0}
+  countTokens: 0
 --- !u!50 &43806509
 Rigidbody2D:
   serializedVersion: 4
@@ -256,7 +257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &91071743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &98413418
 RectTransform:
   m_ObjectHideFlags: 0
@@ -581,6 +582,7 @@ MonoBehaviour:
   hasContainer: 0
   tokenChilds: []
   colorTop: {r: 0, g: 0, b: 0, a: 0}
+  countTokens: 0
 --- !u!50 &180579069
 Rigidbody2D:
   serializedVersion: 4
@@ -1078,6 +1080,7 @@ MonoBehaviour:
   hasContainer: 0
   tokenChilds: []
   colorTop: {r: 0, g: 0, b: 0, a: 0}
+  countTokens: 0
 --- !u!50 &270978431
 Rigidbody2D:
   serializedVersion: 4
@@ -1175,6 +1178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17dd03d9b57d94680bf9191e66865d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamesPlayed: 0
+  tutorial: 1
   indexTokenImg: 0
   indexContainerImg: 0
   indexPower: 0
@@ -2253,6 +2258,7 @@ MonoBehaviour:
   hasContainer: 0
   tokenChilds: []
   colorTop: {r: 0, g: 0, b: 0, a: 0}
+  countTokens: 0
 --- !u!50 &1024272238
 Rigidbody2D:
   serializedVersion: 4
@@ -2430,6 +2436,7 @@ MonoBehaviour:
   hasContainer: 0
   tokenChilds: []
   colorTop: {r: 0, g: 0, b: 0, a: 0}
+  countTokens: 0
 --- !u!50 &1123170404
 Rigidbody2D:
   serializedVersion: 4
@@ -2844,6 +2851,7 @@ MonoBehaviour:
   wantInit: 1
   score: 0
   scoreText: {fileID: 1943471514}
+  actualLimit: 0
   BGisDark: 0
   power_count: 40
   powerDisabled: 0
@@ -2910,6 +2918,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   token_prefab: {fileID: 1897354945108297881, guid: 9165be4ef9ec74a9e8febb5b6065f817,
     type: 3}
+  img: {fileID: 0}
+  test: 0
 --- !u!114 &1340928227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3153,8 +3163,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.040008545, y: 0}
-  m_SizeDelta: {x: -0.07999992, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1414892225
 MonoBehaviour:
@@ -3271,6 +3281,7 @@ MonoBehaviour:
   hasContainer: 0
   tokenChilds: []
   colorTop: {r: 0, g: 0, b: 0, a: 0}
+  countTokens: 0
 --- !u!50 &1458787090
 Rigidbody2D:
   serializedVersion: 4
@@ -3665,6 +3676,7 @@ MonoBehaviour:
   hasContainer: 0
   tokenChilds: []
   colorTop: {r: 0, g: 0, b: 0, a: 0}
+  countTokens: 0
 --- !u!50 &1829643035
 Rigidbody2D:
   serializedVersion: 4
@@ -3827,6 +3839,7 @@ MonoBehaviour:
   hasContainer: 0
   tokenChilds: []
   colorTop: {r: 0, g: 0, b: 0, a: 0}
+  countTokens: 0
 --- !u!50 &1928344302
 Rigidbody2D:
   serializedVersion: 4
@@ -4216,6 +4229,7 @@ MonoBehaviour:
   hasContainer: 0
   tokenChilds: []
   colorTop: {r: 0, g: 0, b: 0, a: 0}
+  countTokens: 0
 --- !u!50 &2050868385
 Rigidbody2D:
   serializedVersion: 4

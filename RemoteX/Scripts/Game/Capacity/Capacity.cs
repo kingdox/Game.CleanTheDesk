@@ -7,6 +7,7 @@ public class Capacity : MonoBehaviour
 {
     private TokenSpace tokenSpace;
     private CapacityBar capacityBar;
+    private Image parentImg_capacityText;
 
     [Header("Capacity info")]
     public bool isGameOver = false;
@@ -17,16 +18,41 @@ public class Capacity : MonoBehaviour
 
     private void Awake()
     {
+        parentImg_capacityText = capacityText.transform.parent.GetComponent<Image>();
         lastColors = new Color[0];
         capacityBar = FindObjectOfType<CapacityBar>();
         tokenSpace = FindObjectOfType<TokenSpace>();
     }
     private void Update()
     {
-        capacityText.text = capacityBar.transform.childCount + " / " + limit.ToString();
+        UpdateCapacityText();
         CheckGameStatus();
     }
+    private void UpdateCapacityText()
+    {
+        int fixedCount = capacityBar.transform.childCount > limit
+            ? capacityBar.transform.childCount - limit
+            : capacityBar.transform.childCount
+            ;
 
+        capacityText.text = fixedCount + " / " + limit.ToString();
+
+        //si la cantidad de fichas esta alrededor del 25% del limite entonces titilea
+        float leftSpace = (float)+limit - fixedCount;
+        float percent = (float)+limit / 100 * 25;
+
+        bool condition = leftSpace <= percent;
+       
+
+        capacityText.color = condition
+        ? new Color(1, 0, 0, 1)
+        : new Color(0, 0, 0, 0.5f)
+        ;
+        //parentImg_capacityText.color = condition
+        //? new Color(1, 1, 0, 1)
+        //: new Color(1, 1, 1, 1)
+        //;
+    }
 
     private void CheckGameStatus()
     {
@@ -72,10 +98,7 @@ public class Capacity : MonoBehaviour
             {
                 capacityBar.CreateItem(lastColors[x]);
             }
-            
-
         }
-
     }
     public bool CheckColors(Color[] cols)
     {
