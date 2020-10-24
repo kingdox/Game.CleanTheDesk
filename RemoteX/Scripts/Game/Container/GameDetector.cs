@@ -76,7 +76,7 @@ public class GameDetector : MonoBehaviour
         countInGame = KnowCountTokensInGame();
 
         float newSpawnCD =  (float) countInGame / gameManager.actualLimit;
-        Debug.Log(newSpawnCD + " | " + countInGame + " | " + gameManager.actualLimit);
+        //Debug.Log(newSpawnCD + " | " + countInGame + " | " + gameManager.actualLimit);
         newSpawnCD = Mathf.Clamp(newSpawnCD, data.spawnRangeInit[0], data.spawnRangeInit[1]);
         return Time.time + newSpawnCD;
     }
