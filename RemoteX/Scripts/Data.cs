@@ -25,7 +25,7 @@ public class Data // es como un enviroment
         "Multiplier",//Ganas x2 los puntos que metas por cierto tiempo...
         "Plus",//Añade 1 punto en capacidad extra y, cuesta mas usar el poder, basado en el inicial...
         "Shadows" // Acepta cualquier ficha por un pequeño tiempo, pone al container en blanco y el fondo en negro
-
+        // TODO ["Reactive"] // --> permite eliminar aleatoriamente fichas
     };
     //se asigna la cantidad requerida para el uso de cada poder
     public int[] powersRequireds = { 10, 15, 4 , 8 };
@@ -42,7 +42,9 @@ public class Data // es como un enviroment
         "T",
         "D",
         "Music",
-        "Mistery"
+        "Mistery",
+        "Star",
+        "Shine"
     };
 
 
