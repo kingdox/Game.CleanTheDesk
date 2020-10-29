@@ -59,22 +59,35 @@ public class TokenScreenGenerator : MonoBehaviour
 
     private void GenerateToken()
     {
-        Debug.Log("Generate");
-
-        //GameObject newToken = Instantiate(token_prefab, tokenSpace.transform );
-        //TokenTutorial newToken_tkTutorial = newToken.GetComponent<TokenTutorial>();
+        //Debug.Log("Generate -->"+ transform.position);
+        // 92160 - -150784 - -6400  - -92160 - 150784
 
 
-        //// generamos la posicion inicial
-        //Vector3 pos = GetRandomScreenPosition();
-        //// generamos la posición a la que se dirige
-        //Vector3 posToGo = GetRandomScreenPosition();
-
-        //newToken.transform.position = pos;
-
-        //newToken_tkTutorial.posToGo = posToGo;
+        GameObject newToken = Instantiate(token_prefab, tokenSpace.transform);
+        TokenTutorial newToken_tkTutorial = newToken.GetComponent<TokenTutorial>();
 
         
+        newToken.transform.localPosition= new Vector3(0, 0, 0);
+
+        // generamos la posicion inicial
+        Vector3 pos = GetRandomScreenPosition();
+        Debug.Log(pos);
+        // generamos la posición a la que se dirige
+        Vector3 posToGo = GetRandomScreenPosition();
+
+        newToken.transform.position = pos;
+
+        newToken_tkTutorial.posToGo = posToGo;//new Vector3(posToGo.x, posToGo.y, posToGo.z);
+
+        /*
+         
+         Vector2 mousePosition =
+                Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        transform.Translate(mousePosition);
+
+                    transform.position = Vector3.MoveTowards(
+              transform.position, posToGo, Time.deltaTime * speed);
+         */
 
     }
 
