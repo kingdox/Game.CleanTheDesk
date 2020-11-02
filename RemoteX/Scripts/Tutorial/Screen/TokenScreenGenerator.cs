@@ -35,6 +35,7 @@ public class TokenScreenGenerator : MonoBehaviour
     {
         screen_w = Screen.width;
         screen_h = Screen.height;
+        Debug.Log(screen_h + " | "+ screen_w);
         tokenScreenGenerator = GetComponent<TokenScreenGenerator>();
 
     }
