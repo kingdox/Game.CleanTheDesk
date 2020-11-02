@@ -44,7 +44,8 @@ public class Data // es como un enviroment
         "Music",
         "Mistery",
         "Star",
-        "Shine"
+        "Shine",
+        "Love"
     };
 
 

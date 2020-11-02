@@ -10,6 +10,8 @@ public class Power : MonoBehaviour
     [Header("Power Info")]
     public bool isPressed = false;
     public Animator power_anim;
+    public GameObject powerFeedback;
+
 
     private void Awake()
     {
@@ -32,7 +34,23 @@ public class Power : MonoBehaviour
     public void UpdatePowerBarCount(int count) => powerBar.powerCount = count;
 
 
-    public void OnOffPowerAnimation(bool condition) => power_anim.gameObject.SetActive(condition);
+    public void OnOffPowerAnimation(bool condition) {
+
+        power_anim.gameObject.SetActive(condition);
+    }
+    public void OnOffFeedbackAnimation(bool condition) {
+
+        powerFeedback.SetActive(condition);
+
+        Image powBG = power_anim.transform.parent.GetComponent<Image>();
+
+        powBG.color = condition
+            ? new Color(1, 1, 1)
+            : new Color(0, 0, 0);
+
+
+
+    }
 
 }
 

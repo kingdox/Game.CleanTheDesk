@@ -174,7 +174,6 @@ public class GameManager : MonoBehaviour
 
     public void ContainerResult(Color c , bool isSuccesful)
     {
-       
 
         if (isSuccesful || shadowsOn)
         {
@@ -186,7 +185,7 @@ public class GameManager : MonoBehaviour
                 power.UpdatePowerBarCount(power_count);
             }
 
-            power.OnOffPowerAnimation(power_count >= power_need);
+            
 
 
             if (!shadowsOn)
@@ -211,6 +210,7 @@ public class GameManager : MonoBehaviour
 
     private void ChildUpdates()
     {
+
         if (!isEnd)
         {
             //Aqui se pone las cosas cuando ya ha sido cargado...
@@ -228,6 +228,10 @@ public class GameManager : MonoBehaviour
     }
     private void PowerUpdate()
     {
+        power.OnOffPowerAnimation(power_count >= power_need || powerDisabled);
+        power.OnOffFeedbackAnimation(power_count >= power_need && !powerDisabled);
+
+
         // si fue presionado
         if (power.isPressed && !powerDisabled)
         {
