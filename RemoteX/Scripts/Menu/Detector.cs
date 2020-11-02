@@ -78,25 +78,28 @@ public class Detector : MonoBehaviour
 
         switch (text)
         {
-            case "About":
-                SceneManager.LoadScene(3);
-                break;
-            case "Music":
-                SceneManager.LoadScene(4);
-                break;
             case "Play":
                 SceneManager.LoadScene(1);
-
                 break;
             case "Shop":
                 SceneManager.LoadScene(2);
                 break;
+            case "About":
+                SceneManager.LoadScene(3);
+                break;
+            case "Tutorial":
+                SceneManager.LoadScene(4);
+                break;
+
+            case "Music":
+                // prendes o apagas la musica
+                break;
 
             default:
                 // cualquier otro no importante...
+                Destroy(token);
                 break;
         }
-        Destroy(token);
     }
 
     
