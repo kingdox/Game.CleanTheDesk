@@ -37,7 +37,7 @@ public class CapacityBar : MonoBehaviour
         Image obj_img = obj.GetComponent<Image>();
         obj_img.color = col;
 
-        img.color = new Color(col.r, col.b, col.g, 0.2f);
+        img.color = new Color(col.r, col.b, col.g, 0.35f);
     }
 
     public void DeleteItem(int index)

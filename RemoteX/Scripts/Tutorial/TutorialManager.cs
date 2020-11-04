@@ -8,6 +8,7 @@ public class TutorialManager : MonoBehaviour
     private readonly Data data = new Data();
     private DataPass dataPass = null;
     private Tutorial tutorial;
+    private DetectorHome detectorHome;
 
     [Header("TutorialManager info")]
     public bool wantInit = true;
@@ -20,14 +21,20 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         dataPass = FindObjectOfType<DataPass>();
+        detectorHome = FindObjectOfType<DetectorHome>();
+
     }
 
     void Update()
     {
-        if (dataPass.status == "end" && wantInit)
+        if (!!dataPass && dataPass.status == "end" && wantInit)
         {
             wantInit = false;
             CheckTutorialStatus();
+        }
+        if (detectorHome.wantGoHome)
+        {
+            ReturnHome();
         }
 
     }
@@ -46,14 +53,14 @@ public class TutorialManager : MonoBehaviour
         }
         else
         {
-            //GoToMenu();
+
         }
 
     }
 
 
 
-    private void GoToMenu()
+    private void ReturnHome()
     {
         dataPass.tutorial = false;
         dataPass.SaveData(dataPass);

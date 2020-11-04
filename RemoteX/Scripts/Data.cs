@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.7.1";
+    public readonly string version = "V 0.7.6";
     public string savedPath = "/saved17.txt";
     public int palleteLength = 6;
     public int token_limit = 20;
@@ -29,7 +29,7 @@ public class Data // es como un enviroment
     };
     //se asigna la cantidad requerida para el uso de cada poder
     public int[] powersRequireds = { 10, 15, 4 , 8 };
-    public float[] powerDelays = { 3.0f, 5.0f, 0.1f, 2f };
+    public float[] powerDelays = { 3.0f, 10.0f, 0.1f, 2f };
 
     public string[] pathShapes = { //use pathImg
         "Circle",//Default IMG Token
