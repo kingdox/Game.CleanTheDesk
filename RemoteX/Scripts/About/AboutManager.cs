@@ -29,7 +29,7 @@ public class AboutManager : MonoBehaviour
         //datapass.LoadData();
         //datapass.LoadResources();
         //Debug.Log("A casa");
-        SceneManager.LoadScene(0);// te lleva al menú
+        SceneManager.LoadScene(1);// te lleva al menú
     }
 
 }

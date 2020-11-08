@@ -1,17 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
+
 
 public class MenuManager : MonoBehaviour
 {
     private Data data = new Data();
-
-    /*
-        TODO
-        Menu Manager se encarga de poner las fichas correspondientes a cada uno
-     */
-
 
     private DataPass datapass = null;
     private Detector detector; // buscarlo
@@ -40,9 +35,10 @@ public class MenuManager : MonoBehaviour
     {
 
 
-        if (!!datapass && wantLoad)//si ya hay datapass...
+        if (!!datapass && datapass.status == "end" && wantLoad)//si ya hay datapass...
         {
             wantLoad = false;
+
             //Podremos cargar en los lugares correspondientes al inicio...
             SetResources();
 

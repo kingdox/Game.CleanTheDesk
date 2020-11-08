@@ -79,16 +79,16 @@ public class Detector : MonoBehaviour
         switch (text)
         {
             case "Play":
-                SceneManager.LoadScene(1);
-                break;
-            case "Shop":
                 SceneManager.LoadScene(2);
                 break;
-            case "About":
+            case "Shop":
                 SceneManager.LoadScene(3);
                 break;
-            case "Tutorial":
+            case "About":
                 SceneManager.LoadScene(4);
+                break;
+            case "Tutorial":
+                SceneManager.LoadScene(5);
                 break;
 
             case "Music":

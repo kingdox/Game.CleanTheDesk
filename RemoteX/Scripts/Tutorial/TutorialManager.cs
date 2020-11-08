@@ -30,7 +30,6 @@ public class TutorialManager : MonoBehaviour
         if (!!dataPass && dataPass.status == "end" && wantInit)
         {
             wantInit = false;
-            CheckTutorialStatus();
         }
         if (detectorHome.wantGoHome)
         {
@@ -40,32 +39,12 @@ public class TutorialManager : MonoBehaviour
     }
 
 
-
-
-    private void CheckTutorialStatus()
-    {
-        Debug.Log("Iniciamos en : " + dataPass.tutorial);
-
-        //si ya hizo el tutorial
-        if (dataPass.tutorial)
-        {
-
-        }
-        else
-        {
-
-        }
-
-    }
-
-
-
     private void ReturnHome()
     {
         dataPass.tutorial = false;
         dataPass.SaveData(dataPass);
         dataPass.LoadData();
-        SceneManager.LoadScene(0);// te lleva al menú
+        SceneManager.LoadScene(1);// te lleva al menú
     }
 
 }

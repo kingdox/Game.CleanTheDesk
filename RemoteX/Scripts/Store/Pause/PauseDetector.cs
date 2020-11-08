@@ -40,7 +40,7 @@ public class PauseDetector : MonoBehaviour
         switch (text)
         {
             case "Reload":
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
                 break;
 
             case "Play":
