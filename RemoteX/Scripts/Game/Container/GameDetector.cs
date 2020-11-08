@@ -134,7 +134,9 @@ public class GameDetector : MonoBehaviour
         g_token.productionNumber = tokensCreateds; tokensCreateds++;
         g_token.name = "T" + g_token.productionNumber;
         g_token.speed = data.tokenSpeed;
-        g_token.img.sprite = token_spr;
+        Sprite imgTest = Resources.Load<Sprite>(data.path_Img + data.pathShapes[Random.Range(0, data.pathShapes.Length)]);
+        g_token.img.sprite = imgTest;
+             //;token_spr;
 
 
 

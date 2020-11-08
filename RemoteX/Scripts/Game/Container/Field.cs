@@ -86,7 +86,17 @@ public class Field : MonoBehaviour
                 || tokenChilds[x].isDraggin
                 || !tokenChilds[x].posToGo.Equals(tokenChilds[x].transform.position);
                 //|| !tokenChilds[x].isReached;
+
             tokenChilds[x].enabled = condition;
+
+            /*
+             
+             Image i = tokenChilds[x].gameObject.GetComponent<Image>();
+            Color c = i.color;
+            float a = condition ? c.a : 0.5f;
+            i.color = new Color(c.r, c.g, c.b, a);
+
+             */
 
             //tokenChilds[x].img.enabled = condition || x == 1;
 
