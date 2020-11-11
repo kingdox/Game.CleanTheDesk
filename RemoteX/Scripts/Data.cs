@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.7.8";
+    public readonly string version = "V 0.8.0";
     public string savedPath = "/saved17.txt";
     public int palleteLength = 6;
     public int token_limit = 20;
@@ -45,7 +45,13 @@ public class Data // es como un enviroment
         "Mistery",
         "Star",
         "Shine",
-        "Love"
+        "Love",
+        "Shield",
+        "Sword",
+        "Voyayer",
+        "Forge",
+        "Karma",
+        "Bag"
     };
 
 

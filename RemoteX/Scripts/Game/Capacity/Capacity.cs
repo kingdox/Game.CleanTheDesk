@@ -7,7 +7,6 @@ public class Capacity : MonoBehaviour
 {
     private TokenSpace tokenSpace;
     private CapacityBar capacityBar;
-    private Image parentImg_capacityText;
 
     [Header("Capacity info")]
     public bool isGameOver = false;
@@ -18,7 +17,6 @@ public class Capacity : MonoBehaviour
 
     private void Awake()
     {
-        parentImg_capacityText = capacityText.transform.parent.GetComponent<Image>();
         lastColors = new Color[0];
         capacityBar = FindObjectOfType<CapacityBar>();
         tokenSpace = FindObjectOfType<TokenSpace>();

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private Power power;
     private DetectorHome detectorHome;
     private PauseDetector pauseDetector;
+    private EndDetector endDetector;
+
     private bool isEnd = false;
     private int power_need = 10;
 
@@ -39,6 +41,12 @@ public class GameManager : MonoBehaviour
     
     public bool pauseWasInit = true;
 
+    [Header("End Section")]
+    public GameObject end;
+    public Text endScoreText;
+    public bool endWasInit = true;
+
+
     [Header("Transition Section")]
     public GameObject transition;
 
@@ -60,11 +68,14 @@ public class GameManager : MonoBehaviour
         dataPass = FindObjectOfType<DataPass>();
         detectorHome = FindObjectOfType<DetectorHome>();
         pauseDetector = FindObjectOfType<PauseDetector>();
+        endDetector = FindObjectOfType<EndDetector>();
 
         pause.SetActive(false);
+        end.SetActive(false);
         transition.SetActive(false);
         //GameManager Starter
         pauseWasInit = false;
+        endWasInit = false;
         wantInit = true;
         score = 0;
         scoreText.text = score.ToString();
@@ -81,7 +92,7 @@ public class GameManager : MonoBehaviour
         actualLimit = capacity.limit;
 
 
-        if (dataPass.status == "end" )
+        if (dataPass.status == "end")
         {
             if (game.activeInHierarchy)
             {
@@ -93,7 +104,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     ChildUpdates();
-                
+
                 }
             }
 
@@ -112,11 +123,16 @@ public class GameManager : MonoBehaviour
                 }
 
             }
-            
+            if (end.activeInHierarchy)
+            {
+                if (!endWasInit)
+                {
+                    endWasInit = true;
+                    pauseDetector.img.sprite = dataPass.spriteContainer;
+
+                }
+            }
         }
-
-        
-
         
     }
 
@@ -154,13 +170,22 @@ public class GameManager : MonoBehaviour
         }
         isEnd = true;
 
+        
 
         Debug.Log("Game Over");
         container.ShutDownContainer();
 
+        int _highScore = score > dataPass.highScore ? score : dataPass.highScore;
+
+        end.SetActive(true);
+        endScoreText.text = "*" + _highScore.ToString() + "*";
+
+        Image img_parentScore = scoreText.gameObject.transform.parent.GetComponent<Image>();
+        img_parentScore.color = new Color(1, 1, 1, 1);
+        scoreText.color = new Color(0, 0, 0, 1);
         // revisar si tenemos highScore
 
-        dataPass.highScore = score > dataPass.highScore ? score : dataPass.highScore;
+        dataPass.highScore = _highScore;
         //TODO temporalmente te cambio la tienda si juegas...
         //
         dataPass.SetStore();//TODO temporal
@@ -168,6 +193,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(dataPass.gamesPlayed);
         dataPass.SaveData(dataPass);
 
+        
     }
 
 
@@ -251,7 +277,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Ha sido presionado y puede usar poder");
         //dependiendo del poder que tiene datapass jugamos algo distinto...
-        //TODO activar la animacion del poder por X tiempo, dependiendo de la que sea...
+        //TODO activar la animacion del poder por X tiempo,
+        //dependiendo de la que sea...
         float delay = data.powerDelays[dataPass.indexPower];
         powerDisabled = true;
         //Basado en PathPowers
