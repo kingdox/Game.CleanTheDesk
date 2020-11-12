@@ -12,6 +12,10 @@ public class GameDetector : MonoBehaviour
     private int lastPos = 0;
     private int countInGame = 0;
 
+    private AudioSource audioS;
+    private AudioClip clip_check_drop;
+    private AudioClip clip_bad_drop;
+
     [Header("Container Settings")]
     public Sprite token_spr;
     public Color[] palletes_col;
@@ -37,6 +41,11 @@ public class GameDetector : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         img = GetComponent<Image>();
         rotation = GetComponent<Rotation>();
+
+        audioS = GetComponent<AudioSource>();
+        clip_check_drop = Resources.Load<AudioClip>(data.path_Sfx + data.audios.check_drop);
+        clip_bad_drop = Resources.Load<AudioClip>(data.path_Sfx + data.audios.bad_drop);
+
 
         spawnCooldown = data.container_spawnCooldown;
     }
@@ -180,6 +189,8 @@ public class GameDetector : MonoBehaviour
                 //La ficha introducida es correcta
                 img.color = KnowMostColorOnTop();
 
+                audioS.clip = clip_check_drop;
+                audioS.Play();
             }
             else
             {
@@ -188,6 +199,8 @@ public class GameDetector : MonoBehaviour
                 {
                     CreateToken();
                 }
+                audioS.clip = clip_bad_drop;
+                audioS.Play();
             }
         }
         else

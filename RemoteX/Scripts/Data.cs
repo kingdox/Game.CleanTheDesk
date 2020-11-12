@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.8.0";
+    public readonly string version = "V 0.8.2";
     public string savedPath = "/saved17.txt";
     public int palleteLength = 6;
     public int token_limit = 20;
@@ -77,10 +77,13 @@ public class Data // es como un enviroment
     };
 
 
+    public Audios audios = new Audios();
+
 
     // Paths
     public string path_Img = "Images/";//GetComponent<Image>().sprite = sprite;
-    public string path_Animation = "Animations/";//GetComponent<>().??= ???;
+    public string path_Animation = "Animations/";//GetComponent<Animator>()
+    public string path_Sfx= "Sfx/";//GetComponent<AudioSource>().??= ???;
 
     //Audio
 
@@ -96,6 +99,16 @@ public class Data // es como un enviroment
 
 }
 
+
+//Audio path
+public class Audios
+{
+    public readonly string bad_drop = "BadDrop";
+    public readonly string check_drop = "CorrectDrop";
+    public readonly string drag = "Drag";
+    public readonly string drop = "Drop";
+    public readonly string equip = "Equip";
+}
 
 /*
     cuando ganas algo nuevo te abre a auna pantalla de recompensa con el container y

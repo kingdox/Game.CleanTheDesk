@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class DragDrop : MonoBehaviour
 {
+    private readonly Data data = new Data();
     private float speed = 10.0f;
     public bool isDraggin;
     public Vector3 posToGo;
+
+    private AudioSource audioS;
+    private AudioClip clip_drag;
+    private AudioClip clip_drop;
+
+
+    private void Awake()
+    {
+        audioS = GetComponent<AudioSource>();
+        clip_drag = Resources.Load<AudioClip>(data.path_Sfx + data.audios.drag );
+        clip_drop = Resources.Load<AudioClip>(data.path_Sfx + data.audios.drop);
+    }
 
 
     void Start()
@@ -48,9 +61,16 @@ public class DragDrop : MonoBehaviour
     private void OnMouseDown()
     {
         isDraggin = true;
+
+        audioS.clip = clip_drag;
+        audioS.Play();
+
     }
     private void OnMouseUp()
     {
         isDraggin = false;
+
+        audioS.clip = clip_drop;
+        audioS.Play();
     }
 }

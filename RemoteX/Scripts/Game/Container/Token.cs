@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class Token : MonoBehaviour
 {
+    private readonly Data data = new Data();
+    private AudioSource audioS;
+    private AudioClip clip_drag;
+    private AudioClip clip_drop;
 
     [Header("Container Settings")]
     public int productionNumber = -1;
@@ -24,6 +28,12 @@ public class Token : MonoBehaviour
         //isReached = false;
         isNew = true;
         img = GetComponent<Image>();
+
+        audioS = GetComponent<AudioSource>();
+        clip_drag = Resources.Load<AudioClip>(data.path_Sfx + data.audios.drag);
+        clip_drop = Resources.Load<AudioClip>(data.path_Sfx + data.audios.drop);
+
+
     }
     void Update()
     {
@@ -63,10 +73,21 @@ public class Token : MonoBehaviour
     private void OnMouseDown()
     {
         isDraggin = !isNew;
+
+        if (isDraggin)
+        {
+            audioS.clip = clip_drag;
+            audioS.Play();
+        }
     }
     private void OnMouseUp()
     {
         isDraggin = false;
+        if (isDraggin)
+        {
+            audioS.clip = clip_drop;
+            audioS.Play();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
