@@ -7,16 +7,10 @@ public class TutorialManager : MonoBehaviour
 {
     private readonly Data data = new Data();
     private DataPass dataPass = null;
-    private Tutorial tutorial;
     private DetectorHome detectorHome;
 
     [Header("TutorialManager info")]
     public bool wantInit = true;
-
-    private void Awake()
-    {
-        tutorial = FindObjectOfType<Tutorial>();
-    }
 
     private void Start()
     {

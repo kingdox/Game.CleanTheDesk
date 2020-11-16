@@ -18,32 +18,21 @@ public class TutorialNavigation : MonoBehaviour
         SetPage();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void NavigateTo(bool direction)
     {
-        string colName = collision.gameObject.name;
-        switch (colName) 
+
+        if (direction)
         {
-            case "Left":
-
-                activePage = activePage != 0
-                    ? --activePage
-                    : (pages.Length - 1);
-
-                break;
-
-            case "Right":
-
-                activePage = activePage != (pages.Length - 1)
-                    ? ++activePage
-                    : 0;
-
-                break;
-
-            default:
-                Debug.Log("Poniendo Tokens que no son bro");
-                return;
+            activePage = activePage != 0
+             ? --activePage
+             : (pages.Length - 1);
         }
-
+        else
+        {
+            activePage = activePage != (pages.Length - 1)
+              ? ++activePage
+              : 0;
+        }
 
         SetPage();
     }

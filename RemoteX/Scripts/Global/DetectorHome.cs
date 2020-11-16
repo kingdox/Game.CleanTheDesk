@@ -7,17 +7,8 @@ public class DetectorHome : MonoBehaviour
 
     public bool wantGoHome = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void WantGoHome()
     {
-        Detect(collision.gameObject);
-    }
-
-    public void Detect(GameObject token)
-    {
-        if (token.name == "Token Back" && !wantGoHome)
-        {
-            wantGoHome = true;
-        }
-
+       wantGoHome = true;
     }
 }

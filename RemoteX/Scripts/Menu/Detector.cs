@@ -102,5 +102,21 @@ public class Detector : MonoBehaviour
         }
     }
 
-    
+
+
+
+    public void Goto(int to)
+    {
+        SceneManager.LoadScene(to);
+    }
 }
+
+/*
+public enum Places
+{
+    Play,
+    Shop,
+    About,
+    Tutorial,
+}
+*/
