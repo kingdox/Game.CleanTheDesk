@@ -10,6 +10,7 @@ public class DataPass : MonoBehaviour
 
     public static DataPass Instance;//Singleton....
     private readonly Data data = new Data();
+    private readonly ColorS colorService = new ColorS();
 
     [Header("Saved Data")]
 
@@ -95,26 +96,12 @@ public class DataPass : MonoBehaviour
     }
     public void SetStore()
     {
-        foreach (var type in data.storeTypes)
-        {
-            switch (type)
-            {
-                case "shapes":
-                    shapesStore = SetStoreOf(type);
-                    break;
-                case "powers":
-                    powersStore = SetStoreOf(type);
-                    break;
-                case "palletes":
-                    palleteStore = SetStoreOf(type);
-                    break;
-                default:
-                    Debug.LogError("Has escrito algo mal...");
-                    break;
-            }
-
-        }
+        shapesStore = SetStoreOf("shapes");
+        powersStore = SetStoreOf("powers");
+        palleteStore = SetStoreOf("palletes");
     }
+
+
     private int[] SetStoreOf(string type)
     {
 
@@ -130,8 +117,11 @@ public class DataPass : MonoBehaviour
                 maxLength = data.pathPowers.Length;
                 break;
             case "palletes":
-                maxLength = data.palletes.Length;
-                break;
+    
+                storeOf = colorService.ReOrder(indexPalletes, palleteStore, data.palletes.Length );
+                return storeOf;
+                //maxLength = data.palletes.Length;
+                //break;
             default:
                 Debug.LogError("Error con el Tipo de Store...?");
                 maxLength = storeOf.Length;

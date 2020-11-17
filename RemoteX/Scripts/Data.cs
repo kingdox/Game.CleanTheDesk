@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Data // es como un enviroment
 {
-    public readonly string version = "V 0.7.8";
+    public readonly string version = "V 0.7.9";
     public string savedPath = "/saved17.txt";
     public int palleteLength = 6;
     public int token_limit = 20;
@@ -91,10 +91,6 @@ public class Data // es como un enviroment
 }
 
 
-/*
-    cuando ganas algo nuevo te abre a auna pantalla de recompensa con el container y
-    el token de la cosa, al arrastras y te da a entender que lo has ganado
-*/
 
 /*
  TODO
