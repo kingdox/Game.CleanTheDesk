@@ -259,7 +259,8 @@ public class GameManager : MonoBehaviour
 
 
         // si fue presionado
-        if (power.isPressed && !powerDisabled)
+        //if (power.isPressed && !powerDisabled)
+        if (power_count == power_need)  
         {
             power.isPressed = false;
             //if (power_count >= power_need) OnOffPowerAnimation

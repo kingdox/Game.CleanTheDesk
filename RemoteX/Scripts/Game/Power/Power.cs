@@ -16,6 +16,7 @@ public class Power : MonoBehaviour
     private void Awake()
     {
         powerBar = FindObjectOfType<PowerBar>();
+        powerFeedback.SetActive(false);
 
     }
 
@@ -40,13 +41,9 @@ public class Power : MonoBehaviour
     }
     public void OnOffFeedbackAnimation(bool condition) {
 
-        powerFeedback.SetActive(condition);
+        //powerFeedback.SetActive(condition);
+        //Image powBG = power_anim.transform.parent.GetComponent<Image>();
 
-        Image powBG = power_anim.transform.parent.GetComponent<Image>();
-
-        powBG.color = condition
-            ? new Color(1, 1, 1)
-            : new Color(0, 0, 0);
 
 
 
