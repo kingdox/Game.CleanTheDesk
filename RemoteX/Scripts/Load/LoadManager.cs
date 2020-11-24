@@ -25,6 +25,8 @@ public class LoadManager : MonoBehaviour
         if (!!datapass && datapass.status == "end" && wantLoad)
         {
             wantLoad = false;
+
+            // TODO Si el presiona uno de las banderitas cambia el idioma ?
             NavigateTo();
         }
     }
